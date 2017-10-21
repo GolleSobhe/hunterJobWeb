@@ -39,10 +39,12 @@ import {
 import { AppComponent } from './app.component';
 import {HttpModule} from '@angular/http';
 import {CdkTableModule} from '@angular/cdk/table';
+import { CountryComponent } from './modules/country/country.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,
