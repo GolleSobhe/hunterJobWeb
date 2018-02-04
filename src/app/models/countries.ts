@@ -1,5 +1,4 @@
-export interface Country {
+export interface Entreprise {
   id: number;
-  name: string;
-  flag: string;
+  nom: string;
 }

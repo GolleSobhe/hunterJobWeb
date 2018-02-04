@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -37,20 +38,18 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import {HttpModule} from '@angular/http';
 import {CdkTableModule} from '@angular/cdk/table';
-import { CountryComponent } from './modules/country/country.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CountryComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     CdkTableModule,

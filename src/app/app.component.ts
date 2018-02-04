@@ -1,24 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EntrepriseService} from './services/entreprise.service';
+import {Entreprise} from './models/countries';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [EntrepriseService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'HUNTER JOB';
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+  listeEntreprises: Observable<Array<Entreprise>>;
+
+  constructor(private entrepriseService: EntrepriseService) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    this.listeEntreprises = this.entrepriseService.getEntreprises();
   }
 }
