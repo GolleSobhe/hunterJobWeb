@@ -33,25 +33,9 @@ Vous devez d'abord installer la version 6.11.3 de nodeJS. Vous pouvez la téléc
 
 1) Lancer la commande git clone https://ab_dou@bitbucket.org/dlfullstackteam/hunterjobweb.git
 2) Après avoir récuperer le code faites "npm install" pour installer les packages.
-3) Installer le module moterial avec cette commande: npm install --save @angular/material @angular/cdk
-4) npm install --save @angular/animations
-
-## Installation du module ngrx
-Il y a la version 4 qui est sortie mais elle n'est pas encore store. Donc pour l'instant nous utiliseront la version 2.3
-
-npm install @ngrx/core @ngrx/store@2.2.3 --save
-npm install @ngrx/store-devtools@3.2.4 --save
-npm install @ngrx/router-store@1.2.6 --save
-npm install @ngrx/effects@2.0.5 --save
-npm install reselect
-npm i --save-dev ngrx-store-freeze
-
-Après avoir installer tous ces modules, faites "npm install" pour installer les modules qui sont definis dans le fichier package.json.
 
 ##Lancement de l'application
-"npm start" (linux et windows) oubien "ng serve" si vous êtes sur windows
-
-Plus d'information sur le module ngrx: https://gist.github.com/btroncone/a6e4347326749f938510
+ng serve --aot
 
 
 
