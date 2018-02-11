@@ -42,10 +42,12 @@ import { AppComponent } from './app.component';
 import {CdkTableModule} from '@angular/cdk/table';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MenubarComponent } from './common/menubar/menubar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenubarComponent
   ],
   imports: [
     BrowserModule,
