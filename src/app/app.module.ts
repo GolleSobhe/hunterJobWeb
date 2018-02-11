@@ -1,48 +1,20 @@
-import { CandidatModule } from './candidat/candidat.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
+  MatButtonModule, MatCardModule,
   MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
+  MatInputModule, MatMenuModule,
   MatToolbarModule,
-  MatTooltipModule,
-  MatStepperModule,
 } from '@angular/material';
 
-import { AppComponent } from './app.component';
-import {CdkTableModule} from '@angular/cdk/table';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { MenubarComponent } from './common/menubar/menubar.component';
+import {AppRoutingModule} from './app-routing.module';
+import {MenubarComponent} from './common/menubar/menubar.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,43 +26,29 @@ import { MenubarComponent } from './common/menubar/menubar.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
-    CdkTableModule,
-    MatAutocompleteModule,
+    CommonModule,
+
+    // Les modules de material
     MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
     MatIconModule,
     MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
+    MatCardModule,
+    MatMenuModule,
+
     AppRoutingModule
+  ],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
