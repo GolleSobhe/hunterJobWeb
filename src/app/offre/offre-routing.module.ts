@@ -1,18 +1,17 @@
-import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
-import {OffreComponent} from './offre/offre.component';
+import { Routes, RouterModule } from '@angular/router';
+import {OffreRootComponent} from './offre-root/offre-root.component';
+import {OffreEditComponent} from './offre-edit/offre-edit.component';
+import {OffreListComponent} from './offre-list/offre-list.component';
 
-const ROUTES: Routes = [
-  {path: '', component: OffreComponent}
+const routes: Routes = [
+  {path: '', component: OffreListComponent},
+  {path: 'new', component: OffreEditComponent},
+  {path: ':id', component: OffreEditComponent},
 ];
 
-// useHash: booléen activant la navigation avec des hash (#) au lieu de l'API history
-// enableTracing: permet de savoir ce qui se passe à l'interieur du root.
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES,
-    {useHash: false, enableTracing: false, initialNavigation: true})],
-  exports: [RouterModule],
-  providers: []
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-
 export class OffreRoutingModule { }

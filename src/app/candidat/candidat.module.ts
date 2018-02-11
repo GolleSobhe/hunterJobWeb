@@ -7,8 +7,8 @@ import { CandidatRootComponent } from './candidat-root/candidat-root.component';
 import { CandidatListComponent } from './candidat-list/candidat-list.component';
 import { CandidatNewComponent } from './candidat-new/candidat-new.component';
 import { CandidatComponent } from './candidat/candidat.component';
-import { Routes, RouterModule } from '@angular/router';
-import {MatFormFieldModule,MatInputModule} from '@angular/material';
+import { RouterModule } from '@angular/router';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -16,11 +16,11 @@ import {MatFormFieldModule,MatInputModule} from '@angular/material';
     CommonModule,
     RouterModule,
     FormsModule,
-    MatFormFieldModule,MatInputModule,
+    MatFormFieldModule, MatInputModule,
     CandidatRoutingModule
   ],
   declarations: [CandidatRootComponent, CandidatListComponent, CandidatNewComponent, CandidatComponent],
   providers : [CandidatService]
-  
+
 })
 export class CandidatModule { }
