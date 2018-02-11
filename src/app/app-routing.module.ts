@@ -2,8 +2,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const ROUTES: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/'}
-];
+  {path: 'candidat',loadChildren : 'app/candidat/candidat.module#CandidatModule'}
+]
 
 // useHash: booléen activant la navigation avec des hash (#) au lieu de l'API history
 // enableTracing: permet de savoir ce qui se passe à l'interieur du root.

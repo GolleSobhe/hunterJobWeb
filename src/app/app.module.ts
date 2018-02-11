@@ -1,7 +1,9 @@
+import { CandidatModule } from './candidat/candidat.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RouterModule,Routes } from '@angular/router';
 
 import {
   MatAutocompleteModule,
@@ -40,6 +42,7 @@ import {
 import { AppComponent } from './app.component';
 import {CdkTableModule} from '@angular/cdk/table';
 import {HttpClientModule} from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -84,6 +87,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    AppRoutingModule,
+    CandidatModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+<h4>Nouveau candidat</h4>
+<form (ngSubmit)="onSubmit()" #candidatForm="ngForm">
+  Nom:
+  <mat-form-field>
+    <input matInput name="nom" required placeholder="Nom" /><br/>
+  </mat-form-field>
+  Prenom:
+  <mat-form-field>
+      <input matInput name="prenom" required placeholder="Prenom"/><br/>
+  </mat-form-field>
+  <input type="submit" [disabled]="! candidatForm.form.valid" value="envoyer"/>
+  
+</form>
