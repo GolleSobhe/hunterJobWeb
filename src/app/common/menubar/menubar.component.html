@@ -1,25 +1,27 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Hunter Job</span>
-    <span class="espace-separation-toolbar"></span>
-    <span>Nous contacter</span>
+<div class="alternative">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Hunter Job</span>
+      <span class="espace-separation-toolbar"></span>
+      <span>Nous contacter</span>
 
-    <!-- ICON DE DE CONNEXION -->
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <i class="material-icons">account_circle</i>
-    </button>
-
-    <!--MENU DE CONNEXION -->
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-        <span>Se connecter</span>
+      <!-- ICON DE DE CONNEXION -->
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="material-icons">account_circle</i>
       </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Créer un compte</span>
-      </button>
-    </mat-menu>
 
-  </mat-toolbar-row>
-</mat-toolbar>
+      <!--MENU DE CONNEXION -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Se connecter</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Créer un compte</span>
+        </button>
+      </mat-menu>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
