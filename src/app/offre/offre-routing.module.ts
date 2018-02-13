@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {OffreRootComponent} from './offre-root/offre-root.component';
 import {OffreEditComponent} from './offre-edit/offre-edit.component';
 import {OffreListComponent} from './offre-list/offre-list.component';
+import {OffreService} from './offre.service';
 
 const routes: Routes = [
   {path: '', component: OffreListComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [OffreService]
 })
 export class OffreRoutingModule { }

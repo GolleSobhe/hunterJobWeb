@@ -1,3 +1,32 @@
-<p>
-  offre-list works!
-</p>
+<div class="container mat-elevation-z8">
+  <div class="en-tete">
+    <h1>{{length}} offres trouvées</h1>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer ...">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="donneesOffres">
+    <ng-container matColumnDef="id">
+      <mat-cell *matCellDef="let element">
+        <div >
+          <a class="titre-offre" routerLink="">{{element.titreOffre}}</a>
+        </div>
+        <div>
+          <span>Nom entreprise: Google Nom entreprise: Google  Nom entreprise: Google  Nom entreprise: Google  Nom entreprise: Google </span>
+        </div>
+        <div>
+          {{element.description}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [@elementTableau]="length"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginateur
+                 [pageSize]="10"
+                 [pageSizeOptions]="[2, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
