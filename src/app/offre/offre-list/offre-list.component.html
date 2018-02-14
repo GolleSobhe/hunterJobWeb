@@ -9,11 +9,23 @@
   <mat-table #table [dataSource]="donneesOffres">
     <ng-container matColumnDef="id">
       <mat-cell *matCellDef="let element">
+
+        <!--REDIRECTION VERS LE DETAILS DE L'OFFRE SELECTIONNEE-->
         <div >
-          <a class="titre-offre" routerLink="">{{element.titreOffre}}</a>
+          <a class="titre-offre" [routerLink]="[element.id]">{{element.titreOffre}}</a>
         </div>
+
         <div>
-          <span>Nom entreprise: Google Nom entreprise: Google  Nom entreprise: Google  Nom entreprise: Google  Nom entreprise: Google </span>
+          <span>Nom entreprise: Google Nom entreprise: Google
+            Nom entreprise: Google  Nom entreprise: Google
+            Nom entreprise: Google
+            Nom entreprise: Google Nom entreprise: Google
+            Nom entreprise: Google  Nom entreprise: Google
+            Nom entreprise: Google
+            Nom entreprise: Google Nom entreprise: Google
+            Nom entreprise: Google  Nom entreprise: Google
+            Nom entreprise: Google
+          </span>
         </div>
         <div>
           {{element.description}}
@@ -25,8 +37,8 @@
   </mat-table>
 
   <mat-paginator #paginateur
-                 [pageSize]="10"
-                 [pageSizeOptions]="[2, 10, 20]"
+                 [pageSize]="20"
+                 [pageSizeOptions]="[3, 10, 20, 4, 5, 6, 7, 8, 9]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>

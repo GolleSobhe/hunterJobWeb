@@ -1,26 +1,48 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { OffreRoutingModule } from './offre-routing.module';
-import { OffreRootComponent } from './offre-root/offre-root.component';
-import { OffreListComponent } from './offre-list/offre-list.component';
-import { OffreEditComponent } from './offre-edit/offre-edit.component';
+import {OffreRoutingModule} from './offre-routing.module';
+import {OffreRootComponent} from './offre-root/offre-root.component';
+import {OffreListComponent} from './offre-list/offre-list.component';
+import {OffreEditComponent} from './offre-edit/offre-edit.component';
 
 import {
-  MatInputModule,
   MatTableModule,
   MatPaginatorModule,
+  MatCardModule,
+  MatGridListModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule, MatInputModule,
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PropositionOffreComponent} from './offre-edit/proposition-offre/proposition-offre.component';
+import {CommonModule} from '@angular/common';
+import { OffreDetailsComponent } from './offre-list/offre-details/offre-details.component';
 
 @NgModule({
   imports: [
     OffreRoutingModule,
-    MatTableModule,
+    ReactiveFormsModule,
     FormsModule,
-    MatInputModule,
-    MatPaginatorModule
+    CommonModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatInputModule
   ],
-  declarations: [OffreRootComponent, OffreListComponent, OffreEditComponent]
+  declarations: [
+    OffreRootComponent,
+    OffreListComponent,
+    OffreEditComponent,
+    PropositionOffreComponent,
+    OffreDetailsComponent,
+  ]
 })
-export class OffreModule { }
+export class OffreModule {
+}

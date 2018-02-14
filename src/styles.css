@@ -8,6 +8,14 @@
 .titre-offre {
   color: darkcyan;
   text-decoration: none;
-  font-family: 'Raleway', 'Arial';
+  font-family: Roboto, Arial, sans-serif;
   font-size: 20px;
+}
+
+body {
+  background-color: #e6e7ff;
+}
+
+img {
+  border-radius: 8px;
 }

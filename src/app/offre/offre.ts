@@ -4,4 +4,5 @@ export interface Offre {
   salaireMinimal: number;
   salaireMaximal: number;
   description: string;
+  nom: string;
 }
