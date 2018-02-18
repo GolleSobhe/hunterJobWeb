@@ -19,7 +19,7 @@ export class OffreService {
   }
 
   getOffres(): Observable<Offre[]> {
-    return this._http.get<Offre[]>('http://localhost:8080/offres');
+    return this._http.get<Offre[]>('api/offres');
   }
 
   creerOffre(form: Offre): Observable<Offre> {
@@ -28,11 +28,11 @@ export class OffreService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>('http://localhost:8080/offres/create', offre, {headers: headers});
+    return this._http.post<Offre>('api/offres/create', offre, {headers: headers});
   }
 
   getOffre(id: number): Observable<Offre> {
-    return this._http.get<Offre>('http://localhost:8080/offres/' + id);
+    return this._http.get<Offre>('api/offres/' + id);
   }
 
 }

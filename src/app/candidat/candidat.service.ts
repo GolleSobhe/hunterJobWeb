@@ -10,10 +10,10 @@ export class CandidatService {
   }
 
   create(candidat:Candidat):void{
-    this.http.post("http://localhost:8080/candidat",candidat).subscribe();
+    this.http.post("api/candidat",candidat).subscribe();
   }
 
   getAll():Observable<Candidat[]> {
-    return this.http.get<Candidat[]>("http://localhost:8080/candidat").retry(3);
+    return this.http.get<Candidat[]>("api/candidat").retry(3);
   }
 }
