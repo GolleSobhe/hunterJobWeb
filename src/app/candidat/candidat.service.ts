@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx';
 import { Candidat } from './candidat';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CandidatService {
@@ -10,7 +10,9 @@ export class CandidatService {
   }
 
   create(candidat:Candidat):void{
-    this.http.post("api/candidat",candidat).subscribe();
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    this.http.post("api/candidat/create",candidat).subscribe();
   }
 
   getAll():Observable<Candidat[]> {
