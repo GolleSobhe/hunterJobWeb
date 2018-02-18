@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidatNewComponent implements OnInit {
 
-  private candidat:Candidat;
+  candidat:Candidat = new Candidat();
 
   constructor() { }
 
