@@ -10,12 +10,14 @@ export class CandidatService {
   }
 
   create(candidat:Candidat):void{
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    this.http.post("api/candidat/create",candidat).subscribe();
+    this.http.post('api/candidat/create',candidat).subscribe();
   }
 
   getAll():Observable<Candidat[]> {
-    return this.http.get<Candidat[]>("api/candidat").retry(3);
+    return this.http.get<Candidat[]>('api/candidat');
+  }
+
+  getCandidat(id:number):Observable<Candidat> {
+    return this.http.get<Candidat>(`api/candidat/${id}`);
   }
 }

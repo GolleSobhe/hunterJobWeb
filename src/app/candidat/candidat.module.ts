@@ -16,6 +16,7 @@ import {MatTableModule,
   MatOptionModule,
   MatSelectModule, MatInputModule
 } from '@angular/material';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatTableModule,
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule, MatInputModule,
-    CandidatRoutingModule
+    CandidatRoutingModule,
+    MatListModule
   ],
   declarations: [CandidatRootComponent, CandidatListComponent, CandidatNewComponent, CandidatComponent],
   providers : [CandidatService]
