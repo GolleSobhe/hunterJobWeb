@@ -8,6 +8,7 @@ import {
   MatIconModule,
   MatInputModule, MatMenuModule,
   MatToolbarModule,
+  MatFormFieldModule,
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -15,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
+import { AcceuilModule } from './acceuil/acceuil.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {CommonModule} from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    AcceuilModule,
 
     // Les modules de material
     MatButtonModule,
@@ -36,7 +39,7 @@ import {CommonModule} from '@angular/common';
     MatToolbarModule,
     MatCardModule,
     MatMenuModule,
-
+    MatFormFieldModule,
     AppRoutingModule
   ],
   exports: [
