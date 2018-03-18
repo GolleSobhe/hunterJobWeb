@@ -1,13 +1,19 @@
-<h4>Nouveau candidat</h4>
-<form (ngSubmit)="onSubmit()" #candidatForm="ngForm">
-  Nom:
-  <mat-form-field>
-    <input matInput name="nom" required placeholder="Nom" /><br/>
-  </mat-form-field>
-  Prenom:
-  <mat-form-field>
-      <input matInput name="prenom" required placeholder="Prenom"/><br/>
-  </mat-form-field>
-  <input type="submit" [disabled]="! candidatForm.form.valid" value="envoyer"/>
-  
-</form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h2>Nouveau candidat</h2></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #candidatForm="ngForm" class="formulaire container">
+      <fieldset>
+        <mat-form-field class="longueur-champ-formulaire">
+          <input [(ngModel)]="candidat.nom" matInput name="nom" required placeholder="Nom"/>
+        </mat-form-field>
+        <mat-form-field class="longueur-champ-formulaire">
+          <input [(ngModel)]="candidat.prenom" matInput name="prenom" required placeholder="Prenom"/>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="! candidatForm.form.valid">Valider</button>
+        <button type="reset" mat-raised-button color="warn">Effacer</button>
+      </fieldset>
+    </form>
+  </mat-card-content>
+</mat-card>

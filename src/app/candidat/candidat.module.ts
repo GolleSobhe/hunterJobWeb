@@ -1,5 +1,5 @@
 import { CandidatRoutingModule } from './candidat-outing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CandidatService } from './candidat.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,15 @@ import { CandidatListComponent } from './candidat-list/candidat-list.component';
 import { CandidatNewComponent } from './candidat-new/candidat-new.component';
 import { CandidatComponent } from './candidat/candidat.component';
 import { RouterModule } from '@angular/router';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatTableModule,
+  MatPaginatorModule,
+  MatCardModule,
+  MatGridListModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule, MatInputModule
+} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -16,8 +24,16 @@ import {MatFormFieldModule, MatInputModule} from '@angular/material';
     CommonModule,
     RouterModule,
     FormsModule,
-    MatFormFieldModule, MatInputModule,
-    CandidatRoutingModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule, MatInputModule,
+    CandidatRoutingModule,
+    MatListModule
   ],
   declarations: [CandidatRootComponent, CandidatListComponent, CandidatNewComponent, CandidatComponent],
   providers : [CandidatService]

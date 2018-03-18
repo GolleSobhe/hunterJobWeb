@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx';
 import { Candidat } from './candidat';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CandidatService {
@@ -10,10 +10,14 @@ export class CandidatService {
   }
 
   create(candidat:Candidat):void{
-    this.http.post("http://localhost:8080/candidat",candidat).subscribe();
+    this.http.post('api/candidat/create',candidat).subscribe();
   }
 
   getAll():Observable<Candidat[]> {
-    return this.http.get<Candidat[]>("http://localhost:8080/candidat").retry(3);
+    return this.http.get<Candidat[]>('api/candidat');
+  }
+
+  getCandidat(id:number):Observable<Candidat> {
+    return this.http.get<Candidat>(`api/candidat/${id}`);
   }
 }

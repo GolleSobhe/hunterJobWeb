@@ -1,3 +1,4 @@
+import { CandidatService } from './../candidat.service';
 import { Candidat } from './../candidat';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidatNewComponent implements OnInit {
 
-  private candidat:Candidat;
+  candidat:Candidat = new Candidat();
 
-  constructor() { }
+  constructor(private candidatService:CandidatService) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("submitting");
+    this.candidatService.create(this.candidat);
   }
 }

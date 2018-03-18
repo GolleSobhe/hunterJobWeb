@@ -1,3 +1,12 @@
 <p>
   candidat-list works!
 </p>
+<mat-nav-list>
+  <mat-list-item *ngFor="let candidat of candidats,let i=index">
+    <p matLine>
+      <span>{{candidat.nom}}</span>
+      <span>{{candidat.prenom}}</span>
+      <a routerLink="../{{candidat.id}}">consulter</a>
+    </p>
+  </mat-list-item>
+</mat-nav-list>
