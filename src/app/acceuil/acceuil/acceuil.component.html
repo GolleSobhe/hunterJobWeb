@@ -1,23 +1,32 @@
-<div class="acceuil-container">
-  <mat-card-content>
-    <form >
-      <table>
-        <tr>
-          <td>
-             <mat-form-field>
-               <input matInput placeholder="Quoi ? Java, Angular, ..." value="Sushi">
-             </mat-form-field>
-          </td>
-          <td>
-             <mat-form-field>
-               <input matInput placeholder="Où ? , Ville, Pays" value="Sushi">
-             </mat-form-field>
-          </td>
-          <td>
-             <button mat-button>Rechercher</button>
-          </td>
-        </tr>
-      </table>                                 
-    </form> 
-  </mat-card-content> 
+
+<div id="container">
+    <div id="topbar"> 
+      <h1> Laissez les jobs vous chasser </h1>            
+    </div>
+    <div id="main">
+        <div id="colonne_gauche"> <div></div></div>
+        <div id="colonne_droite">
+            <form>
+              <table>
+                <tr>
+                  <td>
+                    <fieldset>                              
+                      <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">                     
+                    </fieldset>
+                  </td>
+                  <td>
+                    <fieldset>                              
+                      <input type="text" class="taille-champs" placeholder="Où ? Ville, Pays">                     
+                    </fieldset>
+                  </td>
+                  <td>
+                      <button mat-button>Rechercher</button>
+                  </td>
+                </tr>
+              </table>    
+            </form>
+          </div>
+    </div>   
 </div>
+
+
