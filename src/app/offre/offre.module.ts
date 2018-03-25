@@ -12,13 +12,15 @@ import {
   MatGridListModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatSelectModule, MatInputModule,
+  MatSelectModule, MatInputModule, MatStepperModule, MatTabsModule, MatCheckboxModule, MatRadioModule,
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PropositionOffreComponent} from './offre-edit/proposition-offre/proposition-offre.component';
 import {CommonModule} from '@angular/common';
 import { OffreDetailsComponent } from './offre-list/offre-details/offre-details.component';
+import { CreationOffreComponent } from './creation-offre/creation-offre.component';
+import { IdentificationComponent } from './identification/identification.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,11 @@ import { OffreDetailsComponent } from './offre-list/offre-details/offre-details.
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
   ],
   declarations: [
     OffreRootComponent,
@@ -42,6 +48,8 @@ import { OffreDetailsComponent } from './offre-list/offre-details/offre-details.
     OffreEditComponent,
     PropositionOffreComponent,
     OffreDetailsComponent,
+    CreationOffreComponent,
+    IdentificationComponent,
   ]
 })
 export class OffreModule {

@@ -1,0 +1,61 @@
+<mat-tab-group class="demo-tab-group">
+  <mat-tab label="Connexion">
+    <div class="demo-tab-content">
+      <form [formGroup]="identificationForm" novalidate (ngSubmit)="sidentififer()" class="formulaire container">
+        <fieldset>
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Email" formControlName="mail">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Mot de passe" formControlName="motDePasse">
+          </mat-form-field>
+        </fieldset>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="!identificationForm.valid">Connexion
+        </button>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Création d'un compte">
+    <div class="demo-tab-content">
+      <form [formGroup]="creatonCompteForm" novalidate (ngSubmit)="sidentififer()" class="formulaire container">
+        <fieldset>
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Nom & prenom" formControlName="nom">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Email" formControlName="mail">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Entreprise" formControlName="entreprise">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input type="number" matInput placeholder="Numéro de téléphone" formControlName="telephone">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Pays" formControlName="pays">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Adresse" formControlName="adresse">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Mot de passe" formControlName="motDePasse">
+          </mat-form-field>
+
+          <mat-form-field class="longueur-champ-formulaire">
+            <input matInput placeholder="Confirmer mot de passe" formControlName="confirmerMotDePasse">
+          </mat-form-field>
+        </fieldset>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="!creatonCompteForm.valid">Valider</button>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>

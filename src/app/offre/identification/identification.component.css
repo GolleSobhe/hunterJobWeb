@@ -1,0 +1,25 @@
+.demo-tab-group {
+  border: 0px solid #e8e8e8;
+}
+
+.demo-tab-content {
+  padding: 16px;
+
+}
+
+.formulaire {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.longueur-champ-formulaire {
+  width: 100%;
+}
+
+
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}

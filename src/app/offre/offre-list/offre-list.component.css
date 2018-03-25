@@ -15,3 +15,10 @@
   width: 100%;
 }
 
+.titre-offre {
+  color: darkcyan;
+  text-decoration: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 20px;
+}
+

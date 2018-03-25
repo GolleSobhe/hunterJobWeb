@@ -5,7 +5,9 @@ import { AccueilComponent } from './accueil/accueil/accueil.component';
 
 
 const ROUTES: Routes = [
-  {path: "accueil", component: AccueilComponent},
+  {path: 'accueil', component: AccueilComponent},
+  {path: '', redirectTo: 'accueil', pathMatch: 'full'},
+
   {path: 'candidat', loadChildren : 'app/candidat/candidat.module#CandidatModule'},
   {path: 'offres', loadChildren : 'app/offre/offre.module#OffreModule'},
 ];
