@@ -16,7 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
-import { AcceuilModule } from './acceuil/acceuil.module';
+import { AccueilModule } from './accueil/accueil.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { AcceuilModule } from './acceuil/acceuil.module';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    AcceuilModule,
+    AccueilModule,
 
     // Les modules de material
     MatButtonModule,

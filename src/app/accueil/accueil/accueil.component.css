@@ -1,4 +1,4 @@
-.acceuil-container {
+.accueil-container {
     position: absolute;
     margin: auto;
     top: 0;
@@ -29,8 +29,11 @@
   form {
     display: block;
     margin-top: 0em;
-}
-
+  }
+  ::ng-deep .mat-select{
+    background-color:white;
+    display: none;
+  }
   #colonne_gauche{width:250px!important; margin-right:20px; float:left;}
   #colonne_droite{width:560px; float:left;}
 
