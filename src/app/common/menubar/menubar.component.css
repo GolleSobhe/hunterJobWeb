@@ -20,3 +20,8 @@
 .separation-job-resaux{
   flex: 0 0 4%;
 }
+
+.toolbarMenu{
+  background: white;
+  color:black
+}
