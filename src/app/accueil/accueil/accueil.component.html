@@ -1,48 +1,27 @@
 
-<div id="container">
+<div id="container" align="center">
     <div id="topbar"> 
       <h1> Laissez les jobs vous chasser </h1>            
     </div>
-    <div id="main">
-        <div id="colonne_gauche"> 
-          <div></div>
-        </div>
-        <div id="colonne_droite">
-            <form>
-              <table>
-                <tr>
-                  <td>
-                    <fieldset>                              
-                      <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">                     
-                    </fieldset>
-                  </td>
-                  <td>
-                      <fieldset>
-                          <mat-select placeholder="Pays" disableRipple>
-                              <mat-option *ngFor="let pays of tousLesPays" [value]="pays.codePays">
-                                {{ pays.nomPays }}
-                              </mat-option>
-                            </mat-select>
-                      </fieldset>                    
-                  </td>
-                  <td>
-                    <fieldset>                              
-                      <input type="text" class="taille-champs" placeholder="Où ? Ville, Pays">                     
-                    </fieldset>
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr>
-                  <td></td>
-                  <td>
-                    <button mat-button>Rechercher</button>
-                  </td>
-                  <td></td>
-                </tr>
-              </table>    
-            </form>
+    <form>
+        <div class="search-container">
+          <div class="call-out">
+            <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">
           </div>
-    </div>   
+    
+          <div class="call-out">
+            <mat-select placeholder="Pays" class="taille-pays">
+              <mat-option *ngFor="let pays of tousLesPays" [value]="pays.codePays">
+                {{ pays.nomPays }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="call-out">
+            <input type="text" class="taille-champs" placeholder="Où ? Ville, Pays">
+          </div>
+        </div>
+        <button mat-button>Rechercher</button>
+      </form>
 </div>
 
 

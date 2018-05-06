@@ -5,13 +5,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
-.titre-offre {
-  color: darkcyan;
-  text-decoration: none;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 20px;
-}
-
 body {
   background-color: white;
 }
@@ -22,5 +15,32 @@ img {
 
 button{
   background:#0B2161!important;
-  color: white!important
+  color: white!important;  
+  border-radius: 10px!important;
+}
+
+input,mat-select{
+  border-radius: 5px!important;
+  border-color: #0B2161!important;
+  border-width: thin!important;
+  border-style:solid!important;
+}
+
+.search-container {
+  margin: auto;
+}
+
+
+@media (max-width:1500px) {
+  .search-container{
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.call-out {
+  box-sizing: border-box;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  flex-basis: 80%
 }
