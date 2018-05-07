@@ -2,6 +2,8 @@
   <div id="topbar">
     <h1> Laissez les jobs vous chasser </h1>
   </div>
+
+ <!-- FORMULAIRE DE RECHERCHE-->
   <form>
     <div class="search-form">
       <div class="column-search-form">
@@ -10,8 +12,9 @@
 
       <div class="column-search-form">
         <mat-select placeholder="Pays" class="taille-champs">
-          <mat-option *ngFor="let pays of tousLesPays" [value]="pays.codePays">
-            {{ pays.nomPays }}
+          <mat-option *ngFor="let state of states" [value]="state.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+            {{ state.name }}
           </mat-option>
         </mat-select>
       </div>
@@ -20,6 +23,7 @@
       </div>
     </div>
 
+   <!-- PLACEMENT DU BUTTON RECHERCHER -->
     <div class="search-form">
       <div class="column-search-form"></div>
       <div class="column-search-form">
