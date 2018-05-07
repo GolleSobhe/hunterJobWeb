@@ -1,11 +1,11 @@
-#container{
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+.container {
+  width: 80%;
 }
+
 .taille-champs{
-  width: 300px!important;
+  width: 100%!important;
 }
-.taille-pays{
-  width: 250px!important;
+
+button {
+  width: 100%!important;
 }

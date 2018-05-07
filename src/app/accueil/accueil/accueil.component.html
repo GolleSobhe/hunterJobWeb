@@ -1,27 +1,33 @@
+<div class="container" align="center">
+  <div id="topbar">
+    <h1> Laissez les jobs vous chasser </h1>
+  </div>
+  <form>
+    <div class="search-form">
+      <div class="column-search-form">
+        <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">
+      </div>
 
-<div id="container" align="center">
-    <div id="topbar"> 
-      <h1> Laissez les jobs vous chasser </h1>            
+      <div class="column-search-form">
+        <mat-select placeholder="Pays" class="taille-champs">
+          <mat-option *ngFor="let pays of tousLesPays" [value]="pays.codePays">
+            {{ pays.nomPays }}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="column-search-form">
+        <input type="text" class="taille-champs" placeholder="Où ? Ville, Pays">
+      </div>
     </div>
-    <form>
-        <div class="search-container">
-          <div class="call-out">
-            <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">
-          </div>
-    
-          <div class="call-out">
-            <mat-select placeholder="Pays" class="taille-pays">
-              <mat-option *ngFor="let pays of tousLesPays" [value]="pays.codePays">
-                {{ pays.nomPays }}
-              </mat-option>
-            </mat-select>
-          </div>
-          <div class="call-out">
-            <input type="text" class="taille-champs" placeholder="Où ? Ville, Pays">
-          </div>
-        </div>
+
+    <div class="search-form">
+      <div class="column-search-form"></div>
+      <div class="column-search-form">
         <button mat-button>Rechercher</button>
-      </form>
+      </div>
+      <div class="column-search-form"></div>
+    </div>
+  </form>
 </div>
 
 
