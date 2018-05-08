@@ -1,5 +1,5 @@
 .separation-toolbar {
-  flex: 0 0 7%;
+  flex: 0 0 2%;
 }
 
 .mat-toolbar {
@@ -13,10 +13,6 @@
   flex: 1 1 auto;
 }
 
-.separation-offres-entreprises{
-  flex: 0 0 5%;
-}
-
 .separation-job-resaux{
   flex: 0 0 4%;
 }
@@ -24,4 +20,22 @@
 .toolbarMenu{
   background: white;
   color:black
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: grey;
+  background: none;
+}
+
+a:link {
+  text-decoration: none;
 }
