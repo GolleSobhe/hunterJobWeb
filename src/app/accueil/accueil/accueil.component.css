@@ -6,6 +6,50 @@
   width: 100%!important;
 }
 
-button {
+.button-search {
   width: 100%!important;
+}
+
+/* CAROUSELLE CSS */
+.image-tile {
+  min-height: 200px;
+  background-color: #ccc;
+  background-size: cover !important;
+}
+
+.image-tile h1 {
+  text-align: center;
+  line-height: 200px;
+  background: rgba(0, 0, 0, 0.32);
+  color: white;
+  margin: 0;
+}
+
+.button-left {
+  position: absolute;
+  border-radius: 99px!important;
+  margin: auto;
+  top: -65px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+  left: -60px;
+}
+
+.button-right {
+  position: absolute;
+  border-radius: 99px!important;
+  margin: auto;
+  top: -65px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+  right: -60px;
+}
+
+
+.entreprise-carousel {
+  padding-top: 10%;
 }

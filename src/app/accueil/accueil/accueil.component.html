@@ -3,7 +3,7 @@
     <h1> Laissez les jobs vous chasser </h1>
   </div>
 
- <!-- FORMULAIRE DE RECHERCHE-->
+  <!-- FORMULAIRE DE RECHERCHE-->
   <form>
     <div class="search-form">
       <div class="column-search-form">
@@ -13,7 +13,7 @@
       <div class="column-search-form">
         <mat-select placeholder="Pays" class="taille-champs">
           <mat-option *ngFor="let state of states" [value]="state.name">
-            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
             {{ state.name }}
           </mat-option>
         </mat-select>
@@ -23,15 +23,29 @@
       </div>
     </div>
 
-   <!-- PLACEMENT DU BUTTON RECHERCHER -->
+    <!-- PLACEMENT DU BUTTON RECHERCHER -->
     <div class="search-form">
       <div class="column-search-form"></div>
       <div class="column-search-form">
-        <button mat-button>Rechercher</button>
+        <button class="button-search" mat-button>Rechercher</button>
       </div>
       <div class="column-search-form"></div>
     </div>
   </form>
+
+  <!--POSITIONNEMENT DE LA CAROUSSELLE CONTENANT LES ENTREPRISES-->
+  <div class="entreprise-carousel">
+    <h2>... Entreprises ....</h2>
+    <ngx-carousel [inputs]="countryCarousel" (carouselLoad)="carouselTile()">
+      <ngx-tile NgxCarouselItem *ngFor="let tile of countryCarouselItems; let i = index;">
+          <div class="image-tile" [style.background]="'url(' + tile + ')'">
+            <h1>{{i}}</h1>
+          </div>
+          <h4>Nom</h4>
+          <p>À VOIR</p>
+      </ngx-tile>
+      <button NgxCarouselPrev class="button-left"><h3>&lt;</h3></button>
+      <button NgxCarouselNext class="button-right"><h4>»</h4></button>
+    </ngx-carousel>
+  </div>
 </div>
-
-
