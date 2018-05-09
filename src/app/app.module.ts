@@ -17,11 +17,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
 import { AccueilModule } from './accueil/accueil.module';
+import { FooterComponent } from './common/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenubarComponent
+    MenubarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
