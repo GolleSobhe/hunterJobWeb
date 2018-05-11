@@ -31,8 +31,6 @@
   margin: auto;
   top: -65px;
   bottom: 0;
-  width: 40px;
-  height: 40px;
   box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
   left: -60px;
 }
@@ -43,12 +41,9 @@
   margin: auto;
   top: -65px;
   bottom: 0;
-  width: 40px;
-  height: 40px;
   box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
   right: -60px;
 }
-
 
 .entreprise-carousel {
   padding-top: 10%;

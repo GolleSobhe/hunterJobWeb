@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './accueil/accueil.component';
-import { MatFormFieldModule, MatGridListModule, MatButtonModule, MatInputModule, MatCardModule, MatSelectModule } from '@angular/material';
+import {
+  MatFormFieldModule, MatGridListModule, MatButtonModule, MatInputModule, MatCardModule, MatSelectModule,
+  MatIconModule
+} from '@angular/material';
 import {NgxCarouselModule} from 'ngx-carousel';
 
 @NgModule({
@@ -14,6 +17,7 @@ import {NgxCarouselModule} from 'ngx-carousel';
     MatFormFieldModule,
     MatCardModule,
     MatSelectModule,
+    MatIconModule,
 
     NgxCarouselModule
   ],

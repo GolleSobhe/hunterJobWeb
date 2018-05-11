@@ -9,6 +9,9 @@
   z-index: 1;
 }
 
+.container {
+  width: 80%;
+}
 .separation-fin{
   flex: 1 1 auto;
 }
@@ -32,7 +35,7 @@ a:visited {
 
 a:hover, a:focus, a:active {
   text-decoration: none;
-  color: grey;
+  color: #0B2161;
   background: none;
 }
 
