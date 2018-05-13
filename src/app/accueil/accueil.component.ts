@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import {isNullOrUndefined} from 'util';
+import { AcceuilService } from './acceuil.service';
 
 @Component({
   selector: 'app-accueil',
@@ -19,14 +20,13 @@ export class AccueilComponent implements OnInit {
   images: string[];
 
   stateCtrl: FormControl;
-  filteredStates: Observable<any[]>;
-
-  constructor() {
+  filteredKeysWord: Observable<any[]>;
+  keysWord: string[];
+  constructor(private acceuilService: AcceuilService) {
     this.stateCtrl = new FormControl();
-    this.filteredStates = this.stateCtrl.valueChanges
+    this.filteredKeysWord = this.stateCtrl.valueChanges
       .pipe(
-        startWith(''),
-        map(state => state ? this.filterStates(state) : this.states.slice())
+        map(keyWord => keyWord ? this.filterKeysWords(keyWord) : [])
       );
   }
 
@@ -43,6 +43,7 @@ export class AccueilComponent implements OnInit {
     this.initialiserTousLesPays();
     this.initCountryCarousel();
     this.carouselTile();
+    this.initKeysWord();
   }
 
   private initialiserTousLesPays(): void {
@@ -120,10 +121,14 @@ export class AccueilComponent implements OnInit {
     }
   }
 
-  filterStates(name: string) {
-    if (!isNullOrUndefined(name) && name.trim() !== '') {
-      return this.states.filter(state =>
-        state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
-    }
+  filterKeysWords(keyWord: string): Array<string> {
+      return  this.keysWord.filter(item =>
+        item.toLowerCase().indexOf(keyWord.toLowerCase()) === 0);    
+  }
+
+  private initKeysWord(): void {
+    this.acceuilService.getKeyWords().subscribe((keysWord: Array<string>) => {
+      this.keysWord = keysWord;
+    });
   }
 }

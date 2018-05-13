@@ -1,73 +1,20 @@
 {
-    "posts": [
-      {
-        "id": 1,
-        "content": "J'adore les chatons",
-        "img": "http://mymodernmet.com/wp/wp-content/uploads/archive/J1ttn9ZtwV6lXEux61KL_1082105496.jpeg",
-        "userId": 1,
-        "timestamp": 1510038432
-      },
-      {
-        "id": 2,
-        "content": "Je ne sais plus quoi dire",
-        "userId": 1,
-        "timestamp": 1509995652
-      },
-      {
-        "id": 3,
-        "content": "C'est naze",
-        "userId": 2,
-        "timestamp": 1509702972
-      }
-    ],
-    "comments": [
-      {
-        "id": 1,
-        "postId": 1,
-        "userId": 2,
-        "content": "Moi pas du tout",
-        "timestamp": 1510039032
-      },
-      {
-        "content": "C'est trop mignon !",
-        "userId": 2,
-        "postId": 1,
-        "id": 9,
-        "timestamp": 1510042632
-      },
-      {
-        "content": "Ah enfin !",
-        "userId": 1,
-        "postId": 1,
-        "id": 10,
-        "timestamp": 1510044912
-      },
-      {
-        "content": "Mais non, c'est super, il y a des chatons!",
-        "userId": 1,
-        "postId": 3,
-        "id": 11,
-        "timestamp": 1509696312
-      },
-      {
-        "content": "mais, c'est mignon les chats",
-        "userId": 1,
-        "postId": 2,
-        "id": 12,
-        "timestamp": 1509696312
-      }
-    ],
-    "users": [
-      {
-        "id": 1,
-        "firstName": "Un fan",
-        "lastName": "des chats"
-      },
-      {
-        "id": 2,
-        "firstName": "Un gars",
-        "lastName": "aigri"
-      }
+   "keys-word":[
+      "java",
+      "angular",
+      "jee",
+      "java ee",
+      "jakarta ee",
+      "j2ee",
+      "java j2ee",
+      "reactJS",
+      "react",
+      "spring",
+      "spring boot",
+      "commercial",
+      "marketing",
+      "ionic",
+      "react native"
     ]
   }
   
