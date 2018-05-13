@@ -21,13 +21,17 @@ img {
 }
 
 button{
-  background:#0B2161!important;
+  padding: 5px 10px;
   color: white!important;
-  border-radius: 10px!important;
+  border-radius: 15px!important;
+}
+
+.button-principal-color {
+  background:#0B2161!important;
 }
 
 input,mat-select{
-  border-radius: 5px!important;
+  border-radius: 15px!important;
   border-color: #0B2161;
   border-width: thin!important;
   border-style:solid!important;

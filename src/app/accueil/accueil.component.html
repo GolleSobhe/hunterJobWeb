@@ -7,7 +7,14 @@
   <form>
     <div class="search-form">
       <div class="column-search-form">
-        <input type="text" class="taille-champs" placeholder="Quoi ? Java, Angular, ...">
+        <input type="text" matInput class="taille-champs" placeholder="Quoi ? Java, Angular, ..." [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+            <span>{{ state.name }}</span> |
+            <small>Population: {{state.name}}</small>
+          </mat-option>
+        </mat-autocomplete>
       </div>
 
       <div class="column-search-form">
@@ -27,7 +34,7 @@
     <div class="search-form">
       <div class="column-search-form"></div>
       <div class="column-search-form">
-        <button class="button-search" mat-button>Rechercher</button>
+        <button class="button-search button-principal-color" mat-button routerLink="/offres">Rechercher</button>
       </div>
       <div class="column-search-form"></div>
     </div>
@@ -45,11 +52,11 @@
           <p>À VOIR</p>
       </ngx-tile>
 
-      <button mat-mini-fab  NgxCarouselPrev class="button-left">
+      <button mat-mini-fab  NgxCarouselPrev class="button-left button-principal-color">
         <mat-icon >chevron_left</mat-icon>
       </button>
 
-      <button mat-mini-fab  NgxCarouselNext class="button-right">
+      <button mat-mini-fab  NgxCarouselNext class="button-right button-principal-color">
         <mat-icon >chevron_right</mat-icon>
       </button>
     </ngx-carousel>

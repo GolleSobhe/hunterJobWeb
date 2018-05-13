@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxCarousel} from 'ngx-carousel';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {map, startWith} from 'rxjs/operators';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-accueil',
@@ -14,7 +18,16 @@ export class AccueilComponent implements OnInit {
   public countryCarousel: NgxCarousel;
   images: string[];
 
+  stateCtrl: FormControl;
+  filteredStates: Observable<any[]>;
+
   constructor() {
+    this.stateCtrl = new FormControl();
+    this.filteredStates = this.stateCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(state => state ? this.filterStates(state) : this.states.slice())
+      );
   }
 
   ngOnInit() {
@@ -104,6 +117,13 @@ export class AccueilComponent implements OnInit {
           this.images[Math.floor(Math.random() * this.images.length)]
         );
       }
+    }
+  }
+
+  filterStates(name: string) {
+    if (!isNullOrUndefined(name) && name.trim() !== '') {
+      return this.states.filter(state =>
+        state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
     }
   }
 }

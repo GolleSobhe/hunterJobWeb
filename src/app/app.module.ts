@@ -8,7 +8,7 @@ import {
   MatIconModule,
   MatInputModule, MatMenuModule,
   MatToolbarModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatOptionModule, MatSelectModule, MatAutocompleteModule,
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -16,14 +16,16 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
-import { AccueilModule } from './accueil/accueil.module';
 import { FooterComponent } from './common/footer/footer.component';
+import {NgxCarouselModule} from 'ngx-carousel';
+import {AccueilComponent} from './accueil/accueil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenubarComponent,
-    FooterComponent
+    FooterComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { FooterComponent } from './common/footer/footer.component';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    AccueilModule,
+    NgxCarouselModule,
 
     // Les modules de material
     MatButtonModule,
@@ -42,7 +44,10 @@ import { FooterComponent } from './common/footer/footer.component';
     MatCardModule,
     MatMenuModule,
     MatFormFieldModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,

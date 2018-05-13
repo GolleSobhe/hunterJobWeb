@@ -1,0 +1,45 @@
+.container {
+  width: 80%;
+}
+
+.column-layout {
+  max-width: 1300px;
+  background-color: #FFF;
+  margin: 0px auto 0 auto;
+  line-height: 1.65;
+  padding: 0px 0px;
+  align-items: center;
+  display: flex;
+}
+
+.column-layout > div {
+  margin: 2px;
+}
+
+.field-size {
+  width: 100%!important;
+}
+
+.input-title-column {
+  flex: 3;
+  order: 1;
+}
+
+.dropdown-country-column {
+  flex: 2;
+  order: 2;
+}
+
+.input-city-column {
+  flex: 3;
+  order: 3;
+}
+
+.button-search-column {
+  flex: 1;
+  order: 4;
+}
+
+.search-button {
+  border-radius: 80px!important;
+}

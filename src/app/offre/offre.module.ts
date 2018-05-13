@@ -12,7 +12,7 @@ import {
   MatGridListModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatSelectModule, MatInputModule, MatStepperModule, MatTabsModule, MatCheckboxModule, MatRadioModule,
+  MatSelectModule, MatInputModule, MatStepperModule, MatTabsModule, MatCheckboxModule, MatRadioModule, MatIconModule,
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -21,6 +21,7 @@ import {CommonModule} from '@angular/common';
 import { OffreDetailsComponent } from './offre-list/offre-details/offre-details.component';
 import { CreationOffreComponent } from './creation-offre/creation-offre.component';
 import { IdentificationComponent } from './identification/identification.component';
+import {GlobalSearchComponent} from '../common/global-search/global-search.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { IdentificationComponent } from './identification/identification.compone
     MatTabsModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatIconModule,
   ],
   declarations: [
     OffreRootComponent,
@@ -50,6 +52,8 @@ import { IdentificationComponent } from './identification/identification.compone
     OffreDetailsComponent,
     CreationOffreComponent,
     IdentificationComponent,
+
+    GlobalSearchComponent
   ]
 })
 export class OffreModule {

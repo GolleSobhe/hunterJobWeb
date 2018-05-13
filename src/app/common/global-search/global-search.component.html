@@ -1,0 +1,32 @@
+<!-- FORMULAIRE DE RECHERCHE-->
+<div class="container">
+  <form>
+    <div class="column-layout">
+      <div class="input-title-column">
+        <input type="text" class="field-size" placeholder="Quoi ? Java, Angular, ...">
+      </div>
+
+      <div class="dropdown-country-column">
+        <mat-select placeholder="Pays" class="field-size">
+          <mat-option *ngFor="let state of states" [value]="state.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="input-city-column">
+        <input type="text" class="field-size" placeholder="Où ? Ville, Pays">
+      </div>
+
+      <!-- PLACEMENT DU BUTTON RECHERCHER -->
+
+      <div class="button-search-column">
+        <button class="button-principal-color field-size" mat-button routerLink="">
+          <i class="material-icons"> search</i>
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>

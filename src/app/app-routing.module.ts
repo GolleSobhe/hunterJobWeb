@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AccueilComponent } from './accueil/accueil/accueil.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 
