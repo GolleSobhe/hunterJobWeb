@@ -54,7 +54,7 @@ input,mat-select{
 .column-search-form {
   box-sizing: border-box;
   margin-left: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   flex-basis: 80%;
 }
 
