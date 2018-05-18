@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class OfferDetailsComponent implements OnInit {
 
   labelPosition;
-
+  sliderValue;
+  monthPay
   constructor() { }
 
   ngOnInit() {

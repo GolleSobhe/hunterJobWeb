@@ -1,39 +1,112 @@
+<label for="title"><b>Intitulé du poste</b></label>
+<input type="text" placeholder="Titre du poste"id="title"  name="title" style="width: 70%" required>
 
-<label for="title"><b>Titre du poste</b></label>
-<input type="text" placeholder="Titre du poste" name="title"  style="width: 70%" required>
+<div class="column-container">
+  <div class="column-out">
+    <label>type 1 .... </label>
+    <mat-radio-group [(ngModel)]="labelPosition">
+      <ul>
+        <li>
+          <mat-radio-button value="after">Frontend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="before">Backend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="after">Frontend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="before">Backend</mat-radio-button>
+        </li>
+      </ul>
+    </mat-radio-group>
+  </div>
 
-<mat-radio-group [(ngModel)]="labelPosition">
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-</mat-radio-group>
-
-
-<mat-radio-group [(ngModel)]="labelPosition">
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="after">Frontend</mat-radio-button>
-  <mat-radio-button class="example-margin" value="before">Backend</mat-radio-button>
-</mat-radio-group>
-
-<div>
-  <button class="button-competence"> Java EE<i class="fa fa-plus"></i></button>
-  <button class="button-competence">JQuery<i class="fa fa-plus"></i> </button>
-  <button class="button-competence"><i class="fa fa-plus"></i> Java</button>
-  <button class="button-competence"><i class="fa fa-plus"></i> Langage C</button>
+  <div class="column-out">
+    <label>type 2 .... </label>
+    <mat-radio-group [(ngModel)]="labelPosition">
+      <ul>
+        <li>
+          <mat-radio-button value="after">Frontend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="before">Backend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="after">Frontend</mat-radio-button>
+        </li>
+        <li>
+          <mat-radio-button value="before">Backend</mat-radio-button>
+        </li>
+      </ul>
+    </mat-radio-group>
+  </div>
 </div>
 
-<button>sdfghjkl</button>
+<br>
+<label>Compétences réquises</label>
+<br>
+<div>
+  <button class="button-competence"> Java EE</button>
+  <button class="button-competence">JQuery</button>
+  <button class="button-competence">Java</button>
+  <button class="button-competence">Langage C</button>
+  <button class="button-competence"> Java EE</button>
+  <button class="button-competence">JQuery</button>
+  <button class="button-competence">Java</button>
+  <button class="button-competence">Langage C</button>
+  <button class="button-competence"> Java EE</button>
+  <button class="button-competence">JQuery</button>
+  <button class="button-competence">Java</button>
+  <button class="button-competence">Langage C</button>
+  <button class="button-competence"> Java EE</button>
+  <button class="button-competence">JQuery</button>
+  <button class="button-competence">Java</button>
+  <button class="button-competence">Langage C</button>
+</div>
+
+<br>
+<label>Type de contrat</label>
+<div class="column-container">
+  <div class="column-out">
+    <ul>
+      <li>
+        <mat-radio-button value="after">Freelance</mat-radio-button>
+      </li>
+      <li>
+        <mat-radio-button value="before">Apprentissage</mat-radio-button>
+      </li>
+      <li>
+        <mat-radio-button value="after">Professionalisation</mat-radio-button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="column-out">
+    <ul>
+      <li>
+        <mat-radio-button value="after">CDI</mat-radio-button>
+      </li>
+      <li>
+        <mat-radio-button value="before">CDD</mat-radio-button>
+      </li>
+      <li>
+        <mat-radio-button value="after">Stage</mat-radio-button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div>
+<label>années d'experience</label>
+  <input type="range" min="0" max="15" value="2"  [(ngModel)]="sliderValue" class="slider">
+  <p>valeur:{{sliderValue}}</p>
+</div>
+
+
+<div>
+  <br>
+  <label>Salaire par mois</label>
+  <input type="range" min="100000" max="500000" value="250000"  [(ngModel)]="monthPay" class="slider">
+  <p>valeur:{{monthPay}}</p>
+</div>

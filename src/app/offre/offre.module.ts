@@ -11,7 +11,7 @@ import {
   MatGridListModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatSelectModule, MatInputModule, MatStepperModule, MatTabsModule, MatCheckboxModule, MatRadioModule, MatIconModule,
+  MatSelectModule, MatInputModule, MatStepperModule, MatTabsModule, MatCheckboxModule, MatRadioModule, MatIconModule, MatAutocompleteModule,
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -46,6 +46,7 @@ import { OthersProfessionComponent } from './creation-offre/others-profession/ot
     MatCheckboxModule,
     MatRadioModule,
     MatIconModule,
+    MatAutocompleteModule
   ],
   declarations: [
     OffreRootComponent,
