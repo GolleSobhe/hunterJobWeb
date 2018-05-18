@@ -1,164 +1,35 @@
-<button mat-raised-button (click)="isLinear = true" id="toggle-linear">Desactiver</button>
-<button mat-raised-button (click)="isLinear = false" id="toggle_linear">Activer</button>
+<div class="container">
+  <h3>Proposition d'une offre</h3>
+  <hr>
 
-<h3>Proposition d'une offre</h3>
-<hr>
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper" class="color">
-  <mat-step [stepControl]="firstFormGroup">
-    <mat-card>
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Identification</ng-template>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      Chosissez un métier
+    </div>
+    <div class="column">
+      <mat-select placeholder="Selectionnner un métier" class="field-size" [(value)]="selectedProfession">
+        <mat-option *ngFor="let profession of professions" [value]="profession">
+          {{ profession }}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="column"></div>
+  </div>
+</div>
 
-        <app-identification></app-identification>
+<!--AFFICHAGE DU FORMULAIRE DU MÉTIER CHOISI-->
 
-        <div>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
-    </mat-card>
-  </mat-step>
+<div class="container">
+  <div *ngIf="selectedProfession=='Informatique'; then computerScience else others"></div>
 
-  <mat-step [stepControl]="secondFormGroup">
-    <mat-card>
-      <form [formGroup]="offreForm" novalidate (ngSubmit)="creerOffre()" class="formulaire container">
-        <ng-template matStepLabel>Détails de l'offre</ng-template>
-        <mat-card-content>
-          <fieldset>
-            <mat-form-field class="longueur-champ-formulaire">
-              <input matInput placeholder="Titre de l'offre" formControlName="post">
-            </mat-form-field>
+ <!-- AFFICHAGE DU FORMULAIRE DE L'INFORMATIQUE-->
+  <ng-template #computerScience>
+    <app-computer-science></app-computer-science>
+  </ng-template>
 
-            <mat-form-field class="longueur-champ-formulaire">
-              <input matInput placeholder="Lieu" formControlName="lieu">
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <mat-select placeholder="Type du contrat" formControlName="typeContrat">
-                <mat-option *ngFor="let type of typeContrat" [value]="type">
-                  {{type}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <input type="number" matInput placeholder="Salaire minimal" formControlName="salaireMini">
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <input type="number" matInput placeholder="Salaire maximal" formControlName="salaireMax">
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <input matInput placeholder="Secteur d'activités" formControlName="secteurs">
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <input matInput placeholder="Compétences" formControlName="competences">
-            </mat-form-field>
-
-            <mat-form-field class="longueur-champ-formulaire">
-              <input matInput placeholder="Type ..." formControlName="typePaiement">
-            </mat-form-field>
-          </fieldset>
-
-        </mat-card-content>
-        <div>
-          <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
-    </mat-card>
-  </mat-step>
-
-  <mat-step [stepControl]="descriptionOffreForm">
-    <mat-card>
-      <form [formGroup]="descriptionOffreForm" novalidate (ngSubmit)="remplireDescription()"
-            class="formulaire container">
-        <ng-template matStepLabel>Description de l'offre</ng-template>
-        <mat-form-field class="longueur-champ-formulaire">
-          <textarea rows="25" matInput placeholder="Description de l'offre" formControlName="description"
-                    required></textarea>
-        </mat-form-field>
-
-        <div>
-          <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
-    </mat-card>
-  </mat-step>
-
-  <mat-step [stepControl]="paimentForm">
-    <mat-card>
-      <form [formGroup]="paimentForm" novalidate (ngSubmit)="remplireDescription()"
-            class="formulaire container">
-        <ng-template matStepLabel>Paiement</ng-template>
-
-        <mat-radio-group class="example-radio-group" formControlName="type">
-          <mat-radio-button class="" *ngFor="let type of typePaiement" [value]="type">
-            {{type}}
-          </mat-radio-button>
-        </mat-radio-group>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <mat-select placeholder="Type de carte" formControlName="typeCarte">
-            <mat-option *ngFor="let type of typeCarte" [value]="type">
-              {{type}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <input matInput placeholder="Numéro de carte" formControlName="numeroCarte">
-        </mat-form-field>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <input matInput placeholder="Mois d'expiration" formControlName="moisExpiration">
-        </mat-form-field>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <input matInput placeholder="Année d'expiration" formControlName="anneeExpiration">
-        </mat-form-field>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <input matInput placeholder="Cryptogramme" formControlName="cryptogrmme">
-        </mat-form-field>
-
-        <mat-form-field class="longueur-champ-formulaire">
-          <input matInput placeholder="Titulaire de la carte" formControlName="titulaireCarte">
-        </mat-form-field>
-
-        <div>
-          <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
-    </mat-card>
-  </mat-step>
-
-  <mat-step>
-    <mat-card>
-      <ng-template matStepLabel>Confirmation</ng-template>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <br>
-      Affichage ici du récapitulatif ...Affichage ici du récapitulatif ...
-      <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button (click)="stepper.reset()">Annuler</button>
-
-        <button type="submit" mat-raised-button color="primary" [disabled]="!offreForm.valid ||
-        !descriptionOffreForm.valid">Confirmation</button>
-      </div>
-    </mat-card>
-  </mat-step>
-</mat-horizontal-stepper>
+  <!--AFFICHAGE DU FORMULAIRE DES AUTRES MÉTIERS-->
+  <ng-template #others>
+    <app-others-profession [profession]="selectedProfession"></app-others-profession>
+  </ng-template>
+</div>

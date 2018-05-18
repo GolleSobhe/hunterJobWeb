@@ -19,3 +19,22 @@
     width: 100%;
   }
 }
+
+.column-20 {
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+}
+
+.column-80 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.row-title:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

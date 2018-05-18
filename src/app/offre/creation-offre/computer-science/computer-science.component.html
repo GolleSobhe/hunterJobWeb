@@ -1,0 +1,63 @@
+<button (click)="isLinear = true" id="toggle-linear">Desactiver</button>
+<button (click)="isLinear = false" id="toggle_linear">Activer</button>
+
+<!--AFFICHAGE DU FORMULAIRE EN FONCTION DU MÉTIER CHOISI-->
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Détail de l'offre</ng-template>
+
+      <!--FORMULAIRE DU DÉTAIL DE L'OFFRE-->
+      <app-offer-details></app-offer-details>
+      <div>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="offreForm" novalidate (ngSubmit)="creerOffre()" class="formulaire container">
+      <ng-template matStepLabel>Description de l'offre</ng-template>
+
+      <!-- DESCRIPTION DE L'OFFRE-->
+      <app-offer-description></app-offer-description>
+
+      <div>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="descriptionOffreForm">
+    <form [formGroup]="descriptionOffreForm" novalidate (ngSubmit)="remplireDescription()"
+          class="formulaire container">
+      <ng-template matStepLabel>Récapitulatif</ng-template>
+
+      <div>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="paimentForm">
+    <form [formGroup]="paimentForm" novalidate (ngSubmit)="remplireDescription()"
+          class="formulaire container">
+      <ng-template matStepLabel>Paiement</ng-template>
+
+      <!--FORMULAIRE DE PAYEMENT-->
+      <app-payment></app-payment>
+
+      <div>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button (click)="stepper.reset()">Annuler</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!offreForm.valid ||
+        !descriptionOffreForm.valid">Confirmation
+        </button>
+      </div>
+    </form>
+
+  </mat-step>
+</mat-horizontal-stepper>

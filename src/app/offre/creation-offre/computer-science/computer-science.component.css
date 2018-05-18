@@ -1,0 +1,33 @@
+.container {
+  width: 80%;
+}
+
+.column-layout {
+  max-width: 1300px;
+  background-color: #FFF;
+  margin: 0px auto 0 auto;
+  line-height: 1.65;
+  padding-left: 0%;
+  padding-right: 50%;
+  align-items: center;
+  display: flex;
+}
+
+
+.column-layout > div {
+  margin: 2px;
+}
+
+.field-size {
+  width: 100%!important;
+}
+
+.profession-column {
+  flex: 3;
+  order: 2;
+}
+
+.profession-title-column {
+  flex: 1;
+  order: 1;
+}

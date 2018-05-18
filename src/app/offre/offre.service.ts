@@ -35,4 +35,8 @@ export class OffreService {
     return this._http.get<Offre>('api/offres/' + id);
   }
 
+  /* METIERS */
+  getProfessions(): Observable<any> {
+    return this._http.get('api/metiers');
+  }
 }

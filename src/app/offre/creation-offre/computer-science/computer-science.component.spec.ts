@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropositionOffreComponent } from './proposition-offre.component';
+import { ComputerScienceComponent } from './computer-science.component';
 
-describe('PropositionOffreComponent', () => {
-  let component: PropositionOffreComponent;
-  let fixture: ComponentFixture<PropositionOffreComponent>;
+describe('ComputerScienceComponent', () => {
+  let component: ComputerScienceComponent;
+  let fixture: ComponentFixture<ComputerScienceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropositionOffreComponent ]
+      declarations: [ ComputerScienceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PropositionOffreComponent);
+    fixture = TestBed.createComponent(ComputerScienceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

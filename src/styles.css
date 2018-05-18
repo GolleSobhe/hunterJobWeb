@@ -36,6 +36,7 @@ input,mat-select{
   border-width: thin!important;
   border-style:solid!important;
   padding: 5px 10px;
+  width: 100%;
 }
 
 .search-form {
@@ -57,3 +58,18 @@ input,mat-select{
   flex-basis: 80%;
 }
 
+/*BUTTON D'AJOUT DES COMPÉTENCES*/
+.button-competence {
+  border-radius: 1em;
+  padding: .2em 1.08em!important;
+  border: 1px solid #b6b6b6;
+  color: black !important;
+  margin-right: .4em;
+  margin-bottom: .4em;
+  text-shadow: none;
+  background-color: white;
+}
+
+.button-competence:hover {
+  background-color: #cccccc;
+}
