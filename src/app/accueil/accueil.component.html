@@ -25,7 +25,13 @@
         </mat-select>
       </div>
       <div class="column-search-form">
-        <input type="text" class="taille-champs" placeholder="Où ? Ville, ...">
+        <input type="text" matInput class="taille-champs" placeholder="Où ? Ville..." 
+        [matAutocomplete]="autoTowns" [formControl]="townCtrl">
+        <mat-autocomplete #autoTowns="matAutocomplete">
+          <mat-option *ngFor="let town of filteredTowns | async" [value]="town">
+            <span>{{ town }}</span>
+          </mat-option>
+        </mat-autocomplete>
       </div>
     </div>
 
