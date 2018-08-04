@@ -29,11 +29,11 @@ export class AccueilComponent implements OnInit {
 
   constructor(private acceuilService: AcceuilService) {
     this.stateCtrl = new FormControl();
-    this.townCtrl = new FormControl();
     this.filteredKeysWord = this.stateCtrl.valueChanges
       .pipe(
         map(keyWord => keyWord ? this.filterKeysWords(keyWord) : [])
       );
+    this.townCtrl = new FormControl();
     this.filteredTowns = this.townCtrl.valueChanges
     .pipe(
       map(town => town ? this.filterTowns(town) : [])
