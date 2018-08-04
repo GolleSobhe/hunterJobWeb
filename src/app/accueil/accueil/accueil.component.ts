@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import {isNullOrUndefined, error} from 'util';
-import { AcceuilService } from './acceuil.service';
+import { AcceuilService } from '../acceuil.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
@@ -29,11 +29,11 @@ export class AccueilComponent implements OnInit {
 
   constructor(private acceuilService: AcceuilService) {
     this.stateCtrl = new FormControl();
-    this.townCtrl = new FormControl();
     this.filteredKeysWord = this.stateCtrl.valueChanges
       .pipe(
         map(keyWord => keyWord ? this.filterKeysWords(keyWord) : [])
       );
+    this.townCtrl = new FormControl();
     this.filteredTowns = this.townCtrl.valueChanges
     .pipe(
       map(town => town ? this.filterTowns(town) : [])
