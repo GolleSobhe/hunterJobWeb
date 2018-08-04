@@ -18,25 +18,20 @@ import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
 import { FooterComponent } from './common/footer/footer.component';
 import {NgxCarouselModule} from 'ngx-carousel';
-import {AccueilComponent} from './accueil/accueil.component';
-import { AcceuilService } from './accueil/acceuil.service';
+import { AccueilModule } from './accueil/accueil.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenubarComponent,
     FooterComponent,
-    AccueilComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     CommonModule,
-    NgxCarouselModule,
-
+    AppRoutingModule,
     // Les modules de material
     MatButtonModule,
     MatIconModule,
@@ -45,10 +40,11 @@ import { AcceuilService } from './accueil/acceuil.service';
     MatCardModule,
     MatMenuModule,
     MatFormFieldModule,
-    AppRoutingModule,
     MatOptionModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    // Module du projet
+    AccueilModule
   ],
   exports: [
     MatButtonModule,
@@ -58,7 +54,7 @@ import { AcceuilService } from './accueil/acceuil.service';
     MatCardModule,
     MatMenuModule,
   ],
-  providers: [AcceuilService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

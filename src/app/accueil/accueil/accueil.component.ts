@@ -3,8 +3,9 @@ import {NgxCarousel} from 'ngx-carousel';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
-import {isNullOrUndefined} from 'util';
-import { AcceuilService } from './acceuil.service';
+import {isNullOrUndefined, error} from 'util';
+import { AcceuilService } from '../acceuil.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-accueil',
@@ -13,21 +14,30 @@ import { AcceuilService } from './acceuil.service';
 })
 export class AccueilComponent implements OnInit {
 
+  stateCtrl: FormControl;
+  townCtrl: FormControl;
+  filteredKeysWord: Observable<any[]>;
+  filteredTowns: Observable<any[]>;
+  keysWord: any;
+  towns: any;
+  /**
+   * Caresoul */
   states;
-
   public countryCarouselItems: Array<any> = [];
   public countryCarousel: NgxCarousel;
   images: string[];
 
-  stateCtrl: FormControl;
-  filteredKeysWord: Observable<any[]>;
-  keysWord: string[];
   constructor(private acceuilService: AcceuilService) {
     this.stateCtrl = new FormControl();
     this.filteredKeysWord = this.stateCtrl.valueChanges
       .pipe(
         map(keyWord => keyWord ? this.filterKeysWords(keyWord) : [])
       );
+    this.townCtrl = new FormControl();
+    this.filteredTowns = this.townCtrl.valueChanges
+    .pipe(
+      map(town => town ? this.filterTowns(town) : [])
+    );
   }
 
   ngOnInit() {
@@ -43,7 +53,7 @@ export class AccueilComponent implements OnInit {
     this.initialiserTousLesPays();
     this.initCountryCarousel();
     this.carouselTile();
-    this.initKeysWord();
+    this.getKeyWordsAndTowns();
   }
 
   private initialiserTousLesPays(): void {
@@ -123,12 +133,21 @@ export class AccueilComponent implements OnInit {
 
   filterKeysWords(keyWord: string): Array<string> {
       return  this.keysWord.filter(item =>
-        item.toLowerCase().indexOf(keyWord.toLowerCase()) === 0);    
+        item.toLowerCase().indexOf(keyWord.toLowerCase()) === 0);
   }
 
-  private initKeysWord(): void {
-    this.acceuilService.getKeyWords().subscribe((keysWord: Array<string>) => {
-      this.keysWord = keysWord;
-    });
+  filterTowns(town: string): Array<string> {
+    return this.towns.filter((item: string) =>
+    item.toLowerCase().indexOf(town.toLowerCase()));
+  }
+
+  private getKeyWordsAndTowns(): void {
+    this.acceuilService.getKeyWordsAndTowns()
+    .subscribe(
+      data => {
+        this.keysWord = data[0];
+        this.towns = data[1];
+      }
+    );
   }
 }
