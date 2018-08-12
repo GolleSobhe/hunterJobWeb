@@ -16,10 +16,8 @@ export class AcceuilService {
     return this.http.get<string[]>('api/towns');
   }
 */
-  getKeyWordsAndTowns(): Observable<any[]> {
-    const keysWord = this.http.get('api/keys-word');
-    const towns = this.http.get('/api/towns');
-    return Observable.forkJoin([keysWord, towns]);
-  }
+getEnterprises(): Observable<any[]> {
+  return this.http.get<any[]>('api/enterprises');
+}
 
 }
