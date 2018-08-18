@@ -47,7 +47,7 @@
 
   <!--POSITIONNEMENT DE LA CAROUSSELLE CONTENANT LES ENTREPRISES-->
   <div class="entreprise-carousel">
-    <h2>... Entreprises ....</h2>
+    <h2>... Entreprises ...</h2>
     <ngx-carousel [inputs]="offresCarousel" (carouselLoad)="getEnterprises()">
       <ngx-tile NgxCarouselItem *ngFor="let enterprise of enterprises">
           <div class="image-tile" [style.background]="'url(' + enterprise.img + ')'">

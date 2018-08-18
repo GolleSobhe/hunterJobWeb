@@ -40,6 +40,7 @@
     min-height: 200px;
     background-color:#ccc;
     background-size: cover !important;
+    background-position:center center;
   }
   
   .image-tile h1 {
