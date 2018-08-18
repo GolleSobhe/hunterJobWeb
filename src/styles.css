@@ -39,24 +39,7 @@ input,mat-select{
   width: 100%;
 }
 
-.search-form {
-  margin: auto;
-}
 
-
-@media (min-width: 900px) {
-  .search-form{
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.column-search-form {
-  box-sizing: border-box;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  flex-basis: 80%;
-}
 
 /*BUTTON D'AJOUT DES COMPÉTENCES*/
 .button-competence {

@@ -4,30 +4,30 @@
   </div>
 
   <!-- FORMULAIRE DE RECHERCHE-->
-  <form>
+  <form (ngSubmit)="validSearch()">
     <div class="search-form">
-      <div class="column-search-form">
-        <input type="text" matInput class="taille-champs" placeholder="Quoi ? Java, Angular, ..." 
-        [matAutocomplete]="auto" [formControl]="stateCtrl">
-        <mat-autocomplete #auto="matAutocomplete">
+      <div class="column-form">
+        <input name="keyword" [(ngModel)]="model.keyword" type="text" matInput class="taille-champs" placeholder="Quoi ? Java, Angular, ..." 
+        [matAutocomplete]="autoCompleteKeysWOrd" [formControl]="stateCtrl">
+        <mat-autocomplete #autoCompleteKeysWOrd="matAutocomplete">
           <mat-option *ngFor="let keyword of filteredKeysWord | async" [value]="keyword">
             <span>{{ keyword }}</span>
           </mat-option>
         </mat-autocomplete>
       </div>
-
-      <div class="column-search-form">
-        <mat-select placeholder="Pays" class="taille-champs">
-          <mat-option *ngFor="let state of states" [value]="state.name">
-            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
+						<!-- Les Pays cibles, si plusieurs pays utiliser mat-select comme la premiére version -->
+      <div>        
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg"
+          alt="Guinée"
+          height="30"
+          />                     
       </div>
-      <div class="column-search-form">
-        <input type="text" matInput class="taille-champs" placeholder="Où ? Ville..." 
-        [matAutocomplete]="autoTowns" [formControl]="townCtrl">
-        <mat-autocomplete #autoTowns="matAutocomplete">
+      <!-- Champs de filtre sur les villes -->
+      <div class="column-form">
+        <input name="town" [(ngModel)]="model.town" type="text" matInput class="taille-champs" placeholder="Où ? Ville..." 
+        [matAutocomplete]="autoCompleteTowns" [formControl]="townCtrl">
+        <mat-autocomplete #autoCompleteTowns="matAutocomplete">
           <mat-option *ngFor="let town of filteredTowns | async" [value]="town">
             <span>{{ town }}</span>
           </mat-option>
@@ -39,7 +39,7 @@
     <div class="search-form">
       <div class="column-search-form"></div>
       <div class="column-search-form">
-        <button class="button-search button-principal-color" mat-button routerLink="/offres">Rechercher</button>
+        <button type="submit" class="button-search button-principal-color" mat-button>Rechercher</button>
       </div>
       <div class="column-search-form"></div>
     </div>
@@ -47,14 +47,14 @@
 
   <!--POSITIONNEMENT DE LA CAROUSSELLE CONTENANT LES ENTREPRISES-->
   <div class="entreprise-carousel">
-    <h2>... Entreprises ....</h2>
-    <ngx-carousel [inputs]="countryCarousel" (carouselLoad)="carouselTile()">
-      <ngx-tile NgxCarouselItem *ngFor="let tile of countryCarouselItems; let i = index;">
-          <div class="image-tile" [style.background]="'url(' + tile + ')'">
-            <h1>{{i}}</h1>
+    <h2>... Entreprises ...</h2>
+    <ngx-carousel [inputs]="offresCarousel" (carouselLoad)="getEnterprises()">
+      <ngx-tile NgxCarouselItem *ngFor="let enterprise of enterprises">
+          <div class="image-tile" [style.background]="'url(' + enterprise.img + ')'">
+            <h1>{{enterprise.name}}</h1>
           </div>
-          <h4>Nom</h4>
-          <p>À VOIR</p>
+          <h4>{{enterprise.name}}</h4>
+          <button>...</button>
       </ngx-tile>
 
       <button mat-mini-fab  NgxCarouselPrev class="button-left button-principal-color">
@@ -64,7 +64,7 @@
       <button mat-mini-fab  NgxCarouselNext class="button-right button-principal-color">
         <mat-icon >chevron_right</mat-icon>
       </button>
-    </ngx-carousel>
+</ngx-carousel>
   </div>
 </div>
 
