@@ -1,0 +1,11 @@
+langage: node_js
+node_js :
+- '9'
+before_install:
+- npm install -g @angular/cli
+install: npm install
+branches:
+ only: 
+ - master
+script:
+ - ng build --prod --aout
