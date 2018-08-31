@@ -1,19 +1,19 @@
 .container {
     width: 80%;
   }
-  
+
   .taille-champs{
     width: 100%!important;
   }
-  
+
   .button-search {
     width: 100%!important;
   }
 
   .search-form {
     margin: auto;
-  } 
-  
+  }
+
   @media (min-width: 900px) {
     .search-form{
       display: flex;
@@ -34,7 +34,7 @@
     margin-bottom: 10px;
     flex-basis: 80%!important;
   }
-  
+
   /* CAROUSELLE CSS */
   .image-tile {
     min-height: 200px;
@@ -42,7 +42,7 @@
     background-size: cover !important;
     background-position:center center;
   }
-  
+
   .image-tile h1 {
     text-align: center;
     line-height: 200px;
@@ -50,7 +50,7 @@
     color: white;
     margin: 0;
   }
-  
+
   .button-left {
     position: absolute;
     border-radius: 99px!important;
@@ -60,7 +60,7 @@
     box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
     left: -60px;
   }
-  
+
   .button-right {
     position: absolute;
     border-radius: 99px!important;
@@ -70,8 +70,11 @@
     box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
     right: -60px;
   }
-  
+
   .entreprise-carousel {
     padding-top: 10%;
   }
-  
+
+.button-principal-color {
+  background:#0B2161!important;
+}

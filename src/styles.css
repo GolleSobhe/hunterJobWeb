@@ -26,10 +26,6 @@ button{
   border-radius: 15px!important;
 }
 
-.button-principal-color {
-  background:#0B2161!important;
-}
-
 input,mat-select{
   border-radius: 15px!important;
   border-color: #0B2161;
@@ -40,19 +36,3 @@ input,mat-select{
 }
 
 
-
-/*BUTTON D'AJOUT DES COMPÉTENCES*/
-.button-competence {
-  border-radius: 1em;
-  padding: .2em 1.08em!important;
-  border: 1px solid #b6b6b6;
-  color: black !important;
-  margin-right: .4em;
-  margin-bottom: .4em;
-  text-shadow: none;
-  background-color: white;
-}
-
-.button-competence:hover {
-  background-color: #cccccc;
-}
