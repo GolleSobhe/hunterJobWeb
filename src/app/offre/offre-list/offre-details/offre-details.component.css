@@ -1,0 +1,16 @@
+
+/*BUTTON D'AJOUT DES COMPÉTENCES*/
+.button-competence {
+  border-radius: 1em;
+  padding: .2em 1.08em!important;
+  border: 1px solid #b6b6b6;
+  color: black !important;
+  margin-right: .4em;
+  margin-bottom: .4em;
+  text-shadow: none;
+  background-color: white;
+}
+
+.button-competence:hover {
+  background-color: #cccccc;
+}
