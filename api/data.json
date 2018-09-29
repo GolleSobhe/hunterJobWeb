@@ -1,14 +1,284 @@
-{	
-	"enterprises": [
-		{"nom" : "Orange", "img": "Orange_logo.jpg", "description": "Orange est une entreprise française de télécommunications.", "url": "https://www.orange.fr/" },
-        {"nom" : "AIRBUS", "img": "AIRBUS_logo.svg", "description": " Airbus est un constructeur aéronautique européen dont le siège social se trouve à Blagnac, dans la banlieue de Toulouse, en France.", "url": "https://www.airbus.com/" },
-		{"nom" : "Topaz Peinture", "img": "TOPAZPEINTURE_logo.jpeg", "description": "Entrepreneur spécialisé en peinture interieur & extérieur , plâtrage , restauration et entretien de bâtiment.", "url": "https://topazpeinture.com/" },
-		{"nom" : "Renault", "img": "RENAULT_logo.png", "description": "Le groupe Renault est un constructeur automobile français.", "url": "https://www.renault.fr/" },
-		{"nom" : "AIR FRANCE", "img": "AIRFRANCE_logo.png", "description": "Air France est la principale compagnie aérienne française, fondée le 7 octobre 1933.", "url": "https://www.airfrance.fr/" },
-		{"nom" : "MIPIH", "img": "MIPIH_logo.png", "description": "MiPih est une structure publique de coopération inter-hospitalière. Le statut du MiPih est un Groupement d'Intérêt Public (GIP).", "url": "https://www.mipih.fr/" },
-		{"nom" : "FIYA HOLLO", "img": "FIYAHOLLO_logo.png", "description": "FIYA HOLLO est entreprise qui developpe des logiciel informatique pour le gouvernement guinéen.", "url": "https://www.mipih.fr/" },
-		{"nom" : "Capgemini", "img": "CAPGEMINI_logo.png", "description": "Capgemini est la première entreprise de services du numérique en France ainsi que le numéro six mondial du secteur en 2016.", "url": "https://www.capgemini.com/fr-fr/" },
-		{"nom" : "Microsoft", "img": "Microsoft_logo.jpg", "description": "Microsoft Corporation est une multinationale informatique et micro-informatique américaine, fondée en 1975 par Bill Gates et Paul Allen.", "url": "https://www.microsoft.com/fr-fr" },
-		{"nom" : "Google", "img": "GOOGLE_logo.jpg", "description": "Google est une entreprise américaine de services technologiques fondée en 1998 dans la Silicon Valley, en Californie, par Larry Page et Sergueï Brin, créateurs du moteur de recherche Google. C'est une filiale de la société Alphabet depuis août 2015.", "url": "https://www.google.com/intl/fr/about/" }
-		]	
+{
+  "enterprises": [
+    {
+      "id": 1,
+      "nom": "Orange",
+      "img": "Orange_logo.jpg",
+      "description": "Orange est une entreprise française de télécommunications.",
+      "url": "https://www.orange.fr/"
+    },
+    {
+      "nom": "Orange1",
+      "img": "Orange_logo.jpg",
+      "description": "Orange est une entreprise française de télécommunications.",
+      "url": "https://www.orange.fr/",
+      "id": 2
+    },
+    {
+      "nom": "Orange2",
+      "img": "Orange_logo.jpg",
+      "description": "Orange est une entreprise française de télécommunications.",
+      "url": "https://www.orange.fr/",
+      "id": 3
+    }
+  ],
+  "metiers": [
+    "Informatique",
+    "Banque",
+    "Assurance",
+    "Hotellerie"
+  ],
+  "specialisation": [
+    "Frontend",
+    "Backend",
+    "Full Stack",
+    "Mobile",
+    "Big Data",
+    "Data Science"
+  ],
+  "produit": [
+    "Chef de projet",
+    "Chef de produit",
+    "Design",
+    "Marketing"
+  ],
+  "competences": [
+    {
+      "id": 1,
+      "name": " Java EE"
+    },
+    {
+      "id": 2,
+      "name": "JQuery"
+    },
+    {
+      "id": 3,
+      "name": "Java"
+    },
+    {
+      "id": 4,
+      "name": "Langage C"
+    },
+    {
+      "id": 5,
+      "name": " NodeJS"
+    },
+    {
+      "id": 6,
+      "name": "Angular"
+    },
+    {
+      "id": 7,
+      "name": "Ionic"
+    },
+    {
+      "id": 8,
+      "name": "JavaScript"
+    },
+    {
+      "id": 9,
+      "name": "ReactJS"
+    },
+    {
+      "id": 10,
+      "name": "React"
+    }
+  ],
+  "typeContratV1": [
+    "CDI",
+    "CDD",
+    "Stage"
+  ],
+  "typeContratV2": [
+    "Freelance",
+    "Apprentissage",
+    "Professionalisation"
+  ],
+  "domaine1": [
+    "Aéronotique",
+    "Télécommunication",
+    "Santé",
+    "Banque, Finance & Assurance"
+  ],
+  "domaine2": [
+    "Jeux Vidéo",
+    "Industrie",
+    "Énergie",
+    "Sécurité"
+  ],
+  "pays": [
+    {
+      "name": "Guinée",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg"
+    },
+    {
+      "name": "France",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+    },
+    {
+      "name": "Sénégal",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg"
+    },
+    {
+      "name": "Rwanda",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Rwanda.svg"
+    },
+    {
+      "name": "Ghana",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Ghana.svg"
+    }
+  ],
+  "paymentCategories": [
+    "Carte bancaire",
+    "Orange money"
+  ],
+  "offres": [
+    {
+      "titre": "compilation",
+      "specialisation": "Full Stack",
+      "typeDesContrats": "CDI",
+      "anneesExperience": 4,
+      "salaireParMois": 231084,
+      "lieu": "Sénégal",
+      "secteur": "Télécommunication",
+      "description": "test",
+      "id": 1
+    },
+    {
+      "titre": "Téléchargement d\"un fichier ",
+      "specialisation": "Full Stack",
+      "typeDesContrats": "CDI",
+      "anneesExperience": 9,
+      "salaireParMois": 245389,
+      "lieu": "Rwanda",
+      "secteur": "Aéronotique",
+      "description": "ZEDZ",
+      "id": 2
+    },
+    {
+      "titre": "Modification du menu bar (toolbar de mterial)",
+      "specialisation": "Frontend",
+      "typeDesContrats": "Stage",
+      "anneesExperience": 7,
+      "salaireParMois": 244134,
+      "lieu": "France",
+      "secteur": "Aéronotique",
+      "description": "sdfqsdf",
+      "id": 3
+    },
+    {
+      "titre": "Modification du menu bar (toolbar de mterial)",
+      "specialisation": "Chef de projet",
+      "competences": [
+        "Java",
+        "Angular",
+        "Java EE",
+        "React",
+        "NodeJS",
+        "Python",
+        "ReactJS",
+        "Cobol",
+        "JavaScript",
+        "Langage C"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 10,
+      "salaireParMois": 344819,
+      "lieu": "Guinée",
+      "secteur": "Aéronotique",
+      "description": "tout va bien ",
+      "id": 4
+    },
+    {
+      "titre": "suppression de ngrx et mise à jour des modules angular",
+      "specialisation": "Backend",
+      "competences": [
+        "Java",
+        "NodeJS",
+        "Angular",
+        "Java EE",
+        "Cobol"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 9,
+      "salaireParMois": 346747,
+      "lieu": "Ghana",
+      "secteur": "Industrie",
+      "description": "bien bien bien       this.addElement(name);\n",
+      "id": 5
+    },
+    {
+      "titre": "Modification du menu bar (toolbar de mterial)",
+      "specialisation": "Frontend",
+      "competences": [
+        "Angular",
+        "React",
+        "JavaScript",
+        "Langage C"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 9,
+      "salaireParMois": 186799,
+      "lieu": "Guinée",
+      "secteur": "Aéronotique",
+      "description": "to osusd qsoduf qsdfpuosduf qspdofuisqo dpfspodifu qospdfui sqopdfqsdopfiuqs dfopsduif opqsdfui osdopfusoidfjueryh zaeur ",
+      "id": 6
+    },
+    {
+      "titre": "suppression de ngrx et mise à jour des modules angular",
+      "specialisation": "Chef de projet",
+      "competences": [
+        "Python",
+        "Cobol",
+        "ReactJS",
+        "JavaScript",
+        "Langage C",
+        "NodeJS",
+        "Java",
+        "Angular",
+        "Java EE",
+        "React",
+        "JavaScript"
+      ],
+      "typeDesContrats": "CDD",
+      "anneesExperience": 10,
+      "salaireParMois": 380482,
+      "lieu": "Rwanda",
+      "secteur": "Santé",
+      "description": "rwanda wakanda malanda dalanda diomaya skallaya faraya paraya",
+      "id": 7
+    },
+    {
+      "titre": "dfsqdfqsd qsdf s",
+      "specialisation": "Frontend",
+      "competences": [
+        "Python",
+        "Cobol"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 13,
+      "salaireParMois": 352530,
+      "lieu": "Guinée",
+      "secteur": "Aéronotique",
+      "description": "sdfsqd slmdkjf lmqsd jlsdjf sldfjkozaeir oaeuir o uozeiur ozaeiuro zaoer izaoieir uazieuropazeru azoperui oaziuer azer fozaefh kvdvjzi urefdjkv  ",
+      "id": 8
+    },
+    {
+      "titre": "Téléchargement d\"un fichier ",
+      "specialisation": "Chef de produit",
+      "competences": [
+        "Python",
+        "Cobol",
+        "ReactJS",
+        "Java EE"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 10,
+      "salaireParMois": 356386,
+      "lieu": "Sénégal",
+      "secteur": "Énergie",
+      "description": "lkmjdf msqldkjf almzerjaéoriuaz\"rzmlej lzdkjf sdlmf qs qskdjoaier zaeroiuaz ezaeoiruaz zaeiof  sodfisd sodifuazer zeoriu zed qsdfqsioudf ",
+      "id": 9
+    }
+  ]
 }

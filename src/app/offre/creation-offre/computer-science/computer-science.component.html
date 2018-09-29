@@ -1,40 +1,173 @@
-<!--<button (click)="isLinear = true" id="toggle-linear">Desactiver</button>
-<button (click)="isLinear = false" id="toggle_linear">Activer</button-->
-
 <!--AFFICHAGE DU FORMULAIRE EN FONCTION DU MÉTIER CHOISI-->
 <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="firstFormGroup">
-
-    <form [formGroup]="firstFormGroup">
+  <mat-step [stepControl]="detailOffreForm">
+    <form [formGroup]="detailOffreForm">
       <ng-template matStepLabel>Détail de l'offre</ng-template>
-
       <!--FORMULAIRE DU DÉTAIL DE L'OFFRE-->
-      <app-offer-details></app-offer-details>
+      <label for="title"><b>Intitulé du poste</b></label>
+      <input type="text" placeholder="Titre du poste" id="title" formControlName="titre"
+             name="title" style="width: 70%" required>
+
+      <p></p>
+      <p><strong>Spécialisation recherchée</strong></p>
+      <mat-radio-group formControlName="specialisation">
+        <div class="column-container">
+          <div class="column-out">
+            <label>Technique </label>
+
+            <ul>
+              <li *ngFor="let spec of specialisation">
+                <mat-radio-button value={{spec}}>{{spec}}</mat-radio-button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column-out">
+            <label>Produit</label>
+            <ul>
+              <li *ngFor="let prod of produit">
+                <mat-radio-button value={{prod}}>{{prod}}</mat-radio-button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <br>
+      <label>Compétences réquises</label>
+      <br>
+
+      <div>
+        <button (click)="clickEvent(1, 'Java')" class="button-competence"
+                [ngClass]="status1 ? 'select-competence' : 'unselect-competence'"> Java
+        </button>
+
+        <button (click)="clickEvent(2, 'Angular')" class="button-competence"
+                [ngClass]="status2 ? 'select-competence' : 'unselect-competence'">
+          Angular
+        </button>
+
+        <button (click)="clickEvent(3, 'Java EE')" class="button-competence"
+                [ngClass]="status3 ? 'select-competence' : 'unselect-competence'"> Java EE
+        </button>
+
+        <button (click)="clickEvent(4, 'React')" class="button-competence"
+                [ngClass]="status4 ? 'select-competence' : 'unselect-competence'">
+          React
+        </button>
+
+        <button (click)="clickEvent(5, 'NodeJS')" class="button-competence"
+                [ngClass]="status5 ? 'select-competence' : 'unselect-competence'"> NodeJS
+        </button>
+
+        <button (click)="clickEvent(6, 'ReactJS')" class="button-competence"
+                [ngClass]="status6 ? 'select-competence' : 'unselect-competence'">
+          ReactJS
+        </button>
+
+        <button (click)="clickEvent(7, 'JavaScript')" class="button-competence"
+                [ngClass]="status7 ? 'select-competence' : 'unselect-competence'"> JavaScript
+        </button>
+
+        <button (click)="clickEvent(8, 'Langage C')" class="button-competence"
+                [ngClass]="status8 ? 'select-competence' : 'unselect-competence'">
+          Langage C
+        </button>
+
+        <button (click)="clickEvent(9, 'Python')" class="button-competence"
+                [ngClass]="status9 ? 'select-competence' : 'unselect-competence'"> Python
+        </button>
+
+        <button (click)="clickEvent(10, 'Cobol')" class="button-competence"
+                [ngClass]="status10 ? 'select-competence' : 'unselect-competence'">
+          Cobol
+        </button>
+      </div>
+
+      <br>
+      <label>Type de contrat</label>
+      <div class="column-container">
+        <div class="column-out">
+          <mat-radio-group formControlName="typeDesContrats">
+            <ul *ngFor="let typeContrat of typeContratV1">
+              <li>
+                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+              </li>
+            </ul>
+          </mat-radio-group>
+        </div>
+
+        <div class="column-out">
+          <mat-radio-group formControlName="typeDesContrats">
+            <ul *ngFor="let typeContrat of typeContratV2">
+              <li>
+                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+              </li>
+            </ul>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div>
+        <label>Années d'experience</label>
+        <input type="range" min="0" max="15" value="2" class="slider" formControlName="anneesExperience">
+      </div>
+
+      <div>
+        <br>
+        <label>Salaire par mois</label>
+        <input type="range" min="100000" max="500000" value="250000" class="slider" formControlName="salaireParMois">
+      </div>
+
       <div>
         <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="offreForm" novalidate (ngSubmit)="creerOffre()">
+
+  <mat-step [stepControl]="descriptionOffreForm">
+    <form [formGroup]="descriptionOffreForm" novalidate>
       <ng-template matStepLabel>Description de l'offre</ng-template>
 
       <!-- DESCRIPTION DE L'OFFRE-->
-      <app-offer-description></app-offer-description>
+      <label>Secteur d'activité</label>
 
-      <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
+      <mat-radio-group formControlName="secteur">
+        <div class="column-container">
+          <div class="column-out">
+            <ul *ngFor="let domaine of domaine1">
+              <li>
+                <mat-radio-button value="{{domaine}}">{{domaine}}</mat-radio-button>
+              </li>
+            </ul>
+          </div>
 
- <!-- RÉCAPITULATIF-->
-  <mat-step [stepControl]="descriptionOffreForm">
-    <form [formGroup]="descriptionOffreForm" novalidate (ngSubmit)="remplireDescription()"
-          class="formulaire container">
-      <ng-template matStepLabel>Récapitulatif</ng-template>
+          <div class="column-out">
+            <ul *ngFor="let domaine of domaine2">
+              <li>
+                <mat-radio-button value="{{domaine}}">{{domaine}}</mat-radio-button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <label>Lieu</label>
+      <input type="text" class="taille-champs" placeholder="Lieu" [(ngModel)]="lieu" required
+             formControlName="lieu"
+             [matAutocomplete]="auto" [formControl]="stateCtrl">
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
+          <span>{{ state.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <label>Description de l'offre</label>
+      <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
+                placeholder="Description de l'offre"></textarea>
 
       <div>
         <button mat-button matStepperPrevious>Précédent</button>
@@ -44,18 +177,15 @@
   </mat-step>
 
   <mat-step [stepControl]="paimentForm">
-    <form [formGroup]="paimentForm" novalidate (ngSubmit)="remplireDescription()"
-          class="formulaire container">
+    <form [formGroup]="paimentForm" novalidate class="formulaire container">
       <ng-template matStepLabel>Paiement</ng-template>
-
       <!--FORMULAIRE DE PAYEMENT-->
-      <app-payment></app-payment>
 
       <div>
         <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button (click)="stepper.reset()">Annuler</button>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!offreForm.valid ||
-        !descriptionOffreForm.valid">Confirmation
+        <button mat-button (click)="stepper.reset(); resetSelectSkills()">Annuler</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
+        !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation
         </button>
       </div>
     </form>
