@@ -1,8 +1,16 @@
 export interface Offre {
-  typeOffre: string; // CDD, CDI, STAGE, ...
-  titreOffre: string;
-  salaireMinimal: number;
-  salaireMaximal: number;
+  titre: string;
+  specialisation: string;
+  competences: string[];
+  typeDesContrats: string;
+  anneesExperience: number;
+  salaireParMois: number;
+  lieu: string;
+  secteur: string;
   description: string;
-  nom: string;
+}
+
+export interface Competence {
+  id: number;
+  name: string;
 }
