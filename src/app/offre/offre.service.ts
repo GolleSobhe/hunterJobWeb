@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Offre} from './offre';
+import {Competence, Offre} from './offre';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -22,13 +22,24 @@ export class OffreService {
     return this._http.get<Offre[]>('api/offres');
   }
 
-  creerOffre(form: Offre): Observable<Offre> {
+  creerOffre(offre: Offre): Observable<Offre> {
     const headers = new HttpHeaders();
-    const offre = JSON.stringify(form);
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>('api/offres/create', offre, {headers: headers});
+    const model = {
+      titre: offre.titre,
+      specialisation: offre.specialisation,
+      // competences: string[];
+      typeDesContrats: offre.typeDesContrats,
+      anneesExperience: offre.anneesExperience,
+      salaireParMois: offre.salaireParMois,
+      lieu: offre.lieu,
+      secteur: offre.secteur,
+      description: offre.description
+    };
+
+    return this._http.post<Offre>('api/offres', offre, {headers: headers});
   }
 
   getOffre(id: number): Observable<Offre> {
@@ -38,5 +49,37 @@ export class OffreService {
   /* METIERS */
   getProfessions(): Observable<any> {
     return this._http.get('api/metiers');
+  }
+
+  getSpecialisation(): Observable<any> {
+    return this._http.get('api/specialisation');
+  }
+
+  getProduit(): Observable<any> {
+    return this._http.get('api/produit');
+  }
+
+  getCompetences(): Observable<Competence[]> {
+    return this._http.get<Competence[]>('api/competences');
+  }
+
+  getTypeContrat1(): Observable<any> {
+    return this._http.get('api/typeContratV1');
+  }
+
+  getTypeContrat2(): Observable<any> {
+    return this._http.get('api/typeContratV1');
+  }
+
+  getDomaine1(): Observable<any> {
+    return this._http.get('api/domaine1');
+  }
+
+  getDomaine2(): Observable<any> {
+    return this._http.get('api/domaine2');
+  }
+
+  getPays(): Observable<any> {
+    return this._http.get('api/pays');
   }
 }
