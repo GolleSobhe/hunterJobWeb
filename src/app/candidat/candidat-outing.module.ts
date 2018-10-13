@@ -10,10 +10,9 @@ const routes: Routes = [{
     children : [
       { path: 'new', component: CandidatNewComponent},
       { path : 'all', component: CandidatListComponent},
-      { path : ':id',component: CandidatComponent}
+      { path : ':id', component: CandidatComponent}
     ]
   }];
-  
 
 // useHash: booléen activant la navigation avec des hash (#) au lieu de l'API history
 // enableTracing: permet de savoir ce qui se passe à l'interieur du root.

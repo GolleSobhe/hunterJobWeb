@@ -280,5 +280,56 @@
       "description": "lkmjdf msqldkjf almzerjaéoriuaz\"rzmlej lzdkjf sdlmf qs qskdjoaier zaeroiuaz ezaeoiruaz zaeiof  sodfisd sodifuazer zeoriu zed qsdfqsioudf ",
       "id": 9
     }
+  ],
+  "candidatsByEntreprise" : [
+    {
+      "id" : "0",
+      "nom" : "BAH",
+      "prenom" : "Abdou",
+      "profil" : "Etudes et développement des systèmes d'information && Big Data"
+    },
+    {
+      "id" : "1",
+      "nom" : "BAH",
+      "prenom" : "Dioulde",
+      "profil" : "Big Data"
+    },
+    {
+      "id" : "2",
+      "nom" : "BAH",
+      "prenom" : "Abdou",
+      "profil" : "Développeur full stack"
+    },
+    {
+      "id" : "3",
+      "nom" : "BAH",
+      "prenom" : "Abdou",
+      "profil" : "Développeur frontend Agular, React Js, html5"
+    },
+    {
+      "id" : "4",
+      "nom" : "BAH",
+      "prenom" : "Abdou",
+      "profil" : "Développeur backend Spring, jakarta ee"
+    },
+    {
+      "id" : "5",
+      "nom" : "LY",
+      "prenom" : "Abdourhamane",
+      "profil" : "Développeur backend Spring, jakarta ee"
+    },
+    {
+      "id" : "6",
+      "nom" : "DIALLO",
+      "prenom" : "Telly",
+      "profil" : "Développeur backend Spring, jakarta ee"
+    }
+  ],
+  "abonnementByEntreprise":[
+    {
+      "id": "0",
+      "nom": "Offres par semestre",
+      "description": "Votre souscription termine dans trois semaines"
+    }
   ]
 }

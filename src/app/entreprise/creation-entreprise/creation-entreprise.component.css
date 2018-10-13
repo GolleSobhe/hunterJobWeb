@@ -1,0 +1,36 @@
+.container {
+  width: 80%;
+}
+.itemEntreprise{
+  display: block;
+  
+}
+.itemEntreprise input{
+  width: 50%;
+}
+.button-suivant{
+  float: right;
+}
+.button-precedent{
+  float: left;
+}
+.button-annuler{
+  float: center;
+}
+
+.text-area-width {
+  width: 100%;
+}
+
+input, mat-select{
+  border-radius: 15px!important;
+  border-color: rgb(105, 107, 114);
+  border-width: thin!important;
+  border-style:solid!important;
+  padding: 5px 10px;
+  width: 25%!important;
+}
+
+.field-size {
+  width: 100% !important;
+}
