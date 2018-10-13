@@ -17,7 +17,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
 import { FooterComponent } from './common/footer/footer.component';
-import {NgxCarouselModule} from 'ngx-carousel';
 import { AccueilModule } from './accueil/accueil.module';
 
 @NgModule({
