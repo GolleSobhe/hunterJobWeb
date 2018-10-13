@@ -8,6 +8,7 @@ import { CreationEntrepriseComponent } from './creation-entreprise/creation-entr
 const routes: Routes = [
   {path: '', component: EntrepriseListComponent},
   {path: 'creer-entreprise', component: CreationEntrepriseComponent},
+  {path: 'entreprise', component: EntrepriseComponent},
   {path: ':id', component: EntrepriseComponent},
 ];
 

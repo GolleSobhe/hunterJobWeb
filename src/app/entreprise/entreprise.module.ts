@@ -6,7 +6,7 @@ import { CreationEntrepriseComponent } from './creation-entreprise/creation-entr
 import { EntrepriseRoutingModule } from './entreprise-routing.module';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldModule, MatSelectModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatStepperModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   declarations: [EntrepriseComponent, EntrepriseListComponent, CreationEntrepriseComponent]
 })

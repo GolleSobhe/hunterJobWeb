@@ -3,6 +3,7 @@
 }
 .itemEntreprise{
   display: block;
+  
 }
 .itemEntreprise input{
   width: 50%;
@@ -13,8 +14,8 @@
 .button-precedent{
   float: left;
 }
-div .button-annuler{
-  text-align: center;
+.button-annuler{
+  float: center;
 }
 
 .text-area-width {

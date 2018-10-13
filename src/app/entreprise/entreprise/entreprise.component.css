@@ -6,14 +6,42 @@
     height: 100%;
 }
 .flex-div{
-    width: 100%;
+   width: 100%;
    min-width: 0;
-   color: white;
    font-family: monospace;
    height: 100%;
 }
 
+.div-scroll{
+  overflow-y: scroll;
+  height: 400px;
+}
+
 .one {
     width: 30%;
-    background-color: #1B5385;
+  }
+
+  input{
+    border-radius: 15px!important;
+    border-width: thin!important;
+    border-style:solid!important;
+    padding: 5px 10px;
+    width: 25%!important;
+    margin: 10px;
+  }
+
+  div{
+    text-align: center;
+    margin: 4px; 
+
+  }
+
+  .description{
+    margin-bottom: 2px;
+    background-color: rgb(174, 176, 182);
+    padding-top: 20px;
+  }
+  .abonnement{
+    background-color: rgb(174, 176, 182);
+    height: 100%;
   }
