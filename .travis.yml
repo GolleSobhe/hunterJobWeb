@@ -3,7 +3,14 @@ node_js:
 - '8'
 sudo: true
 script:
-- npm build
+- ng build -bh "https://gollesobhe.github.io/hunterJobWeb/"
 branches:
   only:
   - master
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN 
+  local_dir: dist
+  on:
+    branch: master
