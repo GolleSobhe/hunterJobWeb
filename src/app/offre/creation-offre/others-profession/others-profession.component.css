@@ -1,0 +1,111 @@
+/*details de l'offre*/
+.column-container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.column-out {
+  padding: 0px;
+  box-sizing: border-box;
+  /* margin-bottom: 10px;*/
+  flex-basis: 49%;
+}
+
+@media (min-width: 900px) {
+  .column-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.column-out:nth-child(1) {
+  background-color: white;
+}
+
+.column-out:nth-child(2) {
+  background-color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background: #b6b6b6;
+  margin: 5px;
+  padding: 5px;
+}
+
+/*SLIDER CSS*/
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: white;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #0B2161;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #0B2161;
+  cursor: pointer;
+}
+
+.text-area-width {
+  width: 100%;
+}
+
+.button-competence {
+  border-radius: 1em;
+  padding: .2em 1.08em !important;
+  border: 1px solid #b6b6b6;
+  color: black !important;
+  margin-right: .4em;
+  margin-bottom: .4em;
+  text-shadow: none;
+  background-color: white;
+}
+
+.button-competence:hover {
+  /*background-color: #cccccc;*/
+}
+
+/* SELECTION ET DÉSELECTION DES COMPÉTENCES */
+.select-competence {
+  background-color: #cccccc;
+}
+
+.unselect-competence {
+  background-color: white;
+}
+
+/* FIN DES COMPÉTENCES */
+
+input[type=text], select {
+  width: 100%;
+  margin: 8px 0;
+  display: block;
+  box-sizing: border-box;
+}

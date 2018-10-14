@@ -14,3 +14,8 @@ export interface Competence {
   id: number;
   name: string;
 }
+
+export interface TypeContrat {
+  id: number;
+  name: string;
+}

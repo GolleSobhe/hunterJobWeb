@@ -89,9 +89,9 @@
       <div class="column-container">
         <div class="column-out">
           <mat-radio-group formControlName="typeDesContrats">
-            <ul *ngFor="let typeContrat of typeContratV1">
+            <ul *ngFor="let typeContrat of listeTypeContrat1">
               <li>
-                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
               </li>
             </ul>
           </mat-radio-group>
@@ -99,9 +99,9 @@
 
         <div class="column-out">
           <mat-radio-group formControlName="typeDesContrats">
-            <ul *ngFor="let typeContrat of typeContratV2">
+            <ul *ngFor="let typeContrat of listeTypeContrat2">
               <li>
-                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
               </li>
             </ul>
           </mat-radio-group>
@@ -124,7 +124,6 @@
       </div>
     </form>
   </mat-step>
-
 
   <mat-step [stepControl]="descriptionOffreForm">
     <form [formGroup]="descriptionOffreForm" novalidate>
@@ -155,7 +154,6 @@
 
       <label>Lieu</label>
       <input type="text" class="taille-champs" placeholder="Lieu" [(ngModel)]="lieu" required
-             formControlName="lieu"
              [matAutocomplete]="auto" [formControl]="stateCtrl">
 
       <mat-autocomplete #auto="matAutocomplete">
@@ -167,7 +165,8 @@
 
       <label>Description de l'offre</label>
       <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
-                placeholder="Description de l'offre"></textarea>
+                placeholder="Description de l'offre">
+      </textarea>
 
       <div>
         <button mat-button matStepperPrevious>Précédent</button>
