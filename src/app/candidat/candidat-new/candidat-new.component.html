@@ -1,19 +1,74 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title><h2>Nouveau candidat</h2></mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form (ngSubmit)="onSubmit()" #candidatForm="ngForm" class="formulaire container">
-      <fieldset>
-        <mat-form-field class="longueur-champ-formulaire">
-          <input [(ngModel)]="candidat.nom" matInput name="nom" required placeholder="Nom"/>
-        </mat-form-field>
-        <mat-form-field class="longueur-champ-formulaire">
-          <input [(ngModel)]="candidat.prenom" matInput name="prenom" required placeholder="Prenom"/>
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="! candidatForm.form.valid">Valider</button>
-        <button type="reset" mat-raised-button color="warn">Effacer</button>
-      </fieldset>
+<div>
+    <h3>Créer votre profil</h3>
+    <hr>
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="candidatEtape1FormGroup">
+    <form [formGroup]="candidatEtape1FormGroup">
+      <ng-template matStepLabel>Informations personnelles</ng-template>
+      <!--FORMULAIRE DE CREATION PROFIL CANDIDAT-->
+      <div class="itemCandidat">
+        <label><b>Nom : </b></label>
+        <input type="text" id="nomEntreprise" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+      	  <label><b>Adresse : </b></label>
+        <input type="text" id="Adresse" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+        <label><b>Telephone : </b></label>
+        <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+        <label><b>Email : </b></label>
+        <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required>     
+      </div>      
+      <div>
+        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+      </div>
     </form>
-  </mat-card-content>
-</mat-card>
+  </mat-step>
+
+
+  <mat-step [stepControl]="candidatEtape2FormGroup">
+    <form [formGroup]="candidatEtape2FormGroup" novalidate>
+      <!-- Expérience et étude-->
+      <ng-template matStepLabel>Expériences et Etudes </ng-template>           
+      <div>
+        <label><b>Expériences(hors stage)</b></label><br/>
+        <input type="number" placeholder="0" name="anneeExperienceCandidat" required><br/>
+      </div>
+      <div>
+        <label><b>Etudes</b></label> <br/>
+        <input type="number" placeholder="0" name="anneeEtudeCandidat" required><br/>      
+      </div>
+      <div>
+        <label><b>Télécharger votre CV</b></label> <br/>
+        <input type="file" name="cvCandidat" required><button>Créer un modéle de cv</button>
+      </div>
+      <div>
+        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="candidatEtape3FormGroup">
+    <form [formGroup]="candidatEtape3FormGroup" novalidate class="formulaire container">
+      <ng-template matStepLabel>Préférence d'emploi</ng-template>
+      <div>
+        <h3>Intitulé du poste</h3>
+      </div>   
+      <div>
+        <h3>Type d'emploi souhaité</h3>
+      </div>  
+      <div>
+          <h3>Salaire</h3>
+      </div>
+      <div>
+          <h3>Relocalisation</h3>
+      </div>  
+      <div>
+        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+        <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
+        <button type="submit" class="button-suivant" color="primary">Confirmation
+        </button>
+      </div>
+  </form>
+
+  </mat-step>
+	</mat-horizontal-stepper>
+</div>

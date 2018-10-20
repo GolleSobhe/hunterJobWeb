@@ -1,8 +1,4 @@
-import { Candidat } from './../candidat';
-import { Component, OnInit, Input } from '@angular/core';
-import { CandidatService } from '../candidat.service';
-import {ParamMap, ActivatedRoute} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-candidat',
@@ -11,14 +7,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class CandidatComponent implements OnInit {
 
-  @Input() candidat: Candidat;
-
-  constructor(private route: ActivatedRoute, private candidatService:CandidatService) { 
-    this.route.paramMap
-    .switchMap((params:ParamMap) => {
-      return this.candidatService.getCandidat(+params.get('id'));
-    }).subscribe(candidat => this.candidat = candidat);
-  }
+  constructor() { }
 
   ngOnInit() {
   }
