@@ -39,6 +39,8 @@ input,mat-select{
   border-width: thin!important;
   border-style:solid!important;
   padding: 5px 10px;
+  box-sizing: border-box;
+  margin: 4px 0;
   width: 100%;
 }
 

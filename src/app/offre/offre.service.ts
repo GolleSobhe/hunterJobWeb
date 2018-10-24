@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Competence, Offre} from './offre';
+import {Competence, Offre, TypeContrat} from './offre';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Validators} from '@angular/forms';
 
 @Injectable()
 export class OffreService {
@@ -42,6 +43,15 @@ export class OffreService {
     return this._http.post<Offre>('api/offres', offre, {headers: headers});
   }
 
+  creerOffreOtherProfession(offre: any): Observable<any> {
+    const headers = new HttpHeaders();
+
+    headers.append('Content-Type', 'application/json');
+
+
+    return this._http.post<any>('api/offres', offre, {headers: headers});
+  }
+
   getOffre(id: number): Observable<Offre> {
     return this._http.get<Offre>('api/offres/' + id);
   }
@@ -69,6 +79,10 @@ export class OffreService {
 
   getTypeContrat2(): Observable<any> {
     return this._http.get('api/typeContratV1');
+  }
+
+  getTypeContrat() {
+    return this._http.get<TypeContrat[]>('api/typeContrat');
   }
 
   getDomaine1(): Observable<any> {

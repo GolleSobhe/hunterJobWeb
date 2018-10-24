@@ -4,7 +4,7 @@ import {OffreService} from '../../offre.service';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import {isNullOrUndefined} from 'util';
-import {Competence, Offre} from '../../offre';
+import {Competence, Offre, TypeContrat} from '../../offre';
 import {Router} from '@angular/router';
 
 @Component({
@@ -27,12 +27,12 @@ export class ComputerScienceComponent implements OnInit {
   specialisation: string [] = [];
   produit: string [] = [];
   competences: Competence [] = [];
-  typeContratV1: string [] = [];
-  typeContratV2: string [] = [];
   domaine1: string [] = [];
   domaine2: string [] = [];
 
   skillsList: string[] = [];
+  listeTypeContrat1: TypeContrat[] = [];
+  listeTypeContrat2: TypeContrat[] = [];
 
   status: boolean = false;
   status1: boolean = false;
@@ -160,12 +160,14 @@ export class ComputerScienceComponent implements OnInit {
   }
 
   getTypeContrat() {
-    this.offreService.getTypeContrat1().subscribe(result => {
-      this.typeContratV1 = result;
-    });
+    this.offreService.getTypeContrat().subscribe((contrats: TypeContrat[]) => {
+      for (let i = 0; i < (contrats.length / 2); i++) {
+        this.listeTypeContrat1.push(contrats[i]);
+      }
 
-    this.offreService.getTypeContrat2().subscribe(result => {
-      this.typeContratV2 = result;
+      for (let i = (contrats.length / 2) ; i < contrats.length ; i++) {
+        this.listeTypeContrat2.push(contrats[i]);
+      }
     });
   }
 
@@ -195,7 +197,6 @@ export class ComputerScienceComponent implements OnInit {
   formulaireDescriptionOffre() {
     this.descriptionOffreForm = this._formBuilder.group({
       secteur: ['', {validators: [Validators.required]}],
-      lieu: ['', {validators: [Validators.required]}],
       description: ['', {validators: [Validators.required]}],
     });
   }
