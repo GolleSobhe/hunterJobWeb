@@ -1,3 +1,110 @@
 <h2>
   {{profession}}
 </h2>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="detailOffreForm">
+    <form [formGroup]="detailOffreForm">
+      <ng-template matStepLabel>Details de l'offre</ng-template>
+
+      <div>
+        <label for="intitulePoste"><b>Intitulé du poste</b></label>
+        <input type="text" placeholder="Titre du poste" id="intitulePoste" formControlName="intitulePoste"
+               name="intitulePoste"  required>
+      </div>
+
+      <div>
+        <label for="nomEntreprise"><b>Nom de l'entreprise</b></label>
+        <input type="text" placeholder="Nom de l'entreprise" id="nomEntreprise" formControlName="nomEntreprise"
+               name="nomEntreprise"  required>
+      </div>
+      <label for="numeroTelephone"><b>Numéro de téléphone</b></label>
+      <input type="text" placeholder="Numéro téléphone" id="numeroTelephone" formControlName="numeroTelephone"
+             name="numeroTelephone"  required>
+      <div>
+        <label for="lieu"><b>Lieu</b></label>
+        <!--<input type="text" placeholder="Lieu" id="lieu" formControlName="lieu"
+               name="lieu"  required>-->
+
+        <input type="text" class="taille-champs" id="lieu" [(ngModel)]="lieu" placeholder="Lieu" required
+               [matAutocomplete]="auto" [formControl]="stateCtrl">
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
+            <span>{{ state.name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+
+      </div>
+
+      <div>
+        <label for="ville"><b>Ville</b></label>
+        <input type="text" placeholder="Lieu" id="ville" formControlName="ville"
+               name="ville"  required>
+      </div>
+      <label>Type de contrat</label>
+      <div class="column-container">
+        <div class="column-out">
+          <mat-radio-group formControlName="typeContrat">
+            <ul *ngFor="let typeContrat of listeTypeContrat1">
+              <li>
+                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
+              </li>
+            </ul>
+          </mat-radio-group>
+        </div>
+
+        <div class="column-out">
+          <mat-radio-group formControlName="typeContrat">
+            <ul *ngFor="let typeContrat of listeTypeContrat2">
+              <li>
+                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
+              </li>
+            </ul>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div>
+        <label>Années d'experience</label>
+        <input type="range" min="0" max="15" value="2" class="slider" formControlName="anneeExperience">
+      </div>
+
+      <div>
+        <br>
+        <label>Salaire par mois</label>
+        <input type="range" min="100000" max="500000" value="250000" class="slider" formControlName="salaire">
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="descriptionOffreForm">
+    <form [formGroup]="descriptionOffreForm">
+      <ng-template matStepLabel>Description de l'offre</ng-template>
+      <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
+                placeholder="Description de l'offre"></textarea>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Payement</ng-template>
+    <p>Vous devez payer ici </p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
+        !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation
+      </button>
+    </div>
+  </mat-step>
+
+</mat-horizontal-stepper>

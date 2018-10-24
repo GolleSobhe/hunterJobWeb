@@ -84,6 +84,32 @@
       "name": "React"
     }
   ],
+  "typeContrat": [
+    {
+      "id": 1,
+      "name": "CDI"
+    },
+    {
+      "id": 2,
+      "name": "CDD"
+    },
+    {
+      "id": 3,
+      "name": "Stage"
+    },
+    {
+      "id": 4,
+      "name": "Freelance"
+    },
+    {
+      "id": 5,
+      "name": "Apprentissage"
+    },
+    {
+      "id": 6,
+      "name": "Interim"
+    }
+  ],
   "typeContratV1": [
     "CDI",
     "CDD",
@@ -279,6 +305,63 @@
       "secteur": "Énergie",
       "description": "lkmjdf msqldkjf almzerjaéoriuaz\"rzmlej lzdkjf sdlmf qs qskdjoaier zaeroiuaz ezaeoiruaz zaeiof  sodfisd sodifuazer zeoriu zed qsdfqsioudf ",
       "id": 9
+    },
+    {
+      "titre": "sdfg",
+      "specialisation": "Frontend",
+      "competences": [
+        "Angular",
+        "React",
+        "NodeJS"
+      ],
+      "typeDesContrats": "CDI",
+      "anneesExperience": 10,
+      "salaireParMois": 274266,
+      "lieu": "Guinée",
+      "secteur": "Aéronotique",
+      "description": "sdf qsd sqdf qer ez tyye yrt rt rt ry ry ty ty tyu rtutedrgfdv",
+      "id": 10
+    },
+    {
+      "lieu": "65132.",
+      "description": "sdqfwsxgbcb 97863521 9864 5*32986532",
+      "id": 11
+    },
+    {
+      "nomEntreprise": "+632.",
+      "numeroTelephone": "69+64",
+      "intitulePoste": "96853",
+      "lieu": "6464",
+      "ville": "64+4+6",
+      "typeContrat": "[object Object]",
+      "salaire": 249296,
+      "anneeExperience": 10,
+      "description": "oljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf ",
+      "id": 12
+    },
+    {
+      "nomEntreprise": "qsdf",
+      "numeroTelephone": "qsd",
+      "intitulePoste": "df",
+      "lieu": "sdf",
+      "ville": "fdht",
+      "typeContrat": "Interim",
+      "salaire": 385783,
+      "anneeExperience": 10,
+      "description": "fgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh d",
+      "id": 13
+    },
+    {
+      "nomEntreprise": "zswx",
+      "numeroTelephone": "scx ",
+      "intitulePoste": "zqeds",
+      "lieu": "Ghana",
+      "ville": "fdht",
+      "typeContrat": "Freelance",
+      "salaire": 344155,
+      "anneeExperience": 9,
+      "description": "  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n",
+      "id": 14
     }
   ],
   "candidatsByEntreprise" : [
