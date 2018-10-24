@@ -1,8 +1,6 @@
-import { Candidat } from './../candidat';
-import { Component, OnInit, Input } from '@angular/core';
-import { CandidatService } from '../candidat.service';
-import {ParamMap, ActivatedRoute} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
+import { Candidat } from '../candidat';
+
 
 @Component({
   selector: 'app-candidat',
@@ -10,17 +8,16 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./candidat.component.css']
 })
 export class CandidatComponent implements OnInit {
-
-  @Input() candidat: Candidat;
-
-  constructor(private route: ActivatedRoute, private candidatService:CandidatService) { 
-    this.route.paramMap
-    .switchMap((params:ParamMap) => {
-      return this.candidatService.getCandidat(+params.get('id'));
-    }).subscribe(candidat => this.candidat = candidat);
-  }
+  pdfSrc = '../../../assets/cvs/cv_abdoulaye.pdf';
+  titreProfil = 'Etudes et développement des systèmes d\'information && Big Data';
+  candidat: Candidat;
+  constructor() { }
 
   ngOnInit() {
+   this.candidat = new Candidat(1, 'BAH', 'Abdoulaye', '07000000', 'bah@hello.com',
+   'carrefour pompidou', 3, 5, '../../../assets/cvs/cv_abdoulaye.pdf',
+   'Full-Stack', 'Etudes et développement des systèmes d\'information && Big Data',
+   ['CDI', 'CDD', 'Freelance'], true, 55);
   }
 
 }

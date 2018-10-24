@@ -1,6 +1,5 @@
-import { CandidatService } from './../candidat.service';
-import { Candidat } from './../candidat';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-candidat-new',
@@ -8,15 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidat-new.component.css']
 })
 export class CandidatNewComponent implements OnInit {
-
-  candidat:Candidat = new Candidat();
-
-  constructor(private candidatService:CandidatService) { }
+  isLinear = false;
+  candidatEtape1FormGroup: FormGroup;
+  candidatEtape2FormGroup: FormGroup;
+  candidatEtape3FormGroup: FormGroup;
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.candidatEtape1FormGroup = this._formBuilder.group({
+    });
+    this.candidatEtape2FormGroup = this._formBuilder.group({
+    });
+    this.candidatEtape3FormGroup = this._formBuilder.group({
+    });
   }
 
-  onSubmit(){
-    this.candidatService.create(this.candidat);
-  }
 }

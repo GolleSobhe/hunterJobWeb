@@ -414,5 +414,8 @@
       "nom": "Offres par semestre",
       "description": "Votre souscription termine dans trois semaines"
     }
+  ],
+  "candidats" : [
+    
   ]
 }

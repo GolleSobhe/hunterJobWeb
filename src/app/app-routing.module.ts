@@ -7,10 +7,9 @@ import { AccueilComponent } from './accueil/accueil/accueil.component';
 const ROUTES: Routes = [
   {path: 'accueil', component: AccueilComponent},
   {path: '', redirectTo: 'accueil', pathMatch: 'full'},
-
-  {path: 'candidat', loadChildren : 'app/candidat/candidat.module#CandidatModule'},
   {path: 'offres', loadChildren : 'app/offre/offre.module#OffreModule'},
   {path: 'entreprises', loadChildren : 'app/entreprise/entreprise.module#EntrepriseModule'},
+  {path: 'candidats', loadChildren : 'app/candidat/candidat.module#CandidatModule'}
 ];
 
 // useHash: booléen activant la navigation avec des hash (#) au lieu de l'API history
