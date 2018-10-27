@@ -3,7 +3,7 @@
     <hr>
 <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="votreEntrepriseFormGroup">
-    <form [formGroup]="votreEntrepriseFormGroup" (ngSubmit)="form1()" #formVotreEntreprise="ngForm">
+    <form [formGroup]="votreEntrepriseFormGroup">
       <ng-template matStepLabel>Votre entreprise</ng-template>
       <!--FORMULAIRE DE CREATION ENTREPRISE-->
       <div class="itemEntreprise">
@@ -17,14 +17,14 @@
         <input type="text" placeholder="Mail de l'entreprise" name="mailEntreprise" formControlName="mailEntrepriseCtrl" required>     
       </div>      
       <div>
-        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+        <button class="button-suivant" type="submit" mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
 
 
   <mat-step [stepControl]="descriptionEntrepriseFormGroup">
-    <form [formGroup]="descriptionEntrepriseFormGroup" (ngSubmit)="form1()" #formDescriptionEntreprise="ngForm">
+    <form [formGroup]="descriptionEntrepriseFormGroup">
       <!-- DESCRIPTION DE L'Entreprise-->
       <ng-template matStepLabel>Description </ng-template>
       <div>
@@ -32,7 +32,6 @@
           <input type="file" name="logoEntreprise" accept="image/png, image/jpeg">    
       </div>
       <div>
-       <label>Type entreprise : </label>
       	<mat-form-field>
         <mat-select class="field-size" placeholder="Secteur d'activités" [formControl]="secteurActiviteControl" required>
           <mat-option *ngFor="let secteurActivite of secteurActivites" [value]="secteurActivite">
@@ -50,13 +49,14 @@
      
       <div>
         <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+        <button class="button-suivant" type="submit" mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="recapilatifEntrepriseFormGroup">
-    <form [formGroup]="recapilatifEntrepriseFormGroup" class="formulaire container" (ngSubmit)="form1()" #formRecapilatifEntreprise="ngForm">
+    <form [formGroup]="recapilatifEntrepriseFormGroup" 
+       class="formulaire container">
       <ng-template matStepLabel>Récapitulatif</ng-template>
       <!--FORMULAIRE DE Récapitulatif-->
       <div>
@@ -100,10 +100,9 @@
       <div>
         <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
         <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
-        <button type="submit" 
-            class="button-suivant" 
-            mat-raised-button color="primary" 
-            (click)="formVotreEntreprise.ngSubmit.emit();formDescriptionEntreprise.ngSubmit.emit();formRecapilatifEntreprise.ngSubmit.emit()">
+        <button type="submit" class="button-suivant"  mat-raised-button color="primary" 
+            (click)="creerEntreprise()"
+            >
             Confirmation
         </button>
       </div>
