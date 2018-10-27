@@ -1,20 +1,20 @@
 <div>
     <h3>Créer votre entreprise</h3>
     <hr>
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="votreEntrepriseFormGroup">
-    <form [formGroup]="votreEntrepriseFormGroup">
+    <form [formGroup]="votreEntrepriseFormGroup" (ngSubmit)="form1()" #formVotreEntreprise="ngForm">
       <ng-template matStepLabel>Votre entreprise</ng-template>
       <!--FORMULAIRE DE CREATION ENTREPRISE-->
       <div class="itemEntreprise">
-        <label><b>Nom : </b></label>
-        <input type="text" id="nomEntreprise" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+        <label><b>Nom* : </b></label>
+        <input type="text" placeholder="nom de l'entreprise" name="nomEntreprise" formControlName="nomEntrepriseCtrl" required><br/>
       	  <label><b>Adresse : </b></label>
-        <input type="text" id="Adresse" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+        <input type="text" placeholder="Adresse de l'entreprise" name="adresseEntreprise" formControlName="adresseEntrepriseCtrl" required><br/>
         <label><b>Telephone : </b></label>
-        <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+        <input type="text" placeholder="Telephone de l'entreprise" name="telephoneEntreprise" formControlName="telephoneEntrepriseCtrl" required><br/>
         <label><b>Email : </b></label>
-        <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required>     
+        <input type="text" placeholder="Mail de l'entreprise" name="mailEntreprise" formControlName="mailEntrepriseCtrl" required>     
       </div>      
       <div>
         <button class="button-suivant" mat-button matStepperNext>Suivant</button>
@@ -24,12 +24,12 @@
 
 
   <mat-step [stepControl]="descriptionEntrepriseFormGroup">
-    <form [formGroup]="descriptionEntrepriseFormGroup" novalidate>
+    <form [formGroup]="descriptionEntrepriseFormGroup" (ngSubmit)="form1()" #formDescriptionEntreprise="ngForm">
       <!-- DESCRIPTION DE L'Entreprise-->
       <ng-template matStepLabel>Description </ng-template>
       <div>
-          <label for="logoEntreprise">Logo : </label>
-          <input type="file" id="logoEntreprise" name="logoEntreprise" accept="image/png, image/jpeg">    
+          <label>Logo : </label>
+          <input type="file" name="logoEntreprise" accept="image/png, image/jpeg">    
       </div>
       <div>
        <label>Type entreprise : </label>
@@ -56,26 +56,26 @@
   </mat-step>
 
   <mat-step [stepControl]="recapilatifEntrepriseFormGroup">
-    <form [formGroup]="recapilatifEntrepriseFormGroup" novalidate class="formulaire container">
+    <form [formGroup]="recapilatifEntrepriseFormGroup" class="formulaire container" (ngSubmit)="form1()" #formRecapilatifEntreprise="ngForm">
       <ng-template matStepLabel>Récapitulatif</ng-template>
       <!--FORMULAIRE DE Récapitulatif-->
       <div>
         <!--FORMULAIRE DE CREATION ENTREPRISE-->
         <div class="itemEntreprise">
           <label><b>Nom : </b></label>
-          <input type="text" id="nomEntreprise" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+          <input type="text" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
           <label><b>Adresse : </b></label>
-          <input type="text" id="Adresse" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+          <input type="text" placeholder="nom de l'entreprise" name="adresseEntreprise" required><br/>
           <label><b>Telephone : </b></label>
-          <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+          <input type="text"  placeholder="nom de l'entreprise" name="telephoneEntreprise" required><br/>
           <label><b>Email : </b></label>
-          <input type="text" id="Telephone" placeholder="nom de l'entreprise" name="nomEntreprise" required>     
+          <input type="text" placeholder="nom de l'entreprise" name="mailEntreprise" required>     
         </div>   
         <div>
         <!--FORMULAIRE DESCRIPTION-->
         <div>
-          <label for="logoEntreprise"><b>Logo</b> : </label>
-          <input type="file" id="logoEntreprise" name="logoEntreprise" accept="image/png, image/jpeg">    
+          <label><b>Logo</b> : </label>
+          <input type="file" name="logoEntreprise" accept="image/png, image/jpeg">    
         </div>
         <div>
           <label>Type entreprise : </label>
@@ -100,7 +100,11 @@
       <div>
         <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
         <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
-        <button type="submit" class="button-suivant" mat-raised-button color="primary">Confirmation
+        <button type="submit" 
+            class="button-suivant" 
+            mat-raised-button color="primary" 
+            (click)="formVotreEntreprise.ngSubmit.emit();formDescriptionEntreprise.ngSubmit.emit();formRecapilatifEntreprise.ngSubmit.emit()">
+            Confirmation
         </button>
       </div>
   </form>
