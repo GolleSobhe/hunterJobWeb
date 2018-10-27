@@ -4,12 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --aot",
+    "start": "ng serve --aot",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server --watch api/data.json --routes routes.json"
+    "api": "json-server --watch api/data.json"
   },
   "private": true,
   "dependencies": {
