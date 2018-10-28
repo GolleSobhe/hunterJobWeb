@@ -3,7 +3,7 @@ node_js:
 - '8'
 sudo: true
 script:
-- ng build --base-href https://gollesobhe.github.io/hunterJobWeb/ --prod
+- npm run deploy
 branches:
   only:
   - master
