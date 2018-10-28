@@ -1,25 +1,47 @@
 {
-  "enterprises": [
+  "entreprises": [
     {
       "id": 0,
-      "nom": "Orange",
-      "img": "Orange_logo.jpg",
-      "description": "Orange est une entreprise française de télécommunications.",
-      "url": "https://www.orange.fr/"
+      "nomEntreprise": "Orange",
+      "adresseEntreprise": "Orange_logo.jpg",
+      "telephoneEntreprise": "07444444",
+      "mailEntreprise": "orange@gmail.com",
+      "urlEntreprise": "https://www.orange.fr/",
+      "logoEntreprise": "Orange_logo.jpg",
+      "secteurActivites": "Informatique",
+      "descriptionEntreprise": "Orange est une entreprise française de télécommunications."
     },
     {
       "id": 1,
-      "nom": "Orange1",
-      "img": "Orange_logo.jpg",
-      "description": "Orange est une entreprise française de télécommunications.",
-      "url": "https://www.orange.fr/"
+      "nomEntreprise": "Orange",
+      "adresseEntreprise": "Orange_logo.jpg",
+      "telephoneEntreprise": "07444444",
+      "mailEntreprise": "orange@gmail.com",
+      "urlEntreprise": "https://www.orange.fr/",
+      "logoEntreprise": "Orange_logo.jpg",
+      "secteurActivites": "Informatique",
+      "descriptionEntreprise": "Orange est une entreprise française de télécommunications."
     },
     {
       "id": 2,
-      "nom": "Orange2",
-      "img": "Orange_logo.jpg",
-      "description": "Orange est une entreprise française de télécommunications.",
-      "url": "https://www.orange.fr/"
+      "nomEntreprise": "Orange",
+      "adresseEntreprise": "Orange_logo.jpg",
+      "telephoneEntreprise": "07444444",
+      "mailEntreprise": "orange@gmail.com",
+      "urlEntreprise": "https://www.orange.fr/",
+      "logoEntreprise": "Orange_logo.jpg",
+      "secteurActivites": "Informatique",
+      "descriptionEntreprise": "Orange est une entreprise française de télécommunications."
+    },
+    {
+      "nomEntreprise": "fiyahoolo",
+      "adresseEntreprise": "pompidou",
+      "telephoneEntreprise": "02552",
+      "mailEntreprise": "fi@gmail.com",
+      "urlEntreprise": "fi.fr",
+      "logoEntreprise": "C:\\fakepath\\IMG_20180627_120518.jpg",
+      "descriptionEntreprise": "informatique bancaire",
+      "id": 3
     }
   ],
   "metiers": [
@@ -364,58 +386,56 @@
       "id": 14
     }
   ],
-  "candidatsByEntreprise" : [
+  "candidatsByEntreprise": [
     {
-      "id" : "0",
-      "nom" : "BAH",
-      "prenom" : "Abdou",
-      "profil" : "Etudes et développement des systèmes d'information && Big Data"
+      "id": "0",
+      "nom": "BAH",
+      "prenom": "Abdou",
+      "profil": "Etudes et développement des systèmes d'information && Big Data"
     },
     {
-      "id" : "1",
-      "nom" : "BAH",
-      "prenom" : "Dioulde",
-      "profil" : "Big Data"
+      "id": "1",
+      "nom": "BAH",
+      "prenom": "Dioulde",
+      "profil": "Big Data"
     },
     {
-      "id" : "2",
-      "nom" : "BAH",
-      "prenom" : "Abdou",
-      "profil" : "Développeur full stack"
+      "id": "2",
+      "nom": "BAH",
+      "prenom": "Abdou",
+      "profil": "Développeur full stack"
     },
     {
-      "id" : "3",
-      "nom" : "BAH",
-      "prenom" : "Abdou",
-      "profil" : "Développeur frontend Agular, React Js, html5"
+      "id": "3",
+      "nom": "BAH",
+      "prenom": "Abdou",
+      "profil": "Développeur frontend Agular, React Js, html5"
     },
     {
-      "id" : "4",
-      "nom" : "BAH",
-      "prenom" : "Abdou",
-      "profil" : "Développeur backend Spring, jakarta ee"
+      "id": "4",
+      "nom": "BAH",
+      "prenom": "Abdou",
+      "profil": "Développeur backend Spring, jakarta ee"
     },
     {
-      "id" : "5",
-      "nom" : "LY",
-      "prenom" : "Abdourhamane",
-      "profil" : "Développeur backend Spring, jakarta ee"
+      "id": "5",
+      "nom": "LY",
+      "prenom": "Abdourhamane",
+      "profil": "Développeur backend Spring, jakarta ee"
     },
     {
-      "id" : "6",
-      "nom" : "DIALLO",
-      "prenom" : "Telly",
-      "profil" : "Développeur backend Spring, jakarta ee"
+      "id": "6",
+      "nom": "DIALLO",
+      "prenom": "Telly",
+      "profil": "Développeur backend Spring, jakarta ee"
     }
   ],
-  "abonnementByEntreprise":[
+  "abonnementByEntreprise": [
     {
       "id": "0",
       "nom": "Offres par semestre",
       "description": "Votre souscription termine dans trois semaines"
     }
   ],
-  "candidats" : [
-    
-  ]
+  "candidats": []
 }

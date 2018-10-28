@@ -1,7 +1,7 @@
 <div>
   <h3>Créer votre entreprise</h3>
      <hr>
- <form [formGroup]="formGroup" (ngSubmit)="creerOuModifierEntreprise(formEntreprise)" #formEntreprise="ngForm">
+ <form [formGroup]="formGroup" (ngSubmit)="creerOuModifierEntreprise(formEntreprise.value)" #formEntreprise="ngForm">
    <mat-horizontal-stepper formArrayName="formArray" [linear]="true" #stepper="matHorizontalStepper">
      <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
        <ng-template matStepLabel>Votre entreprise</ng-template>
@@ -13,7 +13,9 @@
           <label><b>Telephone : </b></label>
           <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephoneEntreprise" required><br/>
           <label><b>Email : </b></label>
-          <input type="text" placeholder="Mail de l'entreprise" formControlName="mailEntreprise" required>     
+          <input type="text" placeholder="Mail de l'entreprise" formControlName="mailEntreprise" required><br/>
+          <label><b>Url : </b></label>
+          <input type="text" placeholder="Mail de l'entreprise" formControlName="urlEntreprise" required>     
         </div> 
        <div>
          <button type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
@@ -48,12 +50,12 @@
      </mat-step>
  
      <mat-step>
-       <ng-template matStepLabel>Confirm your information</ng-template>
+       <ng-template matStepLabel>récapitulatif</ng-template>
        Everything seems correct.
        <div>
           <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
           <button type="button" mat-button (click)="stepper.reset()">Annuler</button>
-          <button type="submit" class="button-suivant" mat-button>Confirmation</button>         
+          <button type="submit" class="button-suivant" mat-button>Valider</button>         
        </div>
      </mat-step>
    </mat-horizontal-stepper>

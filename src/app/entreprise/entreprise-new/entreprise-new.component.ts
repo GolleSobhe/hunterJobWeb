@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import Entreprise from '../entreprise';
 import { EntrepriseService } from '../entreprise.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entreprise-new',
@@ -11,14 +12,11 @@ import { EntrepriseService } from '../entreprise.service';
 export class EntrepriseNewComponent implements OnInit {
 
   formGroup: FormGroup;
-
-  nameFormGroup: FormGroup;
-  emailFormGroup: FormGroup;
   secteurActivites = ['Santé', 'Bancaire', 'Assurance', 'Hotelier', 'Aéronautique'];
  get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
  
   constructor(private _formBuilder: FormBuilder,
-    private entrepriseService: EntrepriseService) {
+    private entrepriseService: EntrepriseService, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,7 +26,8 @@ export class EntrepriseNewComponent implements OnInit {
           nomEntreprise: ['', Validators.required],
           adresseEntreprise: ['', Validators.required],
           telephoneEntreprise: ['', Validators.required],
-          mailEntreprise: ['', Validators.email]
+          mailEntreprise: ['', Validators.email],
+          urlEntreprise: ['', Validators.required]
         }),
         this._formBuilder.group({
           logoEntreprise: ['', Validators.required],
@@ -39,16 +38,23 @@ export class EntrepriseNewComponent implements OnInit {
     });
   }
 
-  creerOuModifierEntreprise(form: any): void {
+  creerOuModifierEntreprise(value: any): void {
     const entreprise = new Entreprise();
+    entreprise.nomEntreprise = value.formArray[0].nomEntreprise ;
+    entreprise.adresseEntreprise =  value.formArray[0].adresseEntreprise;
+    entreprise.telephoneEntreprise = value.formArray[0].telephoneEntreprise;
+    entreprise.mailEntreprise = value.formArray[0].mailEntreprise;
+    entreprise.urlEntreprise = value.formArray[0].urlEntreprise;
+    entreprise.logoEntreprise =  value.formArray[1].logoEntreprise;
+    entreprise.secteurActivites = value.formArray[1].secteurActivites;
+    entreprise.descriptionEntreprise =  value.formArray[1].descriptionEntreprise;
     this.entrepriseService.creerOuModifierEntreprise(entreprise)
     .subscribe(
       result => {
-
+        this.router.navigate(['/entreprises/entreprise']);
       },
       error => console.log(error)
       );
-     console.log(form.value);
   }
 
 }
