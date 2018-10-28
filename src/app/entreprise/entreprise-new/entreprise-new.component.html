@@ -1,113 +1,61 @@
 <div>
-    <h3>Créer votre entreprise</h3>
-    <hr>
-<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="votreEntrepriseFormGroup">
-    <form [formGroup]="votreEntrepriseFormGroup">
-      <ng-template matStepLabel>Votre entreprise</ng-template>
-      <!--FORMULAIRE DE CREATION ENTREPRISE-->
-      <div class="itemEntreprise">
-        <label><b>Nom* : </b></label>
-        <input type="text" placeholder="nom de l'entreprise" name="nomEntreprise" formControlName="nomEntrepriseCtrl" required><br/>
-      	  <label><b>Adresse : </b></label>
-        <input type="text" placeholder="Adresse de l'entreprise" name="adresseEntreprise" formControlName="adresseEntrepriseCtrl" required><br/>
-        <label><b>Telephone : </b></label>
-        <input type="text" placeholder="Telephone de l'entreprise" name="telephoneEntreprise" formControlName="telephoneEntrepriseCtrl" required><br/>
-        <label><b>Email : </b></label>
-        <input type="text" placeholder="Mail de l'entreprise" name="mailEntreprise" formControlName="mailEntrepriseCtrl" required>     
-      </div>      
-      <div>
-        <button class="button-suivant" type="submit" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-
-
-  <mat-step [stepControl]="descriptionEntrepriseFormGroup">
-    <form [formGroup]="descriptionEntrepriseFormGroup">
-      <!-- DESCRIPTION DE L'Entreprise-->
-      <ng-template matStepLabel>Description </ng-template>
-      <div>
-          <label>Logo : </label>
-          <input type="file" name="logoEntreprise" accept="image/png, image/jpeg">    
-      </div>
-      <div>
-      	<mat-form-field>
-        <mat-select class="field-size" placeholder="Secteur d'activités" [formControl]="secteurActiviteControl" required>
-          <mat-option *ngFor="let secteurActivite of secteurActivites" [value]="secteurActivite">
-              {{secteurActivite}}
-          </mat-option>
-      		</mat-select>
-      		<mat-error *ngIf="secteurActiviteControl.hasError('required')">Veuillez choisir votre secteur d'activité</mat-error>
-      	</mat-form-field>
-      </div>
-      <div>
-          <label>Description de l'entreprise</label>
-          <textarea rows="10" maxlength="500" class="text-area-width" placeholder="Description de l'offre">
-          </textarea>
-      </div>     
-     
-      <div>
-        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-        <button class="button-suivant" type="submit" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="recapilatifEntrepriseFormGroup">
-    <form [formGroup]="recapilatifEntrepriseFormGroup" 
-       class="formulaire container">
-      <ng-template matStepLabel>Récapitulatif</ng-template>
-      <!--FORMULAIRE DE Récapitulatif-->
-      <div>
-        <!--FORMULAIRE DE CREATION ENTREPRISE-->
-        <div class="itemEntreprise">
-          <label><b>Nom : </b></label>
-          <input type="text" placeholder="nom de l'entreprise" name="nomEntreprise" required><br/>
+  <h3>Créer votre entreprise</h3>
+     <hr>
+ <form [formGroup]="formGroup" (ngSubmit)="creerOuModifierEntreprise(formEntreprise)" #formEntreprise="ngForm">
+   <mat-horizontal-stepper formArrayName="formArray" [linear]="true" #stepper="matHorizontalStepper">
+     <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+       <ng-template matStepLabel>Votre entreprise</ng-template>
+       <div class="itemEntreprise">
+          <label><b>Nom* : </b></label>
+          <input type="text" placeholder="nom de l'entreprise" formControlName="nomEntreprise" required><br/>
           <label><b>Adresse : </b></label>
-          <input type="text" placeholder="nom de l'entreprise" name="adresseEntreprise" required><br/>
+          <input type="text" placeholder="Adresse de l'entreprise" formControlName="adresseEntreprise" required><br/>
           <label><b>Telephone : </b></label>
-          <input type="text"  placeholder="nom de l'entreprise" name="telephoneEntreprise" required><br/>
+          <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephoneEntreprise" required><br/>
           <label><b>Email : </b></label>
-          <input type="text" placeholder="nom de l'entreprise" name="mailEntreprise" required>     
-        </div>   
-        <div>
-        <!--FORMULAIRE DESCRIPTION-->
-        <div>
-          <label><b>Logo</b> : </label>
-          <input type="file" name="logoEntreprise" accept="image/png, image/jpeg">    
-        </div>
-        <div>
-          <label>Type entreprise : </label>
+          <input type="text" placeholder="Mail de l'entreprise" formControlName="mailEntreprise" required>     
+        </div> 
+       <div>
+         <button type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
+       </div>
+     </mat-step>
+ 
+     <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+       <ng-template matStepLabel>Description</ng-template>
+       <div>
+          <label>Logo : </label>
+          <input type="file" accept="image/png, image/jpeg" formControlName="logoEntreprise">    
+       </div>
+       <div>
           <mat-form-field>
-        		  <mat-select class="field-size" placeholder="Secteur d'activités" [formControl]="secteurActiviteControl" required>
-             <mat-option *ngFor="let secteurActivite of secteurActivites" [value]="secteurActivite">
-                {{secteurActivite}}
-             </mat-option>
-           </mat-select>
-           <mat-error *ngIf="secteurActiviteControl.hasError('required')">Veuillez choisir votre secteur d'activité</mat-error>
+            <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="activiteEntreprise" required>
+              <mat-option *ngFor="let secteurActivite of secteurActivites" [value]="secteurActivite">
+                  {{secteurActivite}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-        </div>
-        <div>
+       </div>
+       <div>
           <label>Description de l'entreprise</label>
-          <textarea rows="10" maxlength="500" class="text-area-width"
-               placeholder="Description de l'offre">
+          <textarea rows="10" maxlength="500" class="text-area-width" formControlName="descriptionEntreprise"
+                placeholder="Description de l'entreprise" required>
           </textarea>
-        </div>
-      </div>   
-              
-    </div>
-      <div>
-        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-        <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
-        <button type="submit" class="button-suivant"  mat-raised-button color="primary" 
-            (click)="creerEntreprise()"
-            >
-            Confirmation
-        </button>
-      </div>
-  </form>
-
-  </mat-step>
-</mat-horizontal-stepper>
-</div>
+       </div>
+       <div>
+         <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+         <button  type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
+       </div>
+     </mat-step>
+ 
+     <mat-step>
+       <ng-template matStepLabel>Confirm your information</ng-template>
+       Everything seems correct.
+       <div>
+          <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+          <button type="button" mat-button (click)="stepper.reset()">Annuler</button>
+          <button type="submit" class="button-suivant" mat-button>Confirmation</button>         
+       </div>
+     </mat-step>
+   </mat-horizontal-stepper>
+ </form>
+ </div>

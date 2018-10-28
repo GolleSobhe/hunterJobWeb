@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import Entreprise from '../entreprise';
 import { EntrepriseService } from '../entreprise.service';
 
@@ -9,53 +9,46 @@ import { EntrepriseService } from '../entreprise.service';
   styleUrls: ['./entreprise-new.component.css']
 })
 export class EntrepriseNewComponent implements OnInit {
-  votreEntrepriseFormGroup: FormGroup;
-  descriptionEntrepriseFormGroup: FormGroup;
-  recapilatifEntrepriseFormGroup: FormGroup;
-  secteurActiviteControl = new FormControl('', [Validators.required]);
+
+  formGroup: FormGroup;
+
+  nameFormGroup: FormGroup;
+  emailFormGroup: FormGroup;
   secteurActivites = ['Santé', 'Bancaire', 'Assurance', 'Hotelier', 'Aéronautique'];
-  entreprise: Entreprise;
+ get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
+ 
   constructor(private _formBuilder: FormBuilder,
     private entrepriseService: EntrepriseService) {
   }
 
   ngOnInit() {
-    this.initValidatorsFormGroup();
+    this.formGroup = this._formBuilder.group({
+      formArray: this._formBuilder.array([
+        this._formBuilder.group({
+          nomEntreprise: ['', Validators.required],
+          adresseEntreprise: ['', Validators.required],
+          telephoneEntreprise: ['', Validators.required],
+          mailEntreprise: ['', Validators.email]
+        }),
+        this._formBuilder.group({
+          logoEntreprise: ['', Validators.required],
+          activiteEntreprise: ['', Validators.required],
+          descriptionEntreprise: ['', Validators.required]
+        }),
+      ])
+    });
   }
 
-  private initValidatorsFormGroup(): void {
-    this.votreEntrepriseFormGroup = this._formBuilder.group({
-      nomEntrepriseCtrl: ['', Validators.required],
-      adresseEntrepriseCtrl: ['', Validators.required],
-      telephoneEntrepriseCtrl: ['', Validators.required],
-      mailEntrepriseCtrl: ['', Validators.required]
-    });
-    this.descriptionEntrepriseFormGroup = this._formBuilder.group({
-    });
-    this.recapilatifEntrepriseFormGroup = this._formBuilder.group({
-    });
-  }
-
-  creerEntreprise(form: any): void {
-    const detailEntreprise = this.votreEntrepriseFormGroup.value;
-    const descriptionEntreprise = this.descriptionEntrepriseFormGroup.value;
-    console.log(detailEntreprise);
-    console.log(descriptionEntreprise);
-    this.entreprise.nomEntreprise = detailEntreprise.nomEntreprise;
-    this.entreprise.adresseEntreprise = detailEntreprise.adresseEntreprise;
-    this.entreprise.telephoneEntreprise = detailEntreprise.telephoneEntreprise;
-    this.entreprise.mailEntreprise = detailEntreprise.mailEntreprise;
-    this.entreprise.logoEntreprise = descriptionEntreprise.logoEntreprise;
-    this.entreprise.secteurActivites = descriptionEntreprise.secteurActivites;
-    this.entreprise.descriptionEntreprise = descriptionEntreprise.descriptionEntreprise;
-
-    this.entrepriseService.creerOuModifierEntreprise(this.entreprise)
+  creerOuModifierEntreprise(form: any): void {
+    const entreprise = new Entreprise();
+    this.entrepriseService.creerOuModifierEntreprise(entreprise)
     .subscribe(
       result => {
 
       },
       error => console.log(error)
       );
+     console.log(form.value);
   }
 
 }
