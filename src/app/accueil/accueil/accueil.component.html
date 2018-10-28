@@ -50,10 +50,10 @@
     <h2>... Entreprises ...</h2>
     <ngx-carousel [inputs]="offresCarousel" (carouselLoad)="getEnterprises()">
       <ngx-tile NgxCarouselItem *ngFor="let enterprise of enterprises">
-          <div class="image-tile" [style.background]="'url(' + enterprise.img + ')'">
-            <h1>{{enterprise.name}}</h1>
+          <div class="image-tile" [style.background]="'url(' + enterprise.logoEntreprise + ')'">
+            <h1>{{enterprise.nomEntreprise}}</h1>
           </div>
-          <h4>{{enterprise.name}}</h4>
+          <h4>{{enterprise.nomEntreprise}}</h4>
           <button>...</button>
       </ngx-tile>
 
