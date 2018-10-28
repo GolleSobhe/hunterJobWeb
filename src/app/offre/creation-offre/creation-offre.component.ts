@@ -9,7 +9,7 @@ import {OffreService} from '../offre.service';
 })
 export class CreationOffreComponent implements OnInit {
 
-  professions: String[];
+  professions: string[];
   selectedProfession: string;
 
   constructor(private offreService: OffreService) {
@@ -17,9 +17,8 @@ export class CreationOffreComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.offreService.getProfessions().subscribe((professions: any) => {
-      this.professions = professions;
-      this.selectedProfession = undefined;
-    }, error => console.log(error, 'Impossible de récuperer les métiers'));
+
+    this.professions = ['Informatique', 'Banque', 'Assurance', 'Hotellerie'];
+    this.selectedProfession = this.professions[0];
   }
 }

@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server --watch api/data.json",
-    "deploy": "ng build --base-href https://gollesobhe.github.io/hunterJobWeb/ --prod --aot --configuration production"
+    "deploy": "ng build --base-href https://gollesobhe.github.io/hunterJobWeb/ --prod --aot --configuration production",
+    "api": "json-server --watch api/data.json --routes routes.json"
   },
   "private": true,
   "dependencies": {

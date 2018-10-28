@@ -7,11 +7,11 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AcceuilService {
 
-  private  ApiUrl = environment.apiUrl; 
+  private  ApiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 getEnterprises(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.ApiUrl}/enterprises`);
+  return this.http.get<any[]>(`${this.ApiUrl}/entreprises`);
 }
 
 }

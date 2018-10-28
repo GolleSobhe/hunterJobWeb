@@ -20,8 +20,8 @@ export class OthersProfessionComponent implements OnInit, OnChanges {
   detailOffreForm: FormGroup;
   descriptionOffreForm: FormGroup;
 
-  listeTypeContrat1: TypeContrat[] = [];
-  listeTypeContrat2: TypeContrat[] = [];
+  listeTypeContrat1: string [] = [];
+  listeTypeContrat2: string[] = [];
 
   lieu: string;
 
@@ -65,16 +65,18 @@ export class OthersProfessionComponent implements OnInit, OnChanges {
   }
 
   getTypeContrat() {
-    this.offreService.getTypeContrat().subscribe((contrats: TypeContrat[]) => {
-      for (let i = 0; i < (contrats.length / 2); i++) {
-        this.listeTypeContrat1.push(contrats[i]);
-      }
+    const typeContratKeys = Object.keys(TypeContrat)
+      .filter(contrat => typeof TypeContrat[contrat as any] === 'number');
 
-      for (let i = (contrats.length / 2) ; i < contrats.length ; i++) {
-        this.listeTypeContrat2.push(contrats[i]);
-      }
-    });
+    for (let i = 0; i < typeContratKeys.length / 2; i++) {
+      this.listeTypeContrat1.push(typeContratKeys[i]);
+    }
+
+    for (let i = 3; i < typeContratKeys.length ; i++) {
+      this.listeTypeContrat2.push(typeContratKeys[i]);
+    }
   }
+
 
   creerOffre() {
     const detailOffre = this.detailOffreForm.value;
@@ -93,7 +95,7 @@ export class OthersProfessionComponent implements OnInit, OnChanges {
     };
 
 
-    this.offreService.creerOffreOtherProfession(offre).subscribe(result => {
+    this.offreService.creerOffreOtherProfession(1, offre).subscribe(result => {
       this.router.navigate(['/accueil']);
     }, error => console.log(error));
   }

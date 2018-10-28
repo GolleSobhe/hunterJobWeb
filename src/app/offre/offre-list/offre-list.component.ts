@@ -34,7 +34,6 @@ export class OffreListComponent implements OnInit, AfterViewInit {
       this.donneesOffres.paginator = this.paginateur;
     });
 
-    this._offreService.modifierTableau(this.listeOffres);
   }
 
   ngAfterViewInit() {

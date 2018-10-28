@@ -4,7 +4,7 @@ import {OffreService} from '../../offre.service';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import {isNullOrUndefined} from 'util';
-import {Competence, Offre, TypeContrat} from '../../offre';
+import {Offre, TypeContrat} from '../../offre';
 import {Router} from '@angular/router';
 
 @Component({
@@ -26,13 +26,13 @@ export class ComputerScienceComponent implements OnInit {
 
   specialisation: string [] = [];
   produit: string [] = [];
-  competences: Competence [] = [];
+  competences: string [] = [];
   domaine1: string [] = [];
   domaine2: string [] = [];
 
   skillsList: string[] = [];
-  listeTypeContrat1: TypeContrat[] = [];
-  listeTypeContrat2: TypeContrat[] = [];
+  listeTypeContrat1: string [] = [];
+  listeTypeContrat2: string[] = [];
 
   status: boolean = false;
   status1: boolean = false;
@@ -62,7 +62,7 @@ export class ComputerScienceComponent implements OnInit {
     this.getSpecialisation();
     this.getCompetences();
     this.getTypeContrat();
-    this.getDomaine();
+    this.getDomaines();
   }
 
   clickEvent(id: number, name: string) {
@@ -143,13 +143,16 @@ export class ComputerScienceComponent implements OnInit {
     this.skillsList = skills;
   }
 
-  getDomaine() {
-    this.offreService.getDomaine1().subscribe(result => {
-      this.domaine1 = result;
-    });
+  getDomaines() {
+    this.offreService.getDomaines().subscribe((domaines: string[]) => {
 
-    this.offreService.getDomaine2().subscribe(result => {
-      this.domaine2 = result;
+      for (let i = 0; i < domaines.length; i++) {
+        if (i < domaines.length / 2) {
+          this.domaine1.push(domaines[i]);
+        } else {
+          this.domaine2.push(domaines[i]);
+        }
+      }
     });
   }
 
@@ -160,19 +163,20 @@ export class ComputerScienceComponent implements OnInit {
   }
 
   getTypeContrat() {
-    this.offreService.getTypeContrat().subscribe((contrats: TypeContrat[]) => {
-      for (let i = 0; i < (contrats.length / 2); i++) {
-        this.listeTypeContrat1.push(contrats[i]);
-      }
+    const typeContratKeys = Object.keys(TypeContrat)
+      .filter(contrat => typeof TypeContrat[contrat as any] === 'number');
 
-      for (let i = (contrats.length / 2) ; i < contrats.length ; i++) {
-        this.listeTypeContrat2.push(contrats[i]);
-      }
-    });
+    for (let i = 0; i < typeContratKeys.length / 2; i++) {
+      this.listeTypeContrat1.push(typeContratKeys[i]);
+    }
+
+    for (let i = 3; i < typeContratKeys.length; i++) {
+      this.listeTypeContrat2.push(typeContratKeys[i]);
+    }
   }
 
   getCompetences() {
-    this.offreService.getCompetences().subscribe((result: Competence[]) => {
+    this.offreService.getCompetences().subscribe((result: string[]) => {
       this.competences = result;
     });
   }
@@ -229,7 +233,7 @@ export class ComputerScienceComponent implements OnInit {
       description: descriptionOffre.description
     };
 
-    this.offreService.creerOffre(offre).subscribe(result => {
+    this.offreService.creerOffre(1, offre).subscribe(result => {
       this.router.navigate(['/accueil']);
     }, error => console.log(error));
   }

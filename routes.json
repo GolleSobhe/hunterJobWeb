@@ -1,0 +1,7 @@
+{
+  "/offre/produits" :"/produits",
+  "/offre/specialisations" : "/specialisations",
+  "/offre/competences" : "/competences",
+  "/offre/domaines": "/domaines",
+  "/offre/new\\?entrprise_id=entrprise_id": "/offres"
+}

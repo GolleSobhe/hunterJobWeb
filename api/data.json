@@ -50,7 +50,13 @@
     "Assurance",
     "Hotellerie"
   ],
-  "specialisation": [
+  "produits": [
+    "Chef de projet",
+    "Chef de produit",
+    "Design",
+    "Marketing"
+  ],
+  "specialisations": [
     "Frontend",
     "Backend",
     "Full Stack",
@@ -58,97 +64,17 @@
     "Big Data",
     "Data Science"
   ],
-  "produit": [
-    "Chef de projet",
-    "Chef de produit",
-    "Design",
-    "Marketing"
-  ],
   "competences": [
-    {
-      "id": 1,
-      "name": " Java EE"
-    },
-    {
-      "id": 2,
-      "name": "JQuery"
-    },
-    {
-      "id": 3,
-      "name": "Java"
-    },
-    {
-      "id": 4,
-      "name": "Langage C"
-    },
-    {
-      "id": 5,
-      "name": " NodeJS"
-    },
-    {
-      "id": 6,
-      "name": "Angular"
-    },
-    {
-      "id": 7,
-      "name": "Ionic"
-    },
-    {
-      "id": 8,
-      "name": "JavaScript"
-    },
-    {
-      "id": 9,
-      "name": "ReactJS"
-    },
-    {
-      "id": 10,
-      "name": "React"
-    }
+    " Java EE",
+    "JQuery",
+    " NodeJS",
+    "Angular"
   ],
-  "typeContrat": [
-    {
-      "id": 1,
-      "name": "CDI"
-    },
-    {
-      "id": 2,
-      "name": "CDD"
-    },
-    {
-      "id": 3,
-      "name": "Stage"
-    },
-    {
-      "id": 4,
-      "name": "Freelance"
-    },
-    {
-      "id": 5,
-      "name": "Apprentissage"
-    },
-    {
-      "id": 6,
-      "name": "Interim"
-    }
-  ],
-  "typeContratV1": [
-    "CDI",
-    "CDD",
-    "Stage"
-  ],
-  "typeContratV2": [
-    "Freelance",
-    "Apprentissage",
-    "Professionalisation"
-  ],
-  "domaine1": [
+  "domaines": [
     "Aéronotique",
     "Télécommunication",
     "Santé",
-    "Banque, Finance & Assurance"
-  ],
-  "domaine2": [
+    "Banque, Finance & Assurance",
     "Jeux Vidéo",
     "Industrie",
     "Énergie",
@@ -182,208 +108,20 @@
   ],
   "offres": [
     {
-      "titre": "compilation",
-      "specialisation": "Full Stack",
-      "typeDesContrats": "CDI",
-      "anneesExperience": 4,
-      "salaireParMois": 231084,
-      "lieu": "Sénégal",
-      "secteur": "Télécommunication",
-      "description": "test",
-      "id": 1
-    },
-    {
-      "titre": "Téléchargement d\"un fichier ",
-      "specialisation": "Full Stack",
-      "typeDesContrats": "CDI",
-      "anneesExperience": 9,
-      "salaireParMois": 245389,
-      "lieu": "Rwanda",
-      "secteur": "Aéronotique",
-      "description": "ZEDZ",
-      "id": 2
-    },
-    {
-      "titre": "Modification du menu bar (toolbar de mterial)",
-      "specialisation": "Frontend",
-      "typeDesContrats": "Stage",
-      "anneesExperience": 7,
-      "salaireParMois": 244134,
-      "lieu": "France",
-      "secteur": "Aéronotique",
-      "description": "sdfqsdf",
-      "id": 3
-    },
-    {
-      "titre": "Modification du menu bar (toolbar de mterial)",
-      "specialisation": "Chef de projet",
+      "titre": "sdfsdfgrs ",
+      "specialisation": "Marketing",
       "competences": [
-        "Java",
-        "Angular",
-        "Java EE",
-        "React",
         "NodeJS",
-        "Python",
-        "ReactJS",
-        "Cobol",
         "JavaScript",
         "Langage C"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 10,
-      "salaireParMois": 344819,
-      "lieu": "Guinée",
-      "secteur": "Aéronotique",
-      "description": "tout va bien ",
-      "id": 4
-    },
-    {
-      "titre": "suppression de ngrx et mise à jour des modules angular",
-      "specialisation": "Backend",
-      "competences": [
-        "Java",
-        "NodeJS",
-        "Angular",
-        "Java EE",
-        "Cobol"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 9,
-      "salaireParMois": 346747,
-      "lieu": "Ghana",
-      "secteur": "Industrie",
-      "description": "bien bien bien       this.addElement(name);\n",
-      "id": 5
-    },
-    {
-      "titre": "Modification du menu bar (toolbar de mterial)",
-      "specialisation": "Frontend",
-      "competences": [
-        "Angular",
-        "React",
-        "JavaScript",
-        "Langage C"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 9,
-      "salaireParMois": 186799,
-      "lieu": "Guinée",
-      "secteur": "Aéronotique",
-      "description": "to osusd qsoduf qsdfpuosduf qspdofuisqo dpfspodifu qospdfui sqopdfqsdopfiuqs dfopsduif opqsdfui osdopfusoidfjueryh zaeur ",
-      "id": 6
-    },
-    {
-      "titre": "suppression de ngrx et mise à jour des modules angular",
-      "specialisation": "Chef de projet",
-      "competences": [
-        "Python",
-        "Cobol",
-        "ReactJS",
-        "JavaScript",
-        "Langage C",
-        "NodeJS",
-        "Java",
-        "Angular",
-        "Java EE",
-        "React",
-        "JavaScript"
       ],
       "typeDesContrats": "CDD",
       "anneesExperience": 10,
-      "salaireParMois": 380482,
-      "lieu": "Rwanda",
-      "secteur": "Santé",
-      "description": "rwanda wakanda malanda dalanda diomaya skallaya faraya paraya",
-      "id": 7
-    },
-    {
-      "titre": "dfsqdfqsd qsdf s",
-      "specialisation": "Frontend",
-      "competences": [
-        "Python",
-        "Cobol"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 13,
-      "salaireParMois": 352530,
-      "lieu": "Guinée",
+      "salaireParMois": 361335,
+      "lieu": "France",
       "secteur": "Aéronotique",
-      "description": "sdfsqd slmdkjf lmqsd jlsdjf sldfjkozaeir oaeuir o uozeiur ozaeiuro zaoer izaoieir uazieuropazeru azoperui oaziuer azer fozaefh kvdvjzi urefdjkv  ",
-      "id": 8
-    },
-    {
-      "titre": "Téléchargement d\"un fichier ",
-      "specialisation": "Chef de produit",
-      "competences": [
-        "Python",
-        "Cobol",
-        "ReactJS",
-        "Java EE"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 10,
-      "salaireParMois": 356386,
-      "lieu": "Sénégal",
-      "secteur": "Énergie",
-      "description": "lkmjdf msqldkjf almzerjaéoriuaz\"rzmlej lzdkjf sdlmf qs qskdjoaier zaeroiuaz ezaeoiruaz zaeiof  sodfisd sodifuazer zeoriu zed qsdfqsioudf ",
-      "id": 9
-    },
-    {
-      "titre": "sdfg",
-      "specialisation": "Frontend",
-      "competences": [
-        "Angular",
-        "React",
-        "NodeJS"
-      ],
-      "typeDesContrats": "CDI",
-      "anneesExperience": 10,
-      "salaireParMois": 274266,
-      "lieu": "Guinée",
-      "secteur": "Aéronotique",
-      "description": "sdf qsd sqdf qer ez tyye yrt rt rt ry ry ty ty tyu rtutedrgfdv",
-      "id": 10
-    },
-    {
-      "lieu": "65132.",
-      "description": "sdqfwsxgbcb 97863521 9864 5*32986532",
-      "id": 11
-    },
-    {
-      "nomEntreprise": "+632.",
-      "numeroTelephone": "69+64",
-      "intitulePoste": "96853",
-      "lieu": "6464",
-      "ville": "64+4+6",
-      "typeContrat": "[object Object]",
-      "salaire": 249296,
-      "anneeExperience": 10,
-      "description": "oljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf sld jlqdkf jqslmorelk zeoiraée pozierpermqzojledf,kl qs!dfkjq !loljf lzrkj lzdfljqzdjf ldjlmf ",
-      "id": 12
-    },
-    {
-      "nomEntreprise": "qsdf",
-      "numeroTelephone": "qsd",
-      "intitulePoste": "df",
-      "lieu": "sdf",
-      "ville": "fdht",
-      "typeContrat": "Interim",
-      "salaire": 385783,
-      "anneeExperience": 10,
-      "description": "fgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh dfgh fgh f gdfgdfgh dfgh dfgh dfg dfg df f fddf fg fgh d",
-      "id": 13
-    },
-    {
-      "nomEntreprise": "zswx",
-      "numeroTelephone": "scx ",
-      "intitulePoste": "zqeds",
-      "lieu": "Ghana",
-      "ville": "fdht",
-      "typeContrat": "Freelance",
-      "salaire": 344155,
-      "anneeExperience": 9,
-      "description": "  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n  get diagnostic() { return JSON.stringify(this.model); }\n",
-      "id": 14
+      "description": "dfg d dfg dfg yerdrtye hj fthjfghj ",
+      "id": 1
     }
   ],
   "candidatsByEntreprise": [
