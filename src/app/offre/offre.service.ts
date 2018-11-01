@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Competence, Offre } from './offre';
+import {Offre } from './offre';
 
 @Injectable()
 export class OffreService {
@@ -25,7 +25,7 @@ export class OffreService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entrprise_id=${entrprise_id}`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=${entrprise_id}`, offre, {headers: headers});
   }
 
   creerOffreOtherProfession(entrprise_id: number, offre): Observable<any> {
@@ -33,7 +33,7 @@ export class OffreService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entrprise_id=entrprise_id`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=entreprise_id`, offre, {headers: headers});
   }
 
   getProduit(): Observable<string[]> {
@@ -50,14 +50,6 @@ export class OffreService {
 
   getDomaines(): Observable<string[]> {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/domaines`);
-  }
-
-  getDomaine1(): Observable<any> {
-    return this._http.get(`${this.ApiUrl}/offre/domaine1`);
-  }
-
-  getDomaine2(): Observable<any> {
-    return this._http.get(`${this.ApiUrl}/domaine2`);
   }
 
   getPays(): Observable<any> {
