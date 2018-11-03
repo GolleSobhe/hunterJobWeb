@@ -20,12 +20,12 @@ export class OffreService {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/competences`);
   }
 
-  creerOffre(entrprise_id: number, offre: Offre): Observable<Offre> {
+  creerOffre(entreprise_id: number, offre: Offre): Observable<Offre> {
     const headers = new HttpHeaders();
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=${entrprise_id}`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=${entreprise_id}`, offre, {headers: headers});
   }
 
   creerOffreOtherProfession(entrprise_id: number, offre): Observable<any> {

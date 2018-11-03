@@ -68,12 +68,14 @@ export class OthersProfessionComponent implements OnInit, OnChanges {
     const typeContratKeys = Object.keys(TypeContrat)
       .filter(contrat => typeof TypeContrat[contrat as any] === 'number');
 
-    for (let i = 0; i < typeContratKeys.length / 2; i++) {
-      this.listeTypeContrat1.push(typeContratKeys[i]);
-    }
+    const length = typeContratKeys.length;
 
-    for (let i = 3; i < typeContratKeys.length ; i++) {
-      this.listeTypeContrat2.push(typeContratKeys[i]);
+    for (let i = 0; i < length; i++) {
+      if (i < length / 2) {
+        this.listeTypeContrat1.push(typeContratKeys[i]);
+      } else {
+        this.listeTypeContrat2.push(typeContratKeys[i]);
+      }
     }
   }
 

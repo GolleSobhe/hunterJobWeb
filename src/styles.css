@@ -33,7 +33,7 @@ button{
   border-radius: 15px!important;
 }
 
-input,mat-select{
+input,mat-select, textarea {
   border-radius: 15px!important;
   border-color: #0B2161;
   border-width: thin!important;

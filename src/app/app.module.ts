@@ -42,6 +42,8 @@ import { AccueilModule } from './accueil/accueil.module';
     MatOptionModule,
     MatSelectModule,
     MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
     // Module du projet
     AccueilModule
   ],
