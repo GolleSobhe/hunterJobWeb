@@ -1,16 +1,29 @@
-.footer-column {
-  width: 100%;
+.footer-line {
+  margin: auto;
+  width: 80%;
 }
 
-.spacer-right {
+@media (min-width: 900px) {
+  .footer-line{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.footer-column {
+  box-sizing: border-box;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  flex-basis: 80%!important;
 }
 
 .social-button {
   border-radius: 20px!important;
 }
 
-.footer-color {
+.footer {
   background-color: #f2f1f9;
+  text-align: center;
 }
 
 /*BUTTONS DES RÉSEAUX SOCIAUX*/
