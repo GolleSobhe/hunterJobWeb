@@ -18,6 +18,7 @@ import {MenubarComponent} from './common/menubar/menubar.component';
 import {CommonModule} from '@angular/common';
 import { FooterComponent } from './common/footer/footer.component';
 import { AccueilModule } from './accueil/accueil.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AccueilModule } from './accueil/accueil.module';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,

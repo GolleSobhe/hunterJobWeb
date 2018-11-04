@@ -8,6 +8,7 @@
   width: 100%;
   display: block;
   transition: top 0.5s;
+  background: white;
 
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
   -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
@@ -17,6 +18,7 @@
 .container {
   width: 80%;
 }
+
 .separation-fin{
   flex: 1 1 auto;
 }
@@ -25,20 +27,7 @@
   flex: 0 0 4%;
 }
 
-.toolbarMenu{
-  background: white;
-  color:black
-}
-
 a {
-  text-decoration: underline;
-}
-
-a:visited {
   color: black;
-}
-
-a:link {
-  text-decoration: none;
 }
 
