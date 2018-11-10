@@ -218,6 +218,7 @@
       <!--FORMULAIRE DE PAYEMENT-->
 
       <div>
+        <button style="float: right;" mat-raised-button color="primary"  (click)="openDialog()">Apperçu</button>
         <button style="float: right;" type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
         !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation</button>
         <button style="float: right;" mat-button (click)="stepper.reset(); resetSelectSkills()">Annuler</button>

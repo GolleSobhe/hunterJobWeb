@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Verifier les données que vous avez saisi</h1>
+
+<div mat-dialog-content class="mat-typography">
+  <div>
+    <label><b>Titre du poste</b></label>
+    <p>{{offreData.detailOffre.titre}}</p>
+  </div>
+
+  <div>
+    <label><b>Spécialisation</b></label>
+    <p> {{offreData.detailOffre.specialisation}}</p>
+  </div>
+
+  <div>
+    <label><b>Type de contrat</b></label>
+    <p>{{offreData.detailOffre.typeDesContrats}}</p>
+  </div>
+
+  <div>
+    <label><b>Nombre d'années d'experience</b></label>
+    <p>{{offreData.detailOffre.anneeExperience}}</p>
+  </div>
+
+  <div>
+    <label><b>Salaire</b></label>
+    <p>{{offreData.detailOffre.salaireParMois}}</p>
+  </div>
+
+  <div>
+    <label><b>Compétences réquises</b></label>
+
+    <div *ngFor="let comp of offreData.detailOffre.competences">{{comp}}</div>
+  </div>
+
+  <div>
+    <label><b>Secteur d'activité</b></label>
+    <p>{{offreData.descriptionOffre.secteur}}</p>
+  </div>
+
+  <div>
+    <label><b>Description de l'offre</b></label>
+    <p>{{offreData.descriptionOffre.description}}</p>
+  </div>
+
+  <div>
+    <label><b>Lieu</b></label>
+    <p>{{offreData.descriptionOffre.lieu}}</p>
+  </div>
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Fermer</button>
+  <button mat-button [mat-dialog-close]="offreData" cdkFocusInitial>Payer</button>
+</div>

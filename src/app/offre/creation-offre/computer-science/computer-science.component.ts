@@ -6,7 +6,8 @@ import {map, startWith} from 'rxjs/operators';
 import {isNullOrUndefined} from 'util';
 import {Offre, TypeContrat} from '../../offre';
 import {Router} from '@angular/router';
-import {ErrorStateMatcher} from '@angular/material';
+import {ErrorStateMatcher, MatDialog} from '@angular/material';
+import {AppercuComponent} from './appercu/appercu.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -97,7 +98,7 @@ export class ComputerScienceComponent implements OnInit {
   matcher: MyErrorStateMatcher;
 
   constructor(private _formBuilder: FormBuilder, private router: Router,
-              private offreService: OffreService) {
+              private offreService: OffreService, public dialog: MatDialog) {
     this.getPays();
   }
 
@@ -234,13 +235,13 @@ export class ComputerScienceComponent implements OnInit {
           this.domaine2.push(domaines[i]);
         }
       }
-    });
+    }, error => console.log(error));
   }
 
   getProduit() {
     this.offreService.getProduit().subscribe(result => {
       this.produit = result;
-    });
+    }, error => console.log(error));
   }
 
   getTypeContrat() {
@@ -259,13 +260,12 @@ export class ComputerScienceComponent implements OnInit {
   getSpecialisations() {
     this.offreService.getSpecialisation().subscribe(result => {
       this.specialisations = result;
-    });
+    }, error => console.log(error));
   }
 
   formulaireDetailOffre() {
     this.detailOffreForm = this._formBuilder.group({
-      // TODO
-      // Fixer la tailler minimale du titre
+      // TODO Fixer la tailler minimale du titre
       titre: ['', [Validators.required, Validators.minLength(2)]],
       specialisation: ['', [Validators.required]],
       typeDesContrats: ['', [Validators.required]],
@@ -352,6 +352,22 @@ export class ComputerScienceComponent implements OnInit {
       return this.states.filter(state =>
         state.name.toLowerCase().indexOf(filterValue) === 0);
     }
+  }
+
+  openDialog(): void {
+    this.detailOffreForm.patchValue({competences: this.skillsList});
+
+    const dialogRef = this.dialog.open(AppercuComponent, {
+
+      data: {detailOffre: this.detailOffreForm.value, descriptionOffre: this.descriptionOffreForm.value}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      // TODO verifier la validité des données et payer à partir d'ici
+      console.log(result, 'The dialog was closed');
+
+    });
   }
 }
 
