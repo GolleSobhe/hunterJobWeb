@@ -116,7 +116,7 @@ export class OthersProfessionComponent implements OnInit, OnChanges {
   }
 
   private filterStates(name: string) {
-    if (!isNullOrUndefined(name) && name.trim() !== '') {
+    if (name && name.trim() !== '') {
       const filterValue = name.toLowerCase();
 
       return this.states.filter(state =>

@@ -22,11 +22,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./computer-science.component.css']
 })
 export class ComputerScienceComponent implements OnInit {
-  isLinear: boolean = true;
-  submittedNext: boolean = false;
-  submittedFormNext: boolean = false;
-  descriptionMaxLength: number = 800;
-  descriptionMinLength: number = 20;
+  isLinear = true;
+  submittedNext = false;
+  submittedFormNext = false;
+  descriptionMaxLength: 800;
+  descriptionMinLength: 20;
 
   detailOffreForm: FormGroup;
   descriptionOffreForm: FormGroup;
@@ -83,17 +83,17 @@ export class ComputerScienceComponent implements OnInit {
   listeTypeContrat1: string [] = [];
   listeTypeContrat2: string[] = [];
 
-  status: boolean = false;
-  status1: boolean = false;
-  status2: boolean = false;
-  status3: boolean = false;
-  status4: boolean = false;
-  status5: boolean = false;
-  status6: boolean = false;
-  status7: boolean = false;
-  status8: boolean = false;
-  status9: boolean = false;
-  status10: boolean = false;
+  status = false;
+  status1 = false;
+  status2 = false;
+  status3 = false;
+  status4 = false;
+  status5 = false;
+  status6 = false;
+  status7 = false;
+  status8 = false;
+  status9 = false;
+  status10 = false;
 
   matcher: MyErrorStateMatcher;
 
@@ -346,7 +346,7 @@ export class ComputerScienceComponent implements OnInit {
   }
 
   private filterStates(name: string) {
-    if (!isNullOrUndefined(name) && name.trim() !== '') {
+    if (name && name.trim() !== '') {
       const filterValue = name.toLowerCase();
 
       return this.states.filter(state =>
