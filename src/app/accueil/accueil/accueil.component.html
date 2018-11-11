@@ -7,7 +7,7 @@
   <form (ngSubmit)="validSearch()">
     <div class="search-form">
       <div class="column-form">
-        <input name="keyword" [(ngModel)]="model.keyword" type="text" matInput class="taille-champs" placeholder="Quoi ? Java, Angular, ..." 
+        <input name="keyword" [(ngModel)]="model.keyword" type="text" matInput class="taille-champs" placeholder="Quoi ? Java, Angular, ..."
         [matAutocomplete]="autoCompleteKeysWOrd" [formControl]="stateCtrl">
         <mat-autocomplete #autoCompleteKeysWOrd="matAutocomplete">
           <mat-option *ngFor="let keyword of filteredKeysWord | async" [value]="keyword">
@@ -16,16 +16,16 @@
         </mat-autocomplete>
       </div>
 						<!-- Les Pays cibles, si plusieurs pays utiliser mat-select comme la premiére version -->
-      <div>        
-        <img 
+      <div>
+        <img
           src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg"
           alt="Guinée"
           height="30"
-          />                     
+          />
       </div>
       <!-- Champs de filtre sur les villes -->
       <div class="column-form">
-        <input name="town" [(ngModel)]="model.town" type="text" matInput class="taille-champs" placeholder="Où ? Ville..." 
+        <input name="town" [(ngModel)]="model.town" type="text" matInput class="taille-champs" placeholder="Où ? Ville..."
         [matAutocomplete]="autoCompleteTowns" [formControl]="townCtrl">
         <mat-autocomplete #autoCompleteTowns="matAutocomplete">
           <mat-option *ngFor="let town of filteredTowns | async" [value]="town">
@@ -48,12 +48,12 @@
   <!--POSITIONNEMENT DE LA CAROUSSELLE CONTENANT LES ENTREPRISES-->
   <div class="entreprise-carousel">
     <h2>... Entreprises ...</h2>
-    <ngx-carousel [inputs]="offresCarousel" (carouselLoad)="getEnterprises()">
-      <ngx-tile NgxCarouselItem *ngFor="let enterprise of enterprises">
-          <div class="image-tile" [style.background]="'url(' + enterprise.logoEntreprise + ')'">
-            <h1>{{enterprise.nomEntreprise}}</h1>
-          </div>
-          <h4>{{enterprise.nomEntreprise}}</h4>
+    <ngx-carousel [inputs]="offresCarousel" (carouselLoad)="getEntreprises()">
+      <ngx-tile NgxCarouselItem *ngFor="let entreprise of entreprises">
+          <!--<div class="image-tile" [style.background]="'url(' + entreprise.logoEntreprise + ')'">
+            <h1>{{entreprise.nom}}</h1>
+          </div>-->
+          <h4>{{entreprise.nom}}</h4>
           <button>...</button>
       </ngx-tile>
 
