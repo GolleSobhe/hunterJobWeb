@@ -1,5 +1,7 @@
 <div>
   <h3>Créer votre entreprise</h3>
+<p>{{formGroup.value | json}}</p>
+
      <hr>
  <form [formGroup]="formGroup" (ngSubmit)="creerOuModifierEntreprise(formEntreprise.value)" #formEntreprise="ngForm">
    <mat-horizontal-stepper formArrayName="formArray" [linear]="true" #stepper="matHorizontalStepper">
@@ -7,39 +9,39 @@
        <ng-template matStepLabel>Votre entreprise</ng-template>
        <div class="itemEntreprise">
           <label><b>Nom* : </b></label>
-          <input type="text" placeholder="nom de l'entreprise" formControlName="nomEntreprise" required><br/>
+          <input type="text" placeholder="nom de l'entreprise" formControlName="nom" required><br/>
           <label><b>Adresse : </b></label>
-          <input type="text" placeholder="Adresse de l'entreprise" formControlName="adresseEntreprise" required><br/>
+          <input type="text" placeholder="Adresse de l'entreprise" formControlName="adresse" required><br/>
           <label><b>Telephone : </b></label>
-          <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephoneEntreprise" required><br/>
+          <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephone" required><br/>
           <label><b>Email : </b></label>
-          <input type="text" placeholder="Mail de l'entreprise" formControlName="mailEntreprise" required><br/>
+          <input type="text" placeholder="Mail de l'entreprise" formControlName="email" required><br/>
           <label><b>Url : </b></label>
-          <input type="text" placeholder="Mail de l'entreprise" formControlName="urlEntreprise" required>     
-        </div> 
+          <input type="text" placeholder="Mail de l'entreprise" formControlName="siteWeb" required>
+        </div>
        <div>
          <button type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
        </div>
      </mat-step>
- 
+
      <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
        <ng-template matStepLabel>Description</ng-template>
-       <div>
+       <!--<div>
           <label>Logo : </label>
-          <input type="file" accept="image/png, image/jpeg" formControlName="logoEntreprise">    
-       </div>
+          <input type="file" accept="image/png, image/jpeg" formControlName="logo">
+       </div>-->
        <div>
           <mat-form-field>
-            <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="activiteEntreprise" required>
-              <mat-option *ngFor="let secteurActivite of secteurActivites" [value]="secteurActivite">
-                  {{secteurActivite}}
+            <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="secteurActivite" required>
+              <mat-option *ngFor="let secteur of secteurActivites" [value]="secteur">
+                  {{secteur}}
               </mat-option>
             </mat-select>
           </mat-form-field>
        </div>
        <div>
           <label>Description de l'entreprise</label>
-          <textarea rows="10" maxlength="500" class="text-area-width" formControlName="descriptionEntreprise"
+          <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
                 placeholder="Description de l'entreprise" required>
           </textarea>
        </div>
@@ -48,14 +50,14 @@
          <button  type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
        </div>
      </mat-step>
- 
+
      <mat-step>
        <ng-template matStepLabel>récapitulatif</ng-template>
        Everything seems correct.
        <div>
           <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
           <button type="button" mat-button (click)="stepper.reset()">Annuler</button>
-          <button type="submit" class="button-suivant" mat-button>Valider</button>         
+          <button type="submit" class="button-suivant" mat-button>Valider</button>
        </div>
      </mat-step>
    </mat-horizontal-stepper>

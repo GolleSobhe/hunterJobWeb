@@ -8,7 +8,6 @@ import { EntrepriseNewComponent } from './entreprise-new/entreprise-new.componen
 const routes: Routes = [
   {path: '', component: EntrepriseListComponent},
   {path: 'new', component: EntrepriseNewComponent},
-  {path: 'entreprise', component: EntrepriseComponent},
   {path: ':id', component: EntrepriseComponent},
 ];
 
