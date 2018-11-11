@@ -50,7 +50,7 @@ export class AccueilComponent implements OnInit {
     this.initKeysWord();
     this.initTowns();
     this.initCountryCarousel();
-    this.getEnterprises();
+    this.getEntreprises();
   }
 
   private initKeysWord(): void {
@@ -557,7 +557,7 @@ export class AccueilComponent implements OnInit {
     };
   }
 
-  public getEnterprises(): void {
+  public getEntreprises(): void {
     this.entrepriseService.getEntreprises().subscribe(data => {
       this.entreprises = data;
       console.log(this.entreprises);
