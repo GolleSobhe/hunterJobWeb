@@ -14,10 +14,7 @@ export class CandidatComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-   this.candidat = new Candidat(1, 'BAH', 'Abdoulaye', '07000000', 'bah@hello.com',
-   'carrefour pompidou', 3, 5, '../../../assets/cvs/cv_abdoulaye.pdf',
-   'Full-Stack', 'Etudes et développement des systèmes d\'information && Big Data',
-   ['CDI', 'CDD', 'Freelance'], true, 55);
+
   }
 
 }

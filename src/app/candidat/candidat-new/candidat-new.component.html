@@ -1,83 +1,24 @@
-<div>
-    <h3>Créer votre profil</h3>
-    <hr>
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="candidatEtape1FormGroup">
-    <form [formGroup]="candidatEtape1FormGroup">
-      <ng-template matStepLabel>Informations personnelles</ng-template>
-      <!--FORMULAIRE DE CREATION PROFIL CANDIDAT-->
-      <div class="itemCandidat">
-        <label><b>Nom : </b></label>
-        <input type="text" id="nomCandidat" placeholder="nom de l'Candidat" name="nomCandidat" required><br/>
-      	  <label><b>Adresse : </b></label>
-        <input type="text" id="Adresse" placeholder="nom de l'Candidat" name="nomCandidat" required><br/>
-        <label><b>Telephone : </b></label>
-        <input type="text" id="Telephone" placeholder="nom de l'Candidat" name="nomCandidat" required><br/>
-        <label><b>Email : </b></label>
-        <input type="text" id="Telephone" placeholder="nom de l'Candidat" name="nomCandidat" required>     
-      </div>      
-      <div>
-        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
+<div class="container">
+  <h1>Créer un compte</h1>
 
+  <form [formGroup]="candidatForm">
+    <label for="nom"><b>Nom</b></label> <br>
+    <input type="text" matInput placeholder="Nom" formControlName="nom" id="nom" required name="nom">
 
-  <mat-step [stepControl]="candidatEtape2FormGroup">
-    <form [formGroup]="candidatEtape2FormGroup" novalidate>
-      <!-- Expérience et étude-->
-      <ng-template matStepLabel>Expériences et Etudes </ng-template>           
-      <div>
-        <label><b>Expériences(hors stage)</b></label><br/>
-        <input type="number" placeholder="0" name="anneeExperienceCandidat" required><br/>
-      </div>
-      <div>
-        <label><b>Etudes</b></label> <br/>
-        <input type="number" placeholder="0" name="anneeEtudeCandidat" required><br/>      
-      </div>
-      <div>
-        <label><b>Télécharger votre CV</b></label> <br/>
-        <input type="file" name="cvCandidat" required><button>Créer un modéle de cv</button>
-      </div>
-      <div>
-        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-        <button class="button-suivant" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
+    <br>
+    <label for="prenom"><b>Prenom</b></label> <br>
+    <input type="text" matInput placeholder="Prenom" formControlName="prenom" id="prenom" required name="prenom">
 
-  <mat-step [stepControl]="candidatEtape3FormGroup">
-    <form [formGroup]="candidatEtape3FormGroup" novalidate class="formulaire container">
-      <ng-template matStepLabel>Préférence d'emploi</ng-template>
-      <div>
-        <h2><b>Intitulé du poste souhaité</b></h2>
-      </div>   
-      <div>
-        <label><b>Type d'emploi</b></label> <br/>
-        <div>
-          <mat-checkbox>CDI</mat-checkbox>
-          <mat-checkbox>CDD</mat-checkbox><br/>
-          <mat-checkbox>Aprentissage/Alternance</mat-checkbox>
-          <mat-checkbox>Freelance/Independant</mat-checkbox><br/>
-          <mat-checkbox>Stage</mat-checkbox>
-          <mat-checkbox>Interim</mat-checkbox>
-        </div>        
-      </div>  
-      <div>
-        <label><b>Salaire</b></label>
-        <input type="number" placeholder="0" name="salireCandidat" required><br/>
-      </div>
-      <div>
-          <label><b>Relocalisation</b></label> <br/>
-          <mat-checkbox>je suis prés à demenager</mat-checkbox>
-      </div>  
-      <div>
-        <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-        <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
-        <button type="submit" class="button-suivant" color="primary">Confirmation</button>
-      </div>
+    <br>
+    <label for="email"><b>Email</b></label> <br>
+    <input type="email" matInput placeholder="Email" formControlName="email" id="email" required name="email">
+
+    <br>
+    <label for="telephone"><b>Telephone</b></label> <br>
+    <input type="telephone" matInput placeholder="Telephone" formControlName="telephone" id="telephone" required
+           name="telephone">
+    <br>
+    <button type="submit" mat-raised-button
+            (click)="creerCompte()">Créer</button>
   </form>
-
-  </mat-step>
-	</mat-horizontal-stepper>
 </div>
