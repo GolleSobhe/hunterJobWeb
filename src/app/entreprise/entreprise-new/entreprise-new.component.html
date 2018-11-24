@@ -1,65 +1,97 @@
 <div>
   <h3>Créer votre entreprise</h3>
-<p>{{formGroup.value | json}}</p>
-
-     <hr>
- <form [formGroup]="formGroup" (ngSubmit)="creerOuModifierEntreprise(formEntreprise.value)" #formEntreprise="ngForm">
-   <mat-horizontal-stepper formArrayName="formArray" [linear]="true" #stepper="matHorizontalStepper">
-     <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
-       <ng-template matStepLabel>Votre entreprise</ng-template>
-       <div class="itemEntreprise">
+  <hr> 
+  <mat-horizontal-stepper [linear]="false" #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="entrepriseFormOne">
+      <form [formGroup]="entrepriseFormOne">
+        <ng-template matStepLabel>Votre entreprise</ng-template>
+        <div class="itemEntreprise">
           <label><b>Nom* : </b></label>
           <input type="text" placeholder="nom de l'entreprise" formControlName="nom" required><br/>
-          <label><b>Adresse : </b></label>
+          <label><b>Adresse* : </b></label>
           <input type="text" placeholder="Adresse de l'entreprise" formControlName="adresse" required><br/>
-          <label><b>Telephone : </b></label>
+          <label><b>Telephone* : </b></label>
           <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephone" required><br/>
-          <label><b>Email : </b></label>
+          <label><b>Email* : </b></label>
           <input type="text" placeholder="Mail de l'entreprise" formControlName="email" required><br/>
-          <label><b>Url : </b></label>
+          <label><b>Url* : </b></label>
           <input type="text" placeholder="Mail de l'entreprise" formControlName="siteWeb" required>
         </div>
-       <div>
-         <button type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
-       </div>
-     </mat-step>
-
-     <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
-       <ng-template matStepLabel>Description</ng-template>
-       <!--<div>
-          <label>Logo : </label>
-          <input type="file" accept="image/png, image/jpeg" formControlName="logo">
-       </div>-->
-       <div>
-          <mat-form-field>
-            <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="secteurActivite" required>
-              <mat-option *ngFor="let secteur of secteurActivites" [value]="secteur">
-                  {{secteur}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-       </div>
-       <div>
-          <label>Description de l'entreprise</label>
-          <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
-                placeholder="Description de l'entreprise" required>
-          </textarea>
-       </div>
-       <div>
-         <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-         <button  type="button" class="button-suivant" mat-button matStepperNext>Suivant</button>
-       </div>
-     </mat-step>
-
-     <mat-step>
-       <ng-template matStepLabel>récapitulatif</ng-template>
-       Everything seems correct.
-       <div>
-          <button type="button" class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-          <button type="button" mat-button (click)="stepper.reset()">Annuler</button>
-          <button type="submit" class="button-suivant" mat-button>Valider</button>
-       </div>
+        <div>
+          <button type="button" class="button-suivant" mat-button matStepperNext (click)="goNext(0)">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="entrepriseFormTwo">
+      <form [formGroup]="entrepriseFormTwo">
+        <ng-template matStepLabel>Description</ng-template>
+          <!--<div>
+             <label>Logo : </label>
+             <input type="file" accept="image/png, image/jpeg" formControlName="logo">
+          </div>-->
+          <div>
+            <mat-form-field>
+              <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="secteurActivite" required>
+                 <mat-option *ngFor="let secteur of secteurActivites" [value]="secteur">
+                     {{secteur}}
+                 </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+             <label>Description de l'entreprise</label>
+             <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
+                   placeholder="Description de l'entreprise" required>
+             </textarea>
+          </div>
+          <div>
+            <button type="button" class="button-precedent" mat-button matStepperPrevious (click)="goBack(0)">Précédent</button>
+            <button  type="button" class="button-suivant" mat-button matStepperNext (click)="goNext(1)">Suivant</button>
+          </div>
+      </form>       
+    </mat-step>
+    <mat-step [stepControl]="entrepriseFormThree">
+      <form [formGroup]="entrepriseFormThree" #formEntreprise="ngForm" (ngSubmit)="creerOuModifierEntreprise(formEntreprise.value)">
+          <ng-template matStepLabel>récapitulatif</ng-template>
+          <div>
+           <div class="itemEntreprise">
+             <label><b>Nom* : </b></label>
+             <input type="text" placeholder="nom de l'entreprise" formControlName="nom" required><br/>
+             <label><b>Adresse* : </b></label>
+             <input type="text" placeholder="Adresse de l'entreprise" formControlName="adresse" required><br/>
+             <label><b>Telephone* : </b></label>
+             <input type="text" placeholder="Telephone de l'entreprise" formControlName="telephone" required><br/>
+             <label><b>Email* : </b></label>
+             <input type="text" placeholder="Mail de l'entreprise" formControlName="email" required><br/>
+             <label><b>Url* : </b></label>
+             <input type="text" placeholder="Mail de l'entreprise" formControlName="siteWeb" required>
+           </div>
+           <!--<div>
+             <label>Logo : </label>
+             <input type="file" accept="image/png, image/jpeg" formControlName="logo">
+           </div>-->
+           <div>
+              <mat-form-field>
+                <mat-select class="field-size" placeholder="Secteur d'activités" formControlName="secteurActivite" required>
+                   <mat-option *ngFor="let secteur of secteurActivites" [value]="secteur">
+                       {{secteur}}
+                   </mat-option>
+                </mat-select>
+              </mat-form-field>
+           </div>
+           <div>
+               <label>Description de l'entreprise *</label>
+               <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
+                     placeholder="Description de l'entreprise" required>
+               </textarea>
+           </div>
+          </div>
+          <div>
+             <button type="button" class="button-precedent" mat-button matStepperPrevious (click)="goBack(1)">Précédent</button>
+             <button type="button" mat-button (click)="stepper.reset()">Annuler</button>
+             <button type="submit" class="button-suivant" mat-button>Valider</button>
+          </div>
+      </form>       
      </mat-step>
    </mat-horizontal-stepper>
- </form>
  </div>
