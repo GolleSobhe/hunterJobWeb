@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 })
 export class CandidatService {
 
-  private  ApiUrl = environment.apiUrl;
+  // private  ApiUrl = environment.apiUrl;
 
 
   constructor(private http: HttpClient) { }
@@ -18,10 +18,18 @@ export class CandidatService {
     const headers = new HttpHeaders();
 
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Candidat>(`${this.ApiUrl}/candidat/new`, candidat, {headers: headers});
+    // return this.http.post<Candidat>(`${this.ApiUrl}/candidats`, candidat, {headers: headers});
+    return this.http.post<Candidat>(`http://localhost:3000/candidats`, candidat, {headers: headers});
   }
 
   getCandidatById(id: number): Observable<Candidat> {
-    return this.http.get<Candidat>(`${this.ApiUrl}/candidat/${id}`);
+    return this.http.get<Candidat>(`http://localhost:3000/candidats/${id}`);
+  }
+
+  modifierCandidat(candidat: Candidat): Observable<Candidat> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    const id = candidat.id;
+    return this.http.put<Candidat>(`http://localhost:3000/candidats/${id}`, candidat, {headers: headers});
   }
 }

@@ -6,6 +6,7 @@ import { MatStepperModule, MatFormFieldModule, MatCheckboxModule } from '@angula
 import { CandidatRoutingModule } from './candidat-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { CandidatProfileComponent } from './candidat-profile/candidat-profile.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsModule,
     PdfViewerModule
   ],
-  declarations: [CandidatComponent, CandidatNewComponent]
+  declarations: [CandidatComponent, CandidatNewComponent, CandidatProfileComponent]
 })
 export class CandidatModule { }

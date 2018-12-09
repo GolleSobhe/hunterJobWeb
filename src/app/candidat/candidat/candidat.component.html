@@ -1,0 +1,86 @@
+<div>
+    <h3>Créer votre profil</h3>
+    <hr>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-step [stepControl]="candidatEtape1FormGroup">
+        <form [formGroup]="candidatEtape1FormGroup">
+          <ng-template matStepLabel>Informations personnelles</ng-template>
+          <!--FORMULAIRE DE CREATION PROFIL CANDIDAT-->
+          <div class="itemCandidat">
+            <label><b>Nom : </b></label>
+            <input type="text" matInput formControlName="nom" required><br/>
+            <label><b>Prenom</b></label> 
+            <input type="text" matInput formControlName="prenom" required><br>
+            <label><b>Email</b></label> 
+            <input type="email" matInput formControlName="email" required><br>
+            <label><b>Telephone</b></label>
+            <input type="telephone" matInput formControlName="telephone" required> <br>
+            <label><b>Adresse : </b></label>
+            <input type="text"  matInput formControlName="adresse" required>            
+          </div>      
+          <div>
+            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>  
+    
+      <mat-step [stepControl]="candidatEtape2FormGroup">
+        <ng-template matStepLabel>Expériences et Etudes </ng-template>
+        <form [formGroup]="candidatEtape2FormGroup">
+          <div>
+            <label><b>Titre : </b></label>
+            <input type="text" matInput formControlName="titreProfil" required><br/>
+          </div>       
+          <div>
+            <label><b>Expériences(hors stage)</b></label><br/>
+            <input type="number" placeholder="0" formControlName="anneesExperience" required><br/>
+          </div>
+          <div>
+            <label><b>Etudes</b></label> <br/>
+            <input type="number" placeholder="0" formControlName="anneesEtude" required><br/>      
+          </div>
+          <div>
+            <label><b>Télécharger votre CV</b></label> <br/>
+            <input type="file" formControlName="cv" required>
+          </div>
+          <div>
+            <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+    
+      <mat-step [stepControl]="candidatEtape3FormGroup">
+        <ng-template matStepLabel>Préférence d'emploi</ng-template>
+        <div>
+          <h2><b>Intitulé du poste souhaité</b></h2>
+        </div>
+        <form [formGroup]="candidatEtape3FormGroup" class="formulaire container">
+          <div>
+            <label><b>Type d'emploi</b></label> <br/>
+            <div>
+              <mat-checkbox formControlName="cdi">CDI</mat-checkbox>
+              <mat-checkbox formControlName="cdd">CDD</mat-checkbox><br/>
+              <mat-checkbox formControlName="aprentissage">Aprentissage/Alternance</mat-checkbox>
+              <mat-checkbox formControlName="independant">Freelance/Independant</mat-checkbox><br/>
+              <mat-checkbox formControlName="stage">Stage</mat-checkbox>
+              <mat-checkbox formControlName="interim">Interim</mat-checkbox>
+            </div>
+            <div>
+              <label><b>Salaire</b></label>
+              <input type="number" placeholder="0" formControlName="salaire" required><br/>
+            </div>
+            <div>
+              <label><b>Relocalisation</b></label> <br/>
+              <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
+            </div>  
+            <div>
+              <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+              <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
+              <button type="submit" class="button-suivant" color="primary" (click)="valider()">Confirmation</button>
+            </div>        
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+</div>

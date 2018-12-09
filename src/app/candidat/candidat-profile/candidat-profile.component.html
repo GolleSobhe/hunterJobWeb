@@ -1,0 +1,54 @@
+<div>
+    <div><h1>Mon profil</h1></div>
+    <div class="flex-container">
+     <div class="flex-div one">
+     <h4>{{candidat.prenom}}</h4><h4>{{candidat.nom}}</h4>
+     <br>
+     <br>
+     <div>
+      <span>Vous êtes en recherches active</span>
+      <button>Passer en recherche passsive</button>
+     </div>
+     <br>
+     <br>
+     <div>
+      <i class="fa fa-envelope"></i> <span> {{candidat.email}}</span><i class="fa fa-edit none"></i><br>
+      <i class="fa fa-phone"></i><span> {{candidat.telephone}}</span><i class="fa fa-edit none"></i><br>
+      <i class="fa fa-suitcase"></i><span> {{candidat.profilCandidat.anneesExperiences}} ans</span><i class="fa fa-edit none"></i><br>
+      <i class="fa fa-book"></i><span> {{candidat.profilCandidat.anneesEtudes}} ans</span><i class="fa fa-edit none"></i><br>
+     </div>
+     <br>
+     <br>
+     <br>
+     <br>
+     <div>
+      <h4>Type d'emploi</h4>
+      <div>{{candidat.profilCandidat.typeEmploi}}</div>
+      <br>
+      <h5>Localisation</h5>
+      <div>
+       <p>{{candidat.profilCandidat.adresse}}</p>
+       <mat-checkbox [checked]= "candidat.profilCandidat.relocalisation">Mobile</mat-checkbox> 
+      </div>
+     </div>
+     <br>
+     <br>
+     <br>
+     <br>
+     <div>
+      <h5>Mes conditions</h5>
+      <label>Salaire : </label><label>{{candidat.profilCandidat.salaire}}K euros</label><br>
+     </div>
+    </div>
+    <div class="flex-div auto">
+      <div class="titreProfil">
+        <span><h2>{{candidat.profilCandidat.titreProfil}}</h2></span> 
+        <i class="fa fa-edit none"></i>
+      </div>
+      <div class="div-scroll">
+        <pdf-viewer [src]="candidat.profilCandidat.cv" [render-text]="true" style="display: block;"></pdf-viewer>
+      </div>
+    </div>
+   </div>
+  </div>
+    
