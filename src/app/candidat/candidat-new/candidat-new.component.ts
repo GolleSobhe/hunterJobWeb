@@ -16,7 +16,7 @@ export class CandidatNewComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
               private candidatService: CandidatService,
-              private router: Router) { }
+              private routerToCandidat: Router) { }
 
   ngOnInit() {
     this.formulaireCreationCompte();
@@ -31,14 +31,11 @@ export class CandidatNewComponent implements OnInit {
     });
   }
 
-  creerCompte() {
-    const candidat: Candidat = this.candidatForm.value;
-
-    console.log(candidat);
+  creerCandidat(candidat: Candidat) {
     this.candidatService.creerCompte(candidat).subscribe((candidat_: Candidat) => {
       this.candidat = candidat_;
       this.candidatForm.reset();
-      this.router.navigate(['/accueil']);
+      this.routerToCandidat.navigate(['/candidats/' + this.candidat.id]);
       });
   }
 

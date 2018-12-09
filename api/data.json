@@ -175,5 +175,43 @@
       "description": "Votre souscription termine dans trois semaines"
     }
   ],
-  "candidats": []
+  "candidats": [
+    {
+      "nom": "bah",
+      "prenom": "abdo",
+      "email": "bah@gmail.com",
+      "telephone": "047755",
+      "id": 1,
+      "profilCandidat": {
+        "titreProfil": "full stack",
+        "adresse": "pompidou",
+        "anneesExperiences": 5,
+        "cv": "C:\\fakepath\\CvPro.pdf",
+        "typeEmploi": {
+          "cdi": true,
+          "cdd": false,
+          "aprentissage": false,
+          "independant": true,
+          "stage": false,
+          "interim": false
+        },
+        "salaire": 60,
+        "relocalisation": true
+      }
+    },
+    {
+      "nom": "fds",
+      "prenom": "abdo",
+      "email": "petit@gmail.com",
+      "telephone": "755444",
+      "id": 2
+    },
+    {
+      "nom": "fds",
+      "prenom": "abdo",
+      "email": "p50@gmail.com",
+      "telephone": "0144",
+      "id": 3
+    }
+  ]
 }
