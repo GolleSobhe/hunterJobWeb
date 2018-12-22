@@ -20,5 +20,6 @@ export class CreationOffreComponent implements OnInit {
 
     this.professions = ['Informatique', 'Banque', 'Assurance', 'Hotellerie'];
     this.selectedProfession = this.professions[0];
+    console.log(this.selectedProfession);
   }
 }

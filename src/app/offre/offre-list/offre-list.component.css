@@ -1,24 +1,38 @@
-/* Structure */
-.placement-list {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
+.container {
+  width: 80%;
 }
 
-.en-tete {
-  min-height: 64px;
-  padding: 8px 24px 0;
+.pagination {
+  display: inline-block;
 }
 
-.mat-form-field {
-  font-size: 16px;
-  width: 100%;
+.paginator {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.titre-offre {
-  color: darkcyan;
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
   text-decoration: none;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 20px;
+  border: 1px solid #ddd;
 }
 
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

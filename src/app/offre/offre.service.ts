@@ -12,10 +12,6 @@ export class OffreService {
   constructor(private _http: HttpClient) {
   }
 
-  getOffres(): Observable<Offre[]> {
-    return this._http.get<Offre[]>(`${this.ApiUrl}/offre/all`);
-  }
-
   getCompetences(): Observable<string[]> {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/competences`);
   }
@@ -40,11 +36,11 @@ export class OffreService {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/produits`);
   }
 
-  getSpecialisation(): Observable<string[]> {
+  getSpecialisations(): Observable<string[]> {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/specialisations`);
   }
 
-  getOffre(id: number): Observable<Offre> {
+  getOffreById(id: number): Observable<Offre> {
     return this._http.get<Offre>(`${this.ApiUrl}/offre/${id}`);
   }
 
@@ -54,5 +50,14 @@ export class OffreService {
 
   getPays(): Observable<any> {
     return this._http.get(`${this.ApiUrl}/pays`);
+  }
+
+  getAll(): Observable<Offre[]> {
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offre/all`);
+  }
+
+  getByPage(pageNumber: number, pageSize): Observable<Offre[]> {
+    pageNumber --;
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offre?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 }

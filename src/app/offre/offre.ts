@@ -1,13 +1,14 @@
 export interface Offre {
+  id?: number;
   titre: string;
-  specialisation: string;
-  competences: string[];
-  typeDesContrats: string;
-  anneesExperience: number;
-  salaireParMois: number;
-  lieu: string;
-  secteur: string;
   description: string;
+  salaire: number;
+  lieu: string;
+  specialisation: string;
+  secteurActivite: string;
+  anneesExperience: number;
+  competences: string[];
+  type: string;
 }
 
 export interface Competence {

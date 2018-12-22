@@ -1,48 +1,17 @@
-<br>
-<app-global-search></app-global-search>
-<br><br>
+<div class="container">
 
-<div class="container mat-elevation-z8">
-  <div class="en-tete">
-    <h1>{{length}} offres trouvées</h1>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer ...">
-    </mat-form-field>
+  <h2 align="center">L'ensemble de toutes nos offres</h2>
+  <div *ngFor="let offre of offreList">
+    <app-offre-item [offre]="offre"></app-offre-item>
   </div>
 
-  <mat-table #table [dataSource]="donneesOffres">
-    <ng-container matColumnDef="id">
-      <mat-cell *matCellDef="let element">
-
-        <!--REDIRECTION VERS LE DETAILS DE L'OFFRE SELECTIONNEE-->
-        <div >
-          <a class="titre-offre" [routerLink]="[element.id]">{{element.titreOffre}}</a>
-        </div>
-
-        <div>
-          <span>Nom entreprise: Google Nom entreprise: Google
-            Nom entreprise: Google  Nom entreprise: Google
-            Nom entreprise: Google
-            Nom entreprise: Google Nom entreprise: Google
-            Nom entreprise: Google  Nom entreprise: Google
-            Nom entreprise: Google
-            Nom entreprise: Google Nom entreprise: Google
-            Nom entreprise: Google  Nom entreprise: Google
-            Nom entreprise: Google
-          </span>
-        </div>
-        <div>
-          {{element.description}}
-        </div>
-      </mat-cell>
-    </ng-container>
-
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [@elementTableau]="length"></mat-row>
-  </mat-table>
-
-  <mat-paginator #paginateur
-                 [pageSize]="20"
-                 [pageSizeOptions]="[3, 10, 20, 4, 5, 6, 7, 8, 9]"
-                 [showFirstLastButtons]="true">
-  </mat-paginator>
+  <div align="center">
+    <div class="pagination paginator">
+      <a [routerLink]="['/offres/page/', currentPage-1]" [hidden]="currentPage==1">&laquo;</a>
+      <!-- <a [routerLink]="['/offres/page/1']" [hidden]="currentPage==1">First</a> -->
+      <a *ngFor="let page of pages" [routerLink]="['/offres/page/', page]" [ngClass]="{active:currentPage === page}">{{page}}</a>
+      <!-- <a [routerLink]="['/offres/page/', totalPages]" [hidden]="currentPage==totalPages">Last</a> -->
+      <a [routerLink]="['/offres/page/', currentPage+1]" [hidden]="currentPage==totalPages">&raquo;</a>
+    </div>
+  </div>
 </div>
