@@ -1,22 +1,26 @@
-<!--AFFICHAGE DU FORMULAIRE EN FONCTION DU MÉTIER CHOISI-->
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="detailOffreForm">
     <form [formGroup]="detailOffreForm">
       <ng-template matStepLabel>Détail de l'offre</ng-template>
       <!--FORMULAIRE DU DÉTAIL DE L'OFFRE-->
-      <label for="title"><b>Intitulé du poste</b></label>
-      <input type="text" placeholder="Titre du poste" id="title" formControlName="titre"
-             name="title" style="width: 70%" required>
 
-      <p></p>
-      <p><strong>Spécialisation recherchée</strong></p>
+      <label for="titre"><b>Intitulé du poste</b></label> <br>
+      <input type="text" matInput placeholder="Titre du poste" id="titre" formControlName="titre" required
+             name="titre" [errorStateMatcher]="matcher">
+
+      <mat-error *ngIf="titre.hasError('required') && submittedNext">
+        Le titre est <strong>obligatoire</strong>
+      </mat-error>
+
+      <br>
+
+      <label><b>Spécialisation recherchée</b></label>
       <mat-radio-group formControlName="specialisation">
         <div class="column-container">
           <div class="column-out">
             <label>Technique </label>
-
             <ul>
-              <li *ngFor="let spec of specialisation">
+              <li *ngFor="let spec of specialisations">
                 <mat-radio-button value={{spec}}>{{spec}}</mat-radio-button>
               </li>
             </ul>
@@ -32,6 +36,10 @@
           </div>
         </div>
       </mat-radio-group>
+
+      <mat-error *ngIf="specialisation.hasError('required') && submittedNext">
+        La specialisation est <strong>obligatoire</strong>
+      </mat-error>
 
       <br>
       <label>Compétences réquises</label>
@@ -83,50 +91,63 @@
           Cobol
         </button>
       </div>
-
+      <mat-error *ngIf="skillsList.length == 0 && submittedNext">
+        Selectionnez au moins une <strong>compétence</strong>
+      </mat-error>
       <br>
+
       <label>Type de contrat</label>
-      <div class="column-container">
-        <div class="column-out">
-          <mat-radio-group formControlName="typeDesContrats">
+      <mat-radio-group formControlName="typeDesContrats">
+        <div class="column-container">
+          <div class="column-out">
             <ul *ngFor="let typeContrat of listeTypeContrat1">
               <li>
-                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
+                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
               </li>
             </ul>
-          </mat-radio-group>
-        </div>
+          </div>
 
-        <div class="column-out">
-          <mat-radio-group formControlName="typeDesContrats">
+          <div class="column-out">
             <ul *ngFor="let typeContrat of listeTypeContrat2">
               <li>
-                <mat-radio-button value={{typeContrat.name}}>{{typeContrat.name}}</mat-radio-button>
+                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
               </li>
             </ul>
-          </mat-radio-group>
+          </div>
         </div>
-      </div>
+      </mat-radio-group>
 
-      <div>
-        <label>Années d'experience</label>
-        <input type="range" min="0" max="15" value="2" class="slider" formControlName="anneesExperience">
-      </div>
+      <mat-error *ngIf="typeDesContrats.hasError('required') && submittedNext">
+        Le type de contrat est <strong>obligatoire</strong>
+      </mat-error>
 
+      <br>
+
+      <label>Années d'experience</label>
+      <input type="range" min="0" max="30" value="0" class="slider"
+             formControlName="anneesExperience">
+
+      <mat-error *ngIf="anneesExperience.hasError('required') && submittedNext">
+        Le nombre d'année d'experience est <strong>obligatoire</strong>
+      </mat-error>
       <div>
         <br>
+
         <label>Salaire par mois</label>
-        <input type="range" min="100000" max="500000" value="250000" class="slider" formControlName="salaireParMois">
+        <input type="range" min="100000" max="500000" class="slider" formControlName="salaireParMois">
       </div>
+      <mat-error *ngIf="salaireParMois.hasError('required') && submittedNext">
+        Le salaire est <strong>obligatoire</strong>
+      </mat-error>
 
       <div>
-        <button mat-button matStepperNext>Suivant</button>
+        <button mat-button matStepperNext style="float: right;" (click)="submittedNext=true;">Suivant</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="descriptionOffreForm">
-    <form [formGroup]="descriptionOffreForm" novalidate>
+    <form [formGroup]="descriptionOffreForm">
       <ng-template matStepLabel>Description de l'offre</ng-template>
 
       <!-- DESCRIPTION DE L'OFFRE-->
@@ -152,40 +173,56 @@
         </div>
       </mat-radio-group>
 
-      <label>Lieu</label>
-      <input type="text" class="taille-champs" placeholder="Lieu" [(ngModel)]="lieu" required
-             [matAutocomplete]="auto" [formControl]="stateCtrl">
+      <mat-error *ngIf="secteur.hasError('required') && submittedFormNext">
+        Le secteur est <strong>obligatoire</strong>
+      </mat-error>
 
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25"/>
+      <br>
+      <label>Pays</label>
+      <mat-select placeholder="Pays" formControlName="lieu" name="pays">
+        <mat-option *ngFor="let state of states" [value]="state.name">
+          <img style="vertical-align:middle;" [src]="state.flag" height="25"/>
           <span>{{ state.name }}</span>
         </mat-option>
-      </mat-autocomplete>
+      </mat-select>
 
+      <mat-error *ngIf="lieu.hasError('required') && submittedFormNext">
+        Le lieu est <strong>obligatoire</strong>
+      </mat-error>
+
+      <br>
       <label>Description de l'offre</label>
-      <textarea rows="10" maxlength="500" class="text-area-width" formControlName="description"
-                placeholder="Description de l'offre">
-      </textarea>
+      <textarea matInput rows="14" [maxlength]="descriptionMaxLength" formControlName="description" placeholder="Description de l'offre"></textarea>
+
+      <div [ngStyle]="{'text-align': 'right'}">
+        <mat-hint>{{description.value?.length || 0}}/{{descriptionMaxLength}}</mat-hint>
+      </div>
+      <mat-error *ngIf="description.hasError('required') && submittedFormNext">
+        La description est <strong>obligatoire</strong>
+      </mat-error>
+
+      <mat-error *ngIf="description.errors?.minlength">
+        La description doit avoir au moins <strong>{{descriptionMinLength}} caractères</strong>
+      </mat-error>
 
       <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button matStepperNext>Suivant</button>
+        <button style="float: right;" mat-button matStepperNext (click)="submittedFormNext=true">Suivant</button>
+        <button style="float: right;" mat-button matStepperPrevious>Précédent</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="paimentForm">
-    <form [formGroup]="paimentForm" novalidate class="formulaire container">
+    <form [formGroup]="paimentForm">
       <ng-template matStepLabel>Paiement</ng-template>
       <!--FORMULAIRE DE PAYEMENT-->
 
       <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button (click)="stepper.reset(); resetSelectSkills()">Annuler</button>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
-        !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation
-        </button>
+        <button style="float: right;" mat-raised-button color="primary"  (click)="openDialog()">Apperçu</button>
+        <button style="float: right;" type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
+        !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation</button>
+        <button style="float: right;" mat-button (click)="stepper.reset(); resetSelectSkills()">Annuler</button>
+        <button style="float: right;" mat-button matStepperPrevious>Précédent</button>
       </div>
     </form>
 

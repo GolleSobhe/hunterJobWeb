@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {NgxCarousel} from 'ngx-carousel';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-import {map, startWith} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import { AcceuilService } from '../acceuil.service';
 import { Router } from '@angular/router';
+import {EntrepriseService} from '../../entreprise/entreprise.service';
+import {Entreprise} from '../../entreprise/entreprise';
 
 
 @Component({
@@ -29,9 +31,9 @@ export class AccueilComponent implements OnInit {
   states;
   public offresCarouselItems: Array<any> = [];
   public offresCarousel: NgxCarousel;
-  enterprises: Array<any> = [];
+  entreprises: Entreprise[];
 
-  constructor(private routerToOffres: Router, private acceuilService: AcceuilService) {
+  constructor(private routerToOffres: Router, private entrepriseService: EntrepriseService) {
     this.stateCtrl = new FormControl();
     this.filteredKeysWord = this.stateCtrl.valueChanges
       .pipe(
@@ -48,7 +50,7 @@ export class AccueilComponent implements OnInit {
     this.initKeysWord();
     this.initTowns();
     this.initCountryCarousel();
-    this.getEnterprises();
+    this.getEntreprises();
   }
 
   private initKeysWord(): void {
@@ -555,13 +557,10 @@ export class AccueilComponent implements OnInit {
     };
   }
 
-  public getEnterprises(): void {
-    this.acceuilService.getEnterprises()
-    .subscribe(data => {
-      data.map(enterprise => {
-        enterprise.img = '../../assets/logos_enterprises/' + enterprise.img;
-      });
-      this.enterprises = data;
+  public getEntreprises(): void {
+    this.entrepriseService.getEntreprises().subscribe(data => {
+      this.entreprises = data;
+      console.log(this.entreprises);
     });
   }
 }

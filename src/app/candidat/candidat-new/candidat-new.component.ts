@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {CandidatService} from '../candidat.service';
+import {Candidat} from '../candidat';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-candidat-new',
@@ -7,19 +10,33 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./candidat-new.component.css']
 })
 export class CandidatNewComponent implements OnInit {
-  isLinear = false;
-  candidatEtape1FormGroup: FormGroup;
-  candidatEtape2FormGroup: FormGroup;
-  candidatEtape3FormGroup: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+
+  candidatForm: FormGroup;
+  candidat: Candidat;
+
+  constructor(private _formBuilder: FormBuilder,
+              private candidatService: CandidatService,
+              private routerToCandidat: Router) { }
 
   ngOnInit() {
-    this.candidatEtape1FormGroup = this._formBuilder.group({
+    this.formulaireCreationCompte();
+  }
+
+  formulaireCreationCompte() {
+    this.candidatForm = this._formBuilder.group({
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      telephone: ['', [Validators.required]]
     });
-    this.candidatEtape2FormGroup = this._formBuilder.group({
-    });
-    this.candidatEtape3FormGroup = this._formBuilder.group({
-    });
+  }
+
+  creerCandidat(candidat: Candidat) {
+    this.candidatService.creerCompte(candidat).subscribe((candidat_: Candidat) => {
+      this.candidat = candidat_;
+      this.candidatForm.reset();
+      this.routerToCandidat.navigate(['/candidats/' + this.candidat.id]);
+      });
   }
 
 }

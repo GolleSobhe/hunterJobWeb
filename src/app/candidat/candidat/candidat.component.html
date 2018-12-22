@@ -1,56 +1,86 @@
 <div>
-  <div><h1>Mon profil</h1></div>
-  <div class="flex-container">
-    <div class="flex-div one">
-      <h4>{{candidat.prenomCandidat}}</h4><h4>{{candidat.nomCandidat}}</h4>
-      <br>
-      <br>
-      <div>
-        <span>Vous êtes en recherches active</span>
-        <button>Passer en recherche passsive</button>
-      </div>
-      <br>
-      <br>
-      <div>
-        <i class="fa fa-envelope"></i> <span> {{candidat.emailCandidat}}</span><i class="fa fa-edit none"></i><br>
-        <i class="fa fa-phone"></i><span> {{candidat.telephoneCandidat}}</span><i class="fa fa-edit none"></i><br>
-        <i class="fa fa-suitcase"></i><span> {{candidat.anneesExperiencesCandidat}} ans</span><i class="fa fa-edit none"></i><br>
-        <i class="fa fa-book"></i><span> {{candidat.annesEtudesCandidat}} ans</span><i class="fa fa-edit none"></i><br>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div>
-        <h4>Mes compétences</h4>
-        <div>{{candidat.typeEmploiSouhaiteCandidat}}</div>
-        <br>
-        <h5>Localisation</h5>
+    <h3>Créer votre profil</h3>
+    <hr>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-step [stepControl]="candidatEtape1FormGroup">
+        <form [formGroup]="candidatEtape1FormGroup">
+          <ng-template matStepLabel>Informations personnelles</ng-template>
+          <!--FORMULAIRE DE CREATION PROFIL CANDIDAT-->
+          <div class="itemCandidat">
+            <label><b>Nom : </b></label>
+            <input type="text" matInput formControlName="nom" required><br/>
+            <label><b>Prenom</b></label> 
+            <input type="text" matInput formControlName="prenom" required><br>
+            <label><b>Email</b></label> 
+            <input type="email" matInput formControlName="email" required><br>
+            <label><b>Telephone</b></label>
+            <input type="telephone" matInput formControlName="telephone" required> <br>
+            <label><b>Adresse : </b></label>
+            <input type="text"  matInput formControlName="adresse" required>            
+          </div>      
+          <div>
+            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>  
+    
+      <mat-step [stepControl]="candidatEtape2FormGroup">
+        <ng-template matStepLabel>Expériences et Etudes </ng-template>
+        <form [formGroup]="candidatEtape2FormGroup">
+          <div>
+            <label><b>Titre : </b></label>
+            <input type="text" matInput formControlName="titreProfil" required><br/>
+          </div>       
+          <div>
+            <label><b>Expériences(hors stage)</b></label><br/>
+            <input type="number" placeholder="0" formControlName="anneesExperience" required><br/>
+          </div>
+          <div>
+            <label><b>Etudes</b></label> <br/>
+            <input type="number" placeholder="0" formControlName="anneesEtude" required><br/>      
+          </div>
+          <div>
+            <label><b>Télécharger votre CV</b></label> <br/>
+            <input type="file" formControlName="cv" required>
+          </div>
+          <div>
+            <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+    
+      <mat-step [stepControl]="candidatEtape3FormGroup">
+        <ng-template matStepLabel>Préférence d'emploi</ng-template>
         <div>
-          <p>{{candidat.adresseCandidat}}</p>
-          <mat-checkbox [checked]= "candidat.relocalisation">Mobile</mat-checkbox> 
+          <h2><b>Intitulé du poste souhaité</b></h2>
         </div>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div>
-        <h5>Mes conditions</h5>
-        <label>Salaire : </label><label>{{candidat.salaireParMoisCandidat}}K euros</label><br>
-      </div>
-
-    </div>
-    <div class="flex-div auto">
-      <div class="titreProfil">
-        <span><h2>{{candidat.titreProfil}}</h2></span> 
-        <i class="fa fa-edit none"></i>
-      </div>
-      <div class="div-scroll">
-        <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;">
-          
-        </pdf-viewer>
-      </div>
-    </div>
-  </div>
+        <form [formGroup]="candidatEtape3FormGroup" class="formulaire container">
+          <div>
+            <label><b>Type d'emploi</b></label> <br/>
+            <div>
+              <mat-checkbox formControlName="cdi">CDI</mat-checkbox>
+              <mat-checkbox formControlName="cdd">CDD</mat-checkbox><br/>
+              <mat-checkbox formControlName="aprentissage">Aprentissage/Alternance</mat-checkbox>
+              <mat-checkbox formControlName="independant">Freelance/Independant</mat-checkbox><br/>
+              <mat-checkbox formControlName="stage">Stage</mat-checkbox>
+              <mat-checkbox formControlName="interim">Interim</mat-checkbox>
+            </div>
+            <div>
+              <label><b>Salaire</b></label>
+              <input type="number" placeholder="0" formControlName="salaire" required><br/>
+            </div>
+            <div>
+              <label><b>Relocalisation</b></label> <br/>
+              <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
+            </div>  
+            <div>
+              <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
+              <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
+              <button type="submit" class="button-suivant" color="primary" (click)="valider()">Confirmation</button>
+            </div>        
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
 </div>

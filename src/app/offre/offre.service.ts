@@ -1,99 +1,58 @@
+import { environment } from './../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Competence, Offre, TypeContrat} from './offre';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Validators} from '@angular/forms';
+import {Offre } from './offre';
 
 @Injectable()
 export class OffreService {
 
-  private _listeOffres: BehaviorSubject<Offre[]> = new BehaviorSubject<Offre[]>([]);
-  listeOffres: Observable<Offre[]>;
+  private  ApiUrl = environment.apiUrl;
 
   constructor(private _http: HttpClient) {
-    this.listeOffres = this._listeOffres.asObservable();
-  }
-
-  modifierTableau(offres): void {
-    this._listeOffres.next(offres);
   }
 
   getOffres(): Observable<Offre[]> {
-    return this._http.get<Offre[]>('api/offres');
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offre/all`);
   }
 
-  creerOffre(offre: Offre): Observable<Offre> {
+  getCompetences(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.ApiUrl}/offre/competences`);
+  }
+
+  creerOffre(entreprise_id: number, offre: Offre): Observable<Offre> {
     const headers = new HttpHeaders();
 
     headers.append('Content-Type', 'application/json');
 
-    const model = {
-      titre: offre.titre,
-      specialisation: offre.specialisation,
-      // competences: string[];
-      typeDesContrats: offre.typeDesContrats,
-      anneesExperience: offre.anneesExperience,
-      salaireParMois: offre.salaireParMois,
-      lieu: offre.lieu,
-      secteur: offre.secteur,
-      description: offre.description
-    };
-
-    return this._http.post<Offre>('api/offres', offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=${entreprise_id}`, offre, {headers: headers});
   }
 
-  creerOffreOtherProfession(offre: any): Observable<any> {
+  creerOffreOtherProfession(entrprise_id: number, offre): Observable<any> {
     const headers = new HttpHeaders();
 
     headers.append('Content-Type', 'application/json');
 
+    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=entreprise_id`, offre, {headers: headers});
+  }
 
-    return this._http.post<any>('api/offres', offre, {headers: headers});
+  getProduit(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.ApiUrl}/offre/produits`);
+  }
+
+  getSpecialisation(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.ApiUrl}/offre/specialisations`);
   }
 
   getOffre(id: number): Observable<Offre> {
-    return this._http.get<Offre>('api/offres/' + id);
+    return this._http.get<Offre>(`${this.ApiUrl}/offre/${id}`);
   }
 
-  /* METIERS */
-  getProfessions(): Observable<any> {
-    return this._http.get('api/metiers');
-  }
-
-  getSpecialisation(): Observable<any> {
-    return this._http.get('api/specialisation');
-  }
-
-  getProduit(): Observable<any> {
-    return this._http.get('api/produit');
-  }
-
-  getCompetences(): Observable<Competence[]> {
-    return this._http.get<Competence[]>('api/competences');
-  }
-
-  getTypeContrat1(): Observable<any> {
-    return this._http.get('api/typeContratV1');
-  }
-
-  getTypeContrat2(): Observable<any> {
-    return this._http.get('api/typeContratV1');
-  }
-
-  getTypeContrat() {
-    return this._http.get<TypeContrat[]>('api/typeContrat');
-  }
-
-  getDomaine1(): Observable<any> {
-    return this._http.get('api/domaine1');
-  }
-
-  getDomaine2(): Observable<any> {
-    return this._http.get('api/domaine2');
+  getDomaines(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.ApiUrl}/offre/domaines`);
   }
 
   getPays(): Observable<any> {
-    return this._http.get('api/pays');
+    return this._http.get(`${this.ApiUrl}/pays`);
   }
 }

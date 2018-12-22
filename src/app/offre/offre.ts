@@ -15,7 +15,11 @@ export interface Competence {
   name: string;
 }
 
-export interface TypeContrat {
-  id: number;
-  name: string;
+export enum TypeContrat {
+  CDD ,
+  CDI ,
+  Interim,
+  Freelance,
+  Apprentissage,
+  Stage
 }

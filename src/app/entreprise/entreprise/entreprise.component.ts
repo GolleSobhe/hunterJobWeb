@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EntrepriseService } from '../entreprise.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {switchMap} from 'rxjs/internal/operators';
+import {Entreprise} from '../entreprise';
 
 @Component({
   selector: 'app-entreprise',
@@ -10,36 +13,25 @@ import { EntrepriseService } from '../entreprise.service';
 export class EntrepriseComponent implements OnInit {
 
   entrepriseFormGroup: FormGroup;
-  candidatsByEntreprise: Array<any> = [];
-  offresByEntreprise:  Array<any> = [];
-  abonnementByEntreprise: any = {};
-  constructor(private entrepriseService: EntrepriseService) {}
+
+  entreprise: Entreprise;
+
+  constructor(private entrepriseService: EntrepriseService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getCandidatsByEntreprise();
-    this.getAbonnementByEntreprise();
-    this.getOffresByEntreprise();
+    this.getEntrepriseById();
   }
 
-  private getCandidatsByEntreprise(): void {
-    this.entrepriseService.getCandidatsByEntreprise()
-    .subscribe(data => {
-      this.candidatsByEntreprise = data;
-    });
-  }
+  private getEntrepriseById(): void {
 
-  private getAbonnementByEntreprise(): void {
-    this.entrepriseService.getAbonnementByEntreprise()
-    .subscribe(data => {
-      this.abonnementByEntreprise = data[0];
-    });
-  }
+    this.activatedRoute.paramMap.pipe(
 
-  private getOffresByEntreprise(): void {
-    this.entrepriseService.getOffresByEntreprise()
-    .subscribe(data => {
-      this.offresByEntreprise = data;
-    });
-  }
+      switchMap((params: ParamMap) =>
+        this.entrepriseService.getEntrepriseById(parseInt(params.get('id'), 10))
+      )).subscribe((entreprise: Entreprise) => {
 
+      this.entreprise = entreprise;
+      console.log(this.entreprise);
+    }, error => console.log(error));
+  }
 }

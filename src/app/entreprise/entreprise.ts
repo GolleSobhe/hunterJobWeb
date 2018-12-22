@@ -1,13 +1,11 @@
-export default class Entreprise {
-    nomEntreprise: String;
-    adresseEntreprise: String;
-    telephoneEntreprise: String;
-    mailEntreprise: String;
-    logoEntreprise: String;
-    urlEntreprise: String;
-    secteurActivites: String;
-    descriptionEntreprise: String;
-    constructor() {
-
-    }
+export interface Entreprise {
+    id?: number;
+    nom: String;
+    adresse: String;
+    telephone: String;
+    email: String;
+    // logo: String;
+    siteWeb: String;
+    secteurActivite: String;
+    description: String;
 }

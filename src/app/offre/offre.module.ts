@@ -14,6 +14,8 @@ import {
   MatButtonToggleModule,
 } from '@angular/material';
 
+import {MatDialogModule} from '@angular/material/dialog';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import { CreationOffreComponent } from './creation-offre/creation-offre.component';
@@ -23,6 +25,7 @@ import { ComputerScienceComponent } from './creation-offre/computer-science/comp
 import { OthersProfessionComponent } from './creation-offre/others-profession/others-profession.component';
 import {OffreDetailsComponent} from './offre-list/offre-details/offre-details.component';
 import {PaymentComponent} from './creation-offre/payment/payment.component';
+import {AppercuComponent} from './creation-offre/computer-science/appercu/appercu.component';
 
 @NgModule({
   imports: [
@@ -45,7 +48,8 @@ import {PaymentComponent} from './creation-offre/payment/payment.component';
     MatRadioModule,
     MatIconModule,
     MatAutocompleteModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
   declarations: [
     OffreListComponent,
@@ -55,8 +59,14 @@ import {PaymentComponent} from './creation-offre/payment/payment.component';
     ComputerScienceComponent,
     OffreDetailsComponent,
     PaymentComponent,
-    OthersProfessionComponent
-  ]
+    OthersProfessionComponent,
+    AppercuComponent
+  ],
+  exports: [],
+
+  entryComponents: [
+    AppercuComponent
+  ],
 })
 export class OffreModule {
 }

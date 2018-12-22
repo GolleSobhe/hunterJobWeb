@@ -4,11 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --aot",
+    "start": "ng serve --aot",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "deploy": "ng build --base-href https://gollesobhe.github.io/hunterJobWeb/ --prod --aot --configuration production",
     "api": "json-server --watch api/data.json --routes routes.json"
   },
   "private": true,
