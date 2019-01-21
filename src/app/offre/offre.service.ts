@@ -56,7 +56,7 @@ export class OffreService {
     return this._http.get<Offre[]>(`${this.ApiUrl}/offre/all`);
   }
 
-  getByPage(pageNumber: number, pageSize): Observable<Offre[]> {
+  getByPage(pageNumber: number, pageSize, specialisation?: string, contractType?: string): Observable<Offre[]> {
     pageNumber --;
     return this._http.get<Offre[]>(`${this.ApiUrl}/offre?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }

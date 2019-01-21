@@ -1,10 +1,17 @@
-<div class="container">
+<div class="container" *ngIf="contractType">
 
   <h2 align="center">L'ensemble de toutes nos offres</h2>
 
   <div class="row">
     <div class="column1">
-      sdfqsdfsq
+      <div class="filters-column">
+        <h3>Filtrer vos offres</h3>
+        <p>Spécialisations</p>
+        <button *ngFor="let contract of contractType; let i=index" (click)="clickEvent(i)" class="button-filters"
+          [ngClass]="contract.selected ? 'select-specialisation' : 'unselect-specialisation'">
+          {{contract.name}}
+        </button>
+      </div>
     </div>
 
     <div class="column2">

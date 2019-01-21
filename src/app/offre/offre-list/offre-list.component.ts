@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Offre } from '../offre';
+import { Offre, TypeContrat } from '../offre';
 import { OffreService } from '../offre.service';
 import { reject } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,14 +23,27 @@ export class OffreListComponent implements OnInit {
 
   pages: any;
 
+  //filters
+  specialisationFilter: string;
+  contractFilter: string;
+  specialisation: string;
+
+  contractType = [{ id: 0, name: "Tous", selected: true }, { id: 1, name: "CDD", selected: false }, { id: 2, name: "CDI", selected: false },
+  { id: 3, name: "Interim", selected: false }, { id: 4, name: "Freelance", selected: false },
+  { id: 5, name: "Apprentissage", selected: false }, { id: 6, name: "Stage", selected: false }];
+
   constructor(private offreService: OffreService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+
     this.getByPage();
+
+    this.getFiltersData();
   }
 
   getByPage() {
+    
     this.activatedRoute.params.subscribe((param: { page: string }) => {
       this.currentPage = +param.page || 1;
 
@@ -38,7 +51,7 @@ export class OffreListComponent implements OnInit {
         this.currentPage = 1;
       }
 
-      this.offreService.getByPage(this.currentPage, this.pageSize).subscribe((result) => {
+      this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationFilter, this.contractFilter).subscribe((result) => {
         this.offreList = result['content'];
         this.totalElements = result['totalElements'];
         this.totalPages = result['totalPages'];
@@ -66,16 +79,38 @@ export class OffreListComponent implements OnInit {
     });
   }
 
-  constructButtons(n: number): any[] {
-    return Array(n);
-  }
-
-  private getAllOffre() {
-    this.offreService.getAll().subscribe((offres: Offre[]) => {
-      this.offreList = offres;
-      console.log(this.offreList);
+  getFiltersData() {
+    this.offreService.getSpecialisations().subscribe((specialisations: string[]) => {
+    //  this.specialisations = specialisations;
     }, error => {
       reject(error);
     });
+  }
+
+  clickEvent(index: number) {
+    this.contractType[index].selected = !this.contractType[index].selected;
+    this.contractFilter = this.contractType[index].name;
+    let i = 1;
+    const length = this.contractType.length;
+
+    for (i = 1; i < length; i++) {
+      if (this.contractType[i].selected) {
+        break;
+      }
+    }
+
+    if (i === length) {
+      this.contractType[0].selected = true;
+    }
+
+    this.getByPage();
+  }
+
+  filterBySpecialisation() {
+
+  }
+
+  filterByContractType() {
+
   }
 }
