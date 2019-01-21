@@ -25,3 +25,9 @@ export enum TypeContrat {
   Stage
 }
 
+export interface Specialisation {
+  id: number;
+  name: string;
+  selected: boolean;
+}
+

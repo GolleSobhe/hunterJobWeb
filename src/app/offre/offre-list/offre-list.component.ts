@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Offre, TypeContrat } from '../offre';
+import { Offre, TypeContrat, Specialisation } from '../offre';
 import { OffreService } from '../offre.service';
 import { reject } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class OffreListComponent implements OnInit {
   //filters
   specialisationFilter: string;
   contractFilter: string;
-  specialisation: string;
+  specialisations: Specialisation[] = [];
 
   contractType = [{ id: 0, name: "Tous", selected: true }, { id: 1, name: "CDD", selected: false }, { id: 2, name: "CDI", selected: false },
   { id: 3, name: "Interim", selected: false }, { id: 4, name: "Freelance", selected: false },
@@ -39,10 +39,14 @@ export class OffreListComponent implements OnInit {
 
     this.getByPage();
 
-    this.getFiltersData();
+    this.specialisations.push({id: 0, name: 'Tous', selected: true});
+
+    this.constructSpecialisationData();
   }
 
   getByPage() {
+
+    console.log(this.specialisationFilter, this.contractFilter);
     
     this.activatedRoute.params.subscribe((param: { page: string }) => {
       this.currentPage = +param.page || 1;
@@ -79,9 +83,12 @@ export class OffreListComponent implements OnInit {
     });
   }
 
-  getFiltersData() {
+  constructSpecialisationData() {
     this.offreService.getSpecialisations().subscribe((specialisations: string[]) => {
-    //  this.specialisations = specialisations;
+      let i = 1;
+      specialisations.forEach((spec: string) => {
+        this.specialisations.push({id: i++, name: spec, selected: false})
+      })
     }, error => {
       reject(error);
     });
@@ -101,6 +108,25 @@ export class OffreListComponent implements OnInit {
 
     if (i === length) {
       this.contractType[0].selected = true;
+    }
+
+    this.getByPage();
+  }
+
+  clickSpecialisationEvent(index: number) {
+    this.specialisations[index].selected = !this.specialisations[index].selected;
+    this.specialisationFilter = this.specialisations[index].name;
+    let i = 1;
+    const length = this.specialisations.length;
+
+    for (i = 1; i < length; i++) {
+      if (this.specialisations[i].selected) {
+        break;
+      }
+    }
+
+    if (i === length) {
+      this.specialisations[0].selected = true;
     }
 
     this.getByPage();
