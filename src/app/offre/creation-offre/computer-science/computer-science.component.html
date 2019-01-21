@@ -1,8 +1,10 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
   <mat-step [stepControl]="detailOffreForm">
     <form [formGroup]="detailOffreForm">
       <ng-template matStepLabel>Détail de l'offre</ng-template>
       <!--FORMULAIRE DU DÉTAIL DE L'OFFRE-->
+
 
       <label for="titre"><b>Intitulé du poste</b></label> <br>
       <input type="text" matInput placeholder="Titre du poste" id="titre" formControlName="titre" required
@@ -21,7 +23,7 @@
             <label>Technique </label>
             <ul>
               <li *ngFor="let spec of specialisations">
-                <mat-radio-button value={{spec}}>{{spec}}</mat-radio-button>
+                <mat-radio-button color="primary" value={{spec}}>{{spec}}</mat-radio-button>
               </li>
             </ul>
           </div>
@@ -30,11 +32,12 @@
             <label>Produit</label>
             <ul>
               <li *ngFor="let prod of produit">
-                <mat-radio-button value={{prod}}>{{prod}}</mat-radio-button>
+                <mat-radio-button color="primary" value={{prod}}>{{prod}}</mat-radio-button>
               </li>
             </ul>
           </div>
         </div>
+
       </mat-radio-group>
 
       <mat-error *ngIf="specialisation.hasError('required') && submittedNext">
@@ -44,6 +47,7 @@
       <br>
       <label>Compétences réquises</label>
       <br>
+
 
       <div>
         <button (click)="clickEvent(1, 'Java')" class="button-competence"
@@ -102,7 +106,7 @@
           <div class="column-out">
             <ul *ngFor="let typeContrat of listeTypeContrat1">
               <li>
-                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+                <mat-radio-button color="primary" value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
               </li>
             </ul>
           </div>
@@ -110,7 +114,7 @@
           <div class="column-out">
             <ul *ngFor="let typeContrat of listeTypeContrat2">
               <li>
-                <mat-radio-button value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
+                <mat-radio-button color="primary" value={{typeContrat}}>{{typeContrat}}</mat-radio-button>
               </li>
             </ul>
           </div>
@@ -141,7 +145,7 @@
       </mat-error>
 
       <div>
-        <button mat-button matStepperNext style="float: right;" (click)="submittedNext=true;">Suivant</button>
+        <button mat-raised-button color="primary" matStepperNext style="float: right;" (click)="submittedNext=true;">Suivant</button>
       </div>
     </form>
   </mat-step>
@@ -158,7 +162,7 @@
           <div class="column-out">
             <ul *ngFor="let domaine of domaine1">
               <li>
-                <mat-radio-button value="{{domaine}}">{{domaine}}</mat-radio-button>
+                <mat-radio-button color="primary" value="{{domaine}}">{{domaine}}</mat-radio-button>
               </li>
             </ul>
           </div>
@@ -166,7 +170,7 @@
           <div class="column-out">
             <ul *ngFor="let domaine of domaine2">
               <li>
-                <mat-radio-button value="{{domaine}}">{{domaine}}</mat-radio-button>
+                <mat-radio-button color="primary" value="{{domaine}}">{{domaine}}</mat-radio-button>
               </li>
             </ul>
           </div>
@@ -206,8 +210,8 @@
       </mat-error>
 
       <div>
-        <button style="float: right;" mat-button matStepperNext (click)="submittedFormNext=true">Suivant</button>
-        <button style="float: right;" mat-button matStepperPrevious>Précédent</button>
+        <button style="float: right;" mat-raised-button color="primary" matStepperNext (click)="submittedFormNext=true">Suivant</button>
+        <button style="float: right;" mat-raised-button color="primary" matStepperPrevious>Précédent</button>
       </div>
     </form>
   </mat-step>
@@ -218,11 +222,11 @@
       <!--FORMULAIRE DE PAYEMENT-->
 
       <div>
-        <button style="float: right;" mat-raised-button color="primary"  (click)="openDialog()">Apperçu</button>
+        <button style="float: right;" mat-raised-button color="primary" (click)="openDialog()">Apperçu</button>
         <button style="float: right;" type="submit" mat-raised-button color="primary" [disabled]="!detailOffreForm.valid ||
         !descriptionOffreForm.valid" (click)="creerOffre()">Confirmation</button>
-        <button style="float: right;" mat-button (click)="stepper.reset(); resetSelectSkills()">Annuler</button>
-        <button style="float: right;" mat-button matStepperPrevious>Précédent</button>
+        <button style="float: right;" mat-raised-button color="primary" (click)="stepper.reset(); resetSelectSkills()">Annuler</button>
+        <button style="float: right;" mat-raised-button color="primary" matStepperPrevious>Précédent</button>
       </div>
     </form>
 

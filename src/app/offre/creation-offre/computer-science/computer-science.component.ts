@@ -3,7 +3,6 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {OffreService} from '../../offre.service';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
-import {isNullOrUndefined} from 'util';
 import {Offre, TypeContrat} from '../../offre';
 import {Router} from '@angular/router';
 import {ErrorStateMatcher, MatDialog} from '@angular/material';
@@ -25,8 +24,8 @@ export class ComputerScienceComponent implements OnInit {
   isLinear = true;
   submittedNext = false;
   submittedFormNext = false;
-  descriptionMaxLength: 800;
-  descriptionMinLength: 20;
+  descriptionMaxLength = 800;
+  descriptionMinLength = 20;
 
   detailOffreForm: FormGroup;
   descriptionOffreForm: FormGroup;
@@ -258,7 +257,7 @@ export class ComputerScienceComponent implements OnInit {
   }
 
   getSpecialisations() {
-    this.offreService.getSpecialisation().subscribe(result => {
+    this.offreService.getSpecialisations().subscribe(result => {
       this.specialisations = result;
     }, error => console.log(error));
   }
@@ -306,11 +305,11 @@ export class ComputerScienceComponent implements OnInit {
       titre: detailOffre.titre,
       specialisation: detailOffre.specialisation,
       competences: detailOffre.competences,
-      typeDesContrats: detailOffre.typeDesContrats,
+      type: detailOffre.typeDesContrats,
       anneesExperience: detailOffre.anneesExperience,
-      salaireParMois: detailOffre.salaireParMois,
+      salaire: detailOffre.salaireParMois,
       lieu: descriptionOffre.lieu,
-      secteur: descriptionOffre.secteur,
+      secteurActivite: descriptionOffre.secteur,
       description: descriptionOffre.description
     };
 
