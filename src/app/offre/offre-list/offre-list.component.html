@@ -2,6 +2,22 @@
 
   <h2 align="center">L'ensemble de toutes nos offres</h2>
 
+  <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="search-column1">
+      <input type="text" matInput placeholder="Quoi ?" id="title" formControlName="title" name="title">
+      </div>
+
+      <div class="search-column2">
+      <input type="text" matInput placeholder="Ville" id="city" formControlName="city" name="city">
+      </div>
+
+      <div class="search-column3">
+          <button  mat-raised-button color="primary" (click)=search()>Search</button>
+      </div>
+    </div>
+  </form>
+
   <div class="row">
     <div class="column1">
       <div class="filters-column">

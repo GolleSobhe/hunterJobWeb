@@ -3,6 +3,7 @@ import { Offre, TypeContrat, Specialisation } from '../offre';
 import { OffreService } from '../offre.service';
 import { reject } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-offre-list',
@@ -29,8 +30,14 @@ export class OffreListComponent implements OnInit {
   specialisations: Specialisation[] = [];
   contractType = [];
 
+  //Input search
+  city: string;
+  title: string;
+  searchForm: FormGroup;
+
   constructor(private offreService: OffreService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -41,6 +48,8 @@ export class OffreListComponent implements OnInit {
     this.specialisations.push({ id: 0, name: 'Tous', selected: true });
 
     this.constructSpecialisationData();
+
+    this.createSearchForm();
   }
 
   getByPage() {
@@ -159,5 +168,21 @@ export class OffreListComponent implements OnInit {
       this.specialisationFilter = this.specialisations[index].name;
       this.getByPage();
     }
+  }
+
+  //Search Form
+  createSearchForm() {
+    this.searchForm = this.formBuilder.group({
+      title: ['', [Validators.nullValidator]],
+      city: ['', [Validators.nullValidator]],
+    });
+  }
+
+  search() {
+    this.title = this.searchForm.value.title;
+    this.city = this.searchForm.value.city;
+    this.getByPage();
+    this.searchForm.reset();
+    this.title = (this.city = null);
   }
 }

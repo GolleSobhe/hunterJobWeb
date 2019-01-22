@@ -44,6 +44,24 @@
   clear: both;
 }
 
+.search-column1 {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+
+.search-column2 {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+
+.search-column3 {
+  float: left;
+  width: 10%;
+  padding: 10px;
+}
+
 .column1 {
   float: left;
   width: 25%;
@@ -81,6 +99,7 @@
   border: 2px solid #dedede;
   background-color: #f1f1f1;
   border-radius: 5px;
+  width: 100%;
   padding: 10px;
   margin: 4px 0;
 }
@@ -88,5 +107,6 @@
 .filters-column::after {
   content: "";
   clear: both;
+  width: 100%;
   display: table;
 }
