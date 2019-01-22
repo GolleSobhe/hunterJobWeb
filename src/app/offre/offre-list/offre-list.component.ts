@@ -27,27 +27,23 @@ export class OffreListComponent implements OnInit {
   specialisationFilter: string;
   contractFilter: string;
   specialisations: Specialisation[] = [];
-
-  contractType = [{ id: 0, name: "Tous", selected: true }, { id: 1, name: "CDD", selected: false }, { id: 2, name: "CDI", selected: false },
-  { id: 3, name: "Interim", selected: false }, { id: 4, name: "Freelance", selected: false },
-  { id: 5, name: "Apprentissage", selected: false }, { id: 6, name: "Stage", selected: false }];
+  contractType = [];
 
   constructor(private offreService: OffreService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
+    this.initContractType();
+
     this.getByPage();
 
-    this.specialisations.push({id: 0, name: 'Tous', selected: true});
+    this.specialisations.push({ id: 0, name: 'Tous', selected: true });
 
     this.constructSpecialisationData();
   }
 
   getByPage() {
-
-    console.log(this.specialisationFilter, this.contractFilter);
-    
     this.activatedRoute.params.subscribe((param: { page: string }) => {
       this.currentPage = +param.page || 1;
 
@@ -83,11 +79,17 @@ export class OffreListComponent implements OnInit {
     });
   }
 
+  initContractType() {
+    this.contractType = [{ id: 0, name: "Tous", selected: true }, { id: 1, name: "CDD", selected: false }, { id: 2, name: "CDI", selected: false },
+    { id: 3, name: "Interim", selected: false }, { id: 4, name: "Freelance", selected: false },
+    { id: 5, name: "Apprentissage", selected: false }, { id: 6, name: "Stage", selected: false }]
+  }
+
   constructSpecialisationData() {
     this.offreService.getSpecialisations().subscribe((specialisations: string[]) => {
       let i = 1;
       specialisations.forEach((spec: string) => {
-        this.specialisations.push({id: i++, name: spec, selected: false})
+        this.specialisations.push({ id: i++, name: spec, selected: false })
       })
     }, error => {
       reject(error);
@@ -96,8 +98,8 @@ export class OffreListComponent implements OnInit {
 
   clickEvent(index: number) {
     this.contractType[index].selected = !this.contractType[index].selected;
-    this.contractFilter = this.contractType[index].name;
-    let i = 1;
+    let i =  1;
+
     const length = this.contractType.length;
 
     for (i = 1; i < length; i++) {
@@ -106,16 +108,27 @@ export class OffreListComponent implements OnInit {
       }
     }
 
-    if (i === length) {
-      this.contractType[0].selected = true;
+    if (i === length || index === 0) {
+      this.initContractType();
+      this.contractFilter = null;
+      this.getByPage();
     }
 
-    this.getByPage();
+    for (let j = 1; j < this.contractType.length; j++) {
+      if (this.contractType[j].selected) {
+        this.contractType[0].selected = false;
+      }
+    }
+
+    if(this.contractType[index].selected && index !== 0) {
+      this.contractFilter = this.contractType[index].name;
+      this.getByPage();
+    }
   }
 
   clickSpecialisationEvent(index: number) {
     this.specialisations[index].selected = !this.specialisations[index].selected;
-    this.specialisationFilter = this.specialisations[index].name;
+   
     let i = 1;
     const length = this.specialisations.length;
 
@@ -125,18 +138,26 @@ export class OffreListComponent implements OnInit {
       }
     }
 
-    if (i === length) {
+    if (i === length ||  index === 0) {
       this.specialisations[0].selected = true;
+      this.specialisationFilter = null;
+
+      for (let j = 1; j < length; j++) {
+        this.specialisations[j].selected = false;
+      }
+
+      this.getByPage();
     }
 
-    this.getByPage();
-  }
+    for (let j = 1; j < this.specialisations.length; j++) {
+      if (this.specialisations[j].selected) {
+        this.specialisations[0].selected = false;
+      }
+    }
 
-  filterBySpecialisation() {
-
-  }
-
-  filterByContractType() {
-
+    if(this.specialisations[index].selected && index !== 0){
+      this.specialisationFilter = this.specialisations[index].name;
+      this.getByPage();
+    }
   }
 }
