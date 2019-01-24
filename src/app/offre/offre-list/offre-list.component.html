@@ -5,15 +5,15 @@
   <form [formGroup]="searchForm">
     <div class="row">
       <div class="search-column1">
-      <input type="text" matInput placeholder="Quoi ?" id="title" formControlName="title" name="title">
+        <input type="text" matInput placeholder="Quoi ?" id="title" formControlName="title" name="title">
       </div>
 
       <div class="search-column2">
-      <input type="text" matInput placeholder="Ville" id="city" formControlName="city" name="city">
+        <input type="text" matInput placeholder="Ville" id="city" formControlName="city" name="city">
       </div>
 
       <div class="search-column3">
-          <button  mat-raised-button color="primary" (click)=search()>Search</button>
+        <button mat-raised-button color="primary" (click)=search()>Search</button>
       </div>
     </div>
   </form>
@@ -42,14 +42,15 @@
       <div *ngFor="let offre of offreList">
         <app-offre-item [offre]="offre"></app-offre-item>
       </div>
+
+      <div align="center">
+        <div class="pagination paginator">
+          <a [routerLink]="['/offres/page/', currentPage-1]" [hidden]="currentPage==1">&laquo;</a>
+          <a *ngFor="let page of pages" [routerLink]="['/offres/page/', page]" [ngClass]="{active:currentPage === page}">{{page}}</a>
+          <a [routerLink]="['/offres/page/', currentPage+1]" [hidden]="currentPage==totalPages">&raquo;</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div align="center">
-    <div class="pagination paginator">
-      <a [routerLink]="['/offres/page/', currentPage-1]" [hidden]="currentPage==1">&laquo;</a>
-      <a *ngFor="let page of pages" [routerLink]="['/offres/page/', page]" [ngClass]="{active:currentPage === page}">{{page}}</a>
-      <a [routerLink]="['/offres/page/', currentPage+1]" [hidden]="currentPage==totalPages">&raquo;</a>
-    </div>
-  </div>
 </div>

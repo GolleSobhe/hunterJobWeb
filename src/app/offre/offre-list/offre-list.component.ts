@@ -15,7 +15,7 @@ export class OffreListComponent implements OnInit {
   offreList: Offre[] = [];
 
   currentPage: number;
-  private pageSize = 5;
+  private pageSize = 15;
 
   totalPages: number;
   totalElements: number;
