@@ -25,8 +25,8 @@ export class OffreListComponent implements OnInit {
   pages: any;
 
   //filters
-  specialisationFilter: string;
-  contractFilter: string;
+  specialisationFilter: string[] = [];
+  contractFilter: string[] = [];
   specialisations: Specialisation[] = [];
   contractType = [];
 
@@ -94,6 +94,13 @@ export class OffreListComponent implements OnInit {
     { id: 5, name: "Apprentissage", selected: false }, { id: 6, name: "Stage", selected: false }]
   }
 
+  initSpecialisations() {
+    this.specialisations[0].selected = true;
+    for (let i = 1; i < this.specialisations.length; i++) {
+      this.specialisations[i].selected = false;
+    }
+  }
+
   constructSpecialisationData() {
     this.offreService.getSpecialisations().subscribe((specialisations: string[]) => {
       let i = 1;
@@ -107,7 +114,7 @@ export class OffreListComponent implements OnInit {
 
   clickEvent(index: number) {
     this.contractType[index].selected = !this.contractType[index].selected;
-    let i =  1;
+    let i = 1;
 
     const length = this.contractType.length;
 
@@ -120,24 +127,22 @@ export class OffreListComponent implements OnInit {
     if (i === length || index === 0) {
       this.initContractType();
       this.contractFilter = null;
-      this.getByPage();
     }
 
     for (let j = 1; j < this.contractType.length; j++) {
       if (this.contractType[j].selected) {
+        this.contractFilter.push(this.contractType[j].name);
         this.contractType[0].selected = false;
       }
     }
 
-    if(this.contractType[index].selected && index !== 0) {
-      this.contractFilter = this.contractType[index].name;
-      this.getByPage();
-    }
+    this.getByPage();
+    this.contractFilter = [];
   }
 
   clickSpecialisationEvent(index: number) {
     this.specialisations[index].selected = !this.specialisations[index].selected;
-   
+
     let i = 1;
     const length = this.specialisations.length;
 
@@ -147,27 +152,20 @@ export class OffreListComponent implements OnInit {
       }
     }
 
-    if (i === length ||  index === 0) {
-      this.specialisations[0].selected = true;
+    if (i === length || index === 0) {
+      this.initSpecialisations();
       this.specialisationFilter = null;
-
-      for (let j = 1; j < length; j++) {
-        this.specialisations[j].selected = false;
-      }
-
-      this.getByPage();
     }
 
     for (let j = 1; j < this.specialisations.length; j++) {
       if (this.specialisations[j].selected) {
+        this.specialisationFilter.push(this.specialisations[j].name);
         this.specialisations[0].selected = false;
       }
     }
 
-    if(this.specialisations[index].selected && index !== 0){
-      this.specialisationFilter = this.specialisations[index].name;
-      this.getByPage();
-    }
+    this.getByPage();
+    this.specialisationFilter = [];
   }
 
   //Search Form
