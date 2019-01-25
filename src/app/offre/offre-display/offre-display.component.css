@@ -1,0 +1,36 @@
+.container {
+    width: 80%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .column1 {
+    float: left;
+    width: 30%;
+    padding: 10px;
+  }
+  
+  .column2 {
+    float: left;
+    width: 70%;
+    padding: 10px;
+  }
+
+  .display-data {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 4px 0;
+  }
+
+  .display-data::after {
+    content: "";
+    clear: both;
+    width: 100%;
+    display: table;
+  }

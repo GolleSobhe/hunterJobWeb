@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import {switchMap} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
-import {Offre} from '../offre';
-import {OffreService} from '../offre.service';
-import {reject} from 'q';
+import { Offre } from '../offre';
+import { OffreService } from '../offre.service';
+import { reject } from 'q';
 
 @Component({
   selector: 'app-offre-display',
@@ -23,14 +23,12 @@ export class OffreDisplayComponent implements OnInit {
     this.activatedRoute.paramMap.pipe(
 
       switchMap((params: ParamMap) =>
-        this.offreService.getOffreById(parseInt(params.get('id'), 10))
-      )).subscribe((offre: Offre) => {
-
-      this.offre = offre;
-
-    }, error => {
+        this.offreService.getOffreById(parseInt(params.get('id'), 10))))
+      .subscribe((offre: Offre) => {
+        this.offre = offre;
+      }, error => {
         reject(error);
-    });
+      });
   }
 
 }
