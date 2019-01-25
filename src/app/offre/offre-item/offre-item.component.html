@@ -1,4 +1,12 @@
 <div class="container">
   <h4><a routerLink="/offres/{{offre.id}}">{{offre.titre}}</a></h4>
-  <p>Chez NOM ENTREPRISE {{offre.lieu}}</p>
+  {{offre.lieu | uppercase}} <br> 
+
+  {{offre.description | truncate}}
+
+  <span class="offer-element">
+    <i class="material-icons"> border_color </i>{{offre.type}}
+    <i class="material-icons icon-position"> sentiment_satisfied_alt </i>{{offre.specialisation}}
+    <i class="material-icons icon-position"> visibility </i> {{offre.secteurActivite}}
+    <i class="material-icons icon-position"> location_on </i> {{offre.lieu}}</span>
 </div>

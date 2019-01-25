@@ -30,6 +30,7 @@ import {AppercuComponent} from './creation-offre/computer-science/appercu/apperc
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreItemComponent } from './offre-item/offre-item.component';
 import { OffreDisplayComponent } from './offre-display/offre-display.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -62,7 +63,9 @@ import { OffreDisplayComponent } from './offre-display/offre-display.component';
     AppercuComponent,
     OffreListComponent,
     OffreItemComponent,
-    OffreDisplayComponent
+    OffreDisplayComponent,
+
+    TruncatePipe
   ],
   exports: [],
 

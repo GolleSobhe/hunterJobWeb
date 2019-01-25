@@ -13,6 +13,7 @@ export class OffreItemComponent implements OnInit {
 
   constructor() { }
 
+  // TODO: sur le template remplace lieu par le nom de l'entreprise
   ngOnInit() {
   }
 
