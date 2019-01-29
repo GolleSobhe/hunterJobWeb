@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxCarousel} from 'ngx-carousel';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {map} from 'rxjs/operators';
-import { AcceuilService } from '../acceuil.service';
-import { Router } from '@angular/router';
 import {EntrepriseService} from '../../entreprise/entreprise.service';
 import {Entreprise} from '../../entreprise/entreprise';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,510 +12,69 @@ import {Entreprise} from '../../entreprise/entreprise';
 })
 export class AccueilComponent implements OnInit {
 
-  stateCtrl: FormControl;
-  townCtrl: FormControl;
-  filteredKeysWord: Observable<any[]>;
-  filteredTowns: Observable<any[]>;
-  // Les mots clés
-  keysWord: Array<string> = [];
-// Les villes ciblées
-  towns: Array<string> = [];
-  // Le model du formulaire
-  model: {keyword: string , town: string} = {keyword: '' , town: ''};
-  /**
-   * Caresoul */
+  countryCarouselItems: string[] = [];
+  countryCarousel: NgxCarousel;
+  images: string[];
+
   states;
-  public offresCarouselItems: Array<any> = [];
-  public offresCarousel: NgxCarousel;
+   offresCarouselItems: Array<any> = [];
+   offresCarousel: NgxCarousel;
   entreprises: Entreprise[];
 
-  constructor(private routerToOffres: Router, private entrepriseService: EntrepriseService) {
-    this.stateCtrl = new FormControl();
-    this.filteredKeysWord = this.stateCtrl.valueChanges
-      .pipe(
-        map(keyWord => keyWord ? this.filterKeysWords(keyWord) : [])
-      );
-    this.townCtrl = new FormControl();
-    this.filteredTowns = this.townCtrl.valueChanges
-    .pipe(
-      map(town => town ? this.filterTowns(town) : [])
-    );
+  searchForm: FormGroup;
+
+
+  constructor(private formBuilder: FormBuilder, private entrepriseService: EntrepriseService) {
+    
   }
 
   ngOnInit() {
-    this.initKeysWord();
-    this.initTowns();
-    this.initCountryCarousel();
+    this.createSearchForm();
     this.getEntreprises();
+    this.initCountries();
+    this.getImages();
+    this.defineEntrepriseCaroussel();
+    this.carouselTile();
   }
 
-  private initKeysWord(): void {
-    this.keysWord = ['java',
-      'angular',
-      'jee',
-      'java ee',
-      'jakarta ee',
-      'j2ee',
-      'java j2ee',
-      'reactJS',
-      'react',
-      'spring',
-      'spring boot',
-      'commercial',
-      'marketing',
-      'ionic',
-      'react native'];
+  private getImages() {
+    this.images = [
+      '../../assets/images/bg.jpg',
+      '../../assets/images/car.png',
+      '../../assets/images/canberra.jpg',
+      '../../assets/images/holi.jpg',
+      '../../assets/images/airbus.png',
+      '../../assets/images/google.png'
+    ];
   }
 
-  private initTowns(): void {
-    this.towns = ['Beyla',
-    'Boola',
-    'Diassodou',
-    'Gbakédou',
-    'Gbessoba',
-    'Karala',
-    'Diaraguéréla',
-    'Koumandou',
-    'Moussadou',
-    'Nionsomoridou',
-    'Samana',
-    'Sinko',
-    'Sokourala',
-    'Fouala',
-    'Boffa',
-    'Corréra',
-    'Douprou',
-    'Mankounta',
-    'Koba-tatéma',
-    'Touguifili',
-    'Tamita',
-    'Boké',
-    'Bintimondia',
-    'Dabiss',
-    'Kamsar',
-    'Kanfrandé',
-    'Kolabundji',
-    'Malapouya',
-    'Sangarédi',
-    'Sansalé',
-    'Tanènè',
-    'Dabola',
-    'Arfamoussaya',
-    'Banko',
-    'Bissikrima',
-    'Dogmen',
-    'Kankama',
-    'Kindoye',
-    'Komédou',
-    'N’Déma',
-    'Dalaba',
-    'Bodié',
-    'Ditinn',
-    'Kala',
-    'Kankalabé',
-    'Kébali',
-    'Koba',
-    'Mafara',
-    'Mitti',
-    'Mombéya',
-    'Dinguiraye',
-    'Banora',
-    'Dialakoro',
-    'Diatifèrè',
-    'Gagnakaly',
-    'Kalinko',
-    'Lansanaya',
-    'Sélouma',
-    'Dubréka',
-    'Badi',
-    'Falissadé',
-    'Ouassou',
-    'Tanènè',
-    'Tondon',
-    'Corrérah',
-    'Faranah',
-    'Banian',
-    'Bindougou',
-    'Hèrmakono',
-    'Kobikoro',
-    'Maréla',
-    'Nialia',
-    'Passaya',
-    'Sandénia',
-    'Songoya',
-    'Tiro',
-    'Forécariah',
-    'Benty',
-    'Kaback',
-    'Farmoréah',
-    'Kakossa',
-    'Maférinyah',
-    'Moussayah',
-    'Sihourou',
-    'Allassuya',
-    'Kalia',
-    'Fria',
-    'Banguiné',
-    'Banguigney',
-    'Tormelin',
-    'Gaoual',
-    'Bantala',
-    'Foulamory',
-    'Kakoni',
-    'Koumbia',
-    'Touba',
-    'Malanta',
-    'Wendou- Borou',
-    'Guéckédou',
-    'Bolodou',
-    'Guindimbou',
-    'Fangamadou',
-    'Kassadou',
-    'Nongoya',
-    'Ouendékénéma',
-    'Tiékolo',
-    'Temessadou-dibo',
-    'Kouindou',
-    'Beindou',
-    'Kankan',
-    'Balandougou',
-    'Baranama',
-    'Batè-Nafadji',
-    'Boula',
-    'Gbendou-Baranama',
-    'Karfamorya',
-    'Koumban',
-    'Mamouroudou',
-    'Missamana',
-    'Moribaya',
-    'Tintioulen',
-    'Tokounou',
-    'Kérouane',
-    'Damaro',
-    'Komodou',
-    'Konsankoro',
-    'Linko',
-    'Sibiribaro',
-    'Soromaya',
-    'Kindia ',
-    'Bangouya',
-    'Damakania',
-    'Friguiagbé',
-    'Kolenté',
-    'Madina Oula',
-    'Manbia',
-    'Molota',
-    'Samaya',
-    'Souguéta',
-    'Kissidougou centre',
-    'Albadariah',
-    'Banama',
-    'Beindou',
-    'Bardou',
-    'Firawa',
-    'Kouindiadou',
-    'Manfran',
-    'Sangardo',
-    'Yendè-milimou',
-    'Yombiro',
-    'Koubia centre',
-    'Fafaya',
-    'Gadha-Oundou',
-    'Matakaou',
-    'Missira',
-    'Pilimini',
-    'Koudara centre',
-    'Guingan',
-    'Termessè',
-    'Kammabi',
-    'Sambailo',
-    'Youkounkoun',
-    'Saréboido',
-    'Kouroussa centre',
-    'Babila',
-    'Balato',
-    'Banfélé',
-    'Baro',
-    'Cisséla',
-    'Douako',
-    'Kiniéro',
-    'Koumana',
-    'Komolakoura',
-    'Sanguiana',
-    'Doura',
-    'Labé centre',
-    'Dalein',
-    'Daralabé',
-    'Diari',
-    'Dionfo',
-    'Garambé',
-    'Hafia',
-    'Noussy',
-    'Popodara',
-    'Sannou',
-    'Tountouroun',
-    'Kalan',
-    'Kouramangui',
-    'Lélouma centre',
-    'Balaya',
-    'Diountou',
-    'Pétoye',
-    'Lafou',
-    'Linsan',
-    'Saran',
-    'Parawol',
-    'Sagalé',
-    'Korbé',
-    'Tianguel-Bori',
-    'Hériko',
-    'Lola centre',
-    'Bossou',
-    'Foumbadou',
-    'Gama',
-    'Guéasso',
-    'Lainé',
-    'Kokota',
-    'N’zoo',
-    'Tounkarata',
-    'Macenta centre',
-    'Balizia',
-    'Binikala',
-    'Bofossou',
-    'Daro',
-    'Kouankan',
-    'Orémayi',
-    'Koyamah',
-    'Panzia-zou',
-    'Sérédou',
-    'Singbédou',
-    'N’Zébéla',
-    'Watanka',
-    'Vassé-rédou',
-    'Mali centre',
-    'Balaki',
-    'Donguel-Sigou',
-    'Fougou',
-    'Gaya',
-    'Hidayatou',
-    'Dougountouny',
-    'Lébékéré',
-    'Madina',
-    'Salambandé',
-    'Madina-Wora',
-    'Yambéring',
-    'Téliré',
-    'Touba',
-    'Mamou',
-    'Boulliwel',
-    'Dounet',
-    'Gongoré',
-    'Ourékaba',
-    'Kégnéko',
-    'Konkouré',
-    'Niagara',
-    'Porédaka',
-    'Soya',
-    'Saramoussaya',
-    'Timbo',
-    'Tolo',
-    'Téguéréya',
-    'Mandiana centre',
-    'Dialakoro',
-    'Faralako',
-    'Kantoumania',
-    'Kiniéran',
-    'Koudianakoro',
-    'Koundian',
-    'Morodougou',
-    'Niantanina',
-    'Saladou',
-    'Sansando',
-    'Balandougou',
-    'N’Zérékoré centre',
-    'Bounouna',
-    'Gouecké',
-    'Koulé',
-    'Koropara',
-    'Samoé',
-    'Yalenzou',
-    'Palé',
-    'Kobéla',
-    'Soulouta',
-    'Pita centre',
-    'Bantignel',
-    'Brouwal-Tappé',
-    'Dongol-Touma',
-    'Gongoré',
-    'Ley Miro',
-    'Maci',
-    'Sangaréah',
-    'Sintali',
-    'Timbi-Madina',
-    'Timbi-Tounni',
-    'Ninguélandé',
-    'Siguiri centre',
-    'Bankon',
-    'Doko',
-    'Kintiniar',
-    'Maléa',
-    'Niagassola',
-    'Maboun',
-    'Niandankoro',
-    'Norassoba',
-    'Siguirini',
-    'Franwalia',
-    'Kiniébakoura',
-    'Télimélé centre',
-    'Bourouwel',
-    'Daramagnaki',
-    'Gougoudjé',
-    'Koba',
-    'Kollet',
-    'Consotami',
-    'Missira',
-    'Santou',
-    'Sinta',
-    'Sarékali',
-    'Sogolon',
-    'Tarikoye',
-    'Thionthian',
-    'Tougué centre',
-    'Fello',
-    'Koundoua',
-    'Kansagui',
-    'Kollet',
-    'Koyin',
-    'Kona',
-    'Kouratongo',
-    'Tangali',
-    'Fatako',
-    'Kollagui',
-    'Yomou centre',
-    'Gbanié',
-    'Bhéta',
-    'Gbigna-mou',
-    'Booué',
-    'Diécké',
-    'Péla',
-    'KALOUM',
-    'Almamya',
-    'Boulbinet',
-    'Coronthie',
-    'Fotoba',
-    'Kassa',
-    'Kouléwondy',
-    'Manquepas',
-    'Sandervalia',
-    'Sans-fil',
-    'Témitaye',
-    'Tombo',
-    'DIXINN',
-    'Belle-vue école',
-    'Belle-vue-marché',
-    'Camayenne',
-    'Cameroun',
-    'Dixinn-cité 1',
-    'Dixinn-cité 2',
-    'Dixinn-gare',
-    'Dixinn-gare-rails',
-    'Dixinn-mosquée',
-    'Dixinn-port',
-    'Hafia 1',
-    'Hafia 2',
-    'Hafia-minière',
-    'Hafia-mosquée',
-    'Kénien',
-    'Landréah',
-    'Minière-cité',
-    'Boussoura',
-    'Matam',
-    'Bonfi',
-    'Bonfi-marché',
-    'Carrière',
-    'Coléah-centre',
-    'Coléah-cité',
-    'Domino',
-    'Hermakönon',
-    'Imprimerie',
-    'Lanséboudji',
-    'Madina-centre',
-    'Madina-cité',
-    'Madina-école',
-    'Madina-marché',
-    'Madina-mosquée',
-    'Mafanco',
-    'Mafonco-centre',
-    'Matam',
-    'Matam-lido',
-    'Touguiwondy',
-    'RATOMA',
-    'Cobaya',
-    'Dar-es-salam',
-    'Hamdalaye 1',
-    'Hamdalaye 2',
-    'Hamdalaye-mosquée',
-    'Kaporo-centre',
-    'Kaporo-rails',
-    'Kipé',
-    'Koloma 1',
-    'Koloma 2',
-    'Lambadji',
-    'Nongo',
-    'Ratoma-centre',
-    'Ratoma-dispensaire',
-    'Simbaya-gare',
-    'Sonfonia-gare',
-    'Taouyah',
-    'Wanindara',
-    'Yattayah',
-    'MATOTO',
-    'Béanzin',
-    'Camp Alpha Yaya Diallo',
-    'Citée de l\'air',
-    'Dabompa',
-    'Dabondy 1',
-    'Dabondy 2',
-    'Dabondy 3',
-    'Dabondyécole',
-    'Dabondy-rails',
-    'Dar-es-salam',
-    'Gbéssia-centre',
-    'Gbéssia-cité 1',
-    'Gbessia-cité 2',
-    'Gbessia-cité 3',
-    'Gbéssia-école',
-    'Gbéssia-port 1',
-    'Gbéssia-port 2',
-    'Kissosso',
-    'Matoto-centre',
-    'Matoto-marché',
-    'Sangoya-mosquée',
-    'Simbaya 1',
-    'Simbaya 2',
-    'Tanéné-marché',
-    'Tanéné-mosquée',
-    'Tombolia',
-    'Yimbaya-école',
-    'Yimbaya-permanence',
-    'Yimbaya-tannerie'];
+  private initCountries(): void {
+    this.states = [
+      {
+        name: 'Guinée',
+        flag: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg'
+      },
+      {
+        name: 'France',
+        flag: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg'
+      },
+      {
+        name: 'Sénégal',
+        flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg'
+      },
+      {
+        name: 'Rwanda',
+        flag: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Rwanda.svg'
+      },
+      {
+        name: 'Ghana',
+        flag: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Ghana.svg'
+      }
+    ];
   }
-
-  filterKeysWords(keyWord: string): Array<string> {
-      return  this.keysWord.filter(item =>
-        item.toLowerCase().indexOf(keyWord.toLowerCase()) === 0);
-  }
-
-  filterTowns(town: string): Array<string> {
-    return this.towns.filter((item: string) =>
-    item.toLowerCase().indexOf(town.toLowerCase()));
-  }
-
-  validSearch(): void {
-    this.routerToOffres.navigate(['offres', {keyword: this.model.keyword, town: this.model.town}]);
-  }
-
-  private initCountryCarousel() {
-    this.offresCarousel = {
+  
+  private defineEntrepriseCaroussel() {
+    this.countryCarousel = {
       grid: { xs: 1, sm: 2, md: 4, lg: 5, all: 0 },
       speed: 600,
       interval: 3000,
@@ -557,10 +112,31 @@ export class AccueilComponent implements OnInit {
     };
   }
 
+  public carouselTile() {
+    const len = this.countryCarouselItems.length;
+    if (len <= 30) {
+      for (let i = len; i < len + 15; i++) {
+        this.countryCarouselItems.push(
+          this.images[Math.floor(Math.random() * this.images.length)]
+        );
+      }
+    }
+  }
+
   public getEntreprises(): void {
     this.entrepriseService.getEntreprises().subscribe(data => {
       this.entreprises = data;
-      console.log(this.entreprises);
     });
+  }
+
+  createSearchForm() {
+    this.searchForm = this.formBuilder.group({
+      title: ['', [Validators.nullValidator]],
+      city: ['', [Validators.nullValidator]],
+    });
+  }
+
+  search() {
+    
   }
 }
