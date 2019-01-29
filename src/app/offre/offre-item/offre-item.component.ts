@@ -9,12 +9,14 @@ import {Offre} from '../offre';
 export class OffreItemComponent implements OnInit {
 
   @Input()
-  offre: Offre;
+  offre: any;
+  entrepriseName: string;
 
   constructor() { }
 
   // TODO: sur le template remplace lieu par le nom de l'entreprise
   ngOnInit() {
+    this.entrepriseName = this.offre.entreprise.nom;
   }
 
 }
