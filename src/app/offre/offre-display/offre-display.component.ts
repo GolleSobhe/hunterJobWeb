@@ -25,6 +25,9 @@ export class OffreDisplayComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.offreService.getOffreById(parseInt(params.get('id'), 10))))
       .subscribe((offre: Offre) => {
+        let comp: any = offre.competences;
+        comp = comp.split(",");
+        offre.competences = comp;
         this.offre = offre;
       }, error => {
         reject(error);
