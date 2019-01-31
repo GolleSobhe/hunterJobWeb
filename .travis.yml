@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "9"
+  - "8"
   
 dist: trusty
 sudo: required
@@ -13,11 +13,12 @@ before_script:
 
 script:
   - ng build --prod --base-href "https://gollesobhe.github.io/hunterJobWeb/"
+  - npm run deploy
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist/travis-demo
+  local_dir: dist/hunterjobweb
   on:
     branch: master
