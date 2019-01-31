@@ -182,7 +182,7 @@ export class OffreListComponent implements OnInit {
     });
   }
 
-  search() {
+  onSearch() {
     this.inputData = { title: this.searchForm.value.title, place: this.searchForm.value.city };
     this.getByPage();
   }

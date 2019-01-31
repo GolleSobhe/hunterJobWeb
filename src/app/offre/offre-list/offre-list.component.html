@@ -2,7 +2,7 @@
 
   <h2 align="center">L'ensemble de toutes nos offres</h2>
 
-  <form [formGroup]="searchForm">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
     <div class="row">
       <div class="search-column1">
         <input type="text" matInput placeholder="Quoi ?" id="title" formControlName="title" name="title">
@@ -13,7 +13,7 @@
       </div>
 
       <div class="search-column3">
-        <button mat-raised-button color="primary" (click)=search()>Search</button>
+        <button type="submit" mat-raised-button color="primary"><i class="material-icons"> search </i></button>
       </div>
     </div>
   </form>
