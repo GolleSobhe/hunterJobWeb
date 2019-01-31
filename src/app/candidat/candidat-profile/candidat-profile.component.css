@@ -1,3 +1,6 @@
+.bt_editable  {
+    text-align: center;
+}
 .flex-container{
     resize: horizontal;
     overflow: hidden;
@@ -19,7 +22,7 @@
 }
   
 .one {
-    width: 30%;
+    width: 40%;
   }
 .div-scroll{
     overflow-y: scroll;
@@ -31,3 +34,25 @@
 .titreProfil{
     text-align: center;
 }
+
+.elements_inline {
+    display:inline-block;
+    margin: 5px;
+}
+
+.elements_inline select {
+    border-style: none;
+}
+
+.edit_conditons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+mat-slider {
+    width: 300px;
+}
+
+
+  
+
