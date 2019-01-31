@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {NgxCarousel} from 'ngx-carousel';
-import {EntrepriseService} from '../../entreprise/entreprise.service';
-import {Entreprise} from '../../entreprise/entreprise';
+import { Component, OnInit } from '@angular/core';
+import { NgxCarousel } from 'ngx-carousel';
+import { EntrepriseService } from '../../entreprise/entreprise.service';
+import { Entreprise } from '../../entreprise/entreprise';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -17,15 +17,15 @@ export class AccueilComponent implements OnInit {
   images: string[];
 
   states;
-   offresCarouselItems: Array<any> = [];
-   offresCarousel: NgxCarousel;
+  offresCarouselItems: Array<any> = [];
+  offresCarousel: NgxCarousel;
   entreprises: Entreprise[];
 
   searchForm: FormGroup;
+  inputData: {title: string, place: string};
 
+  constructor(private formBuilder: FormBuilder, private entrepriseService: EntrepriseService, private router: Router) {
 
-  constructor(private formBuilder: FormBuilder, private entrepriseService: EntrepriseService) {
-    
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class AccueilComponent implements OnInit {
       }
     ];
   }
-  
+
   private defineEntrepriseCaroussel() {
     this.countryCarousel = {
       grid: { xs: 1, sm: 2, md: 4, lg: 5, all: 0 },
@@ -137,6 +137,7 @@ export class AccueilComponent implements OnInit {
   }
 
   search() {
-    
+    this.inputData = {title: this.searchForm.value.title, place: this.searchForm.value.city};
+    this.router.navigate(['../offres/page/1', this.inputData]);
   }
 }
