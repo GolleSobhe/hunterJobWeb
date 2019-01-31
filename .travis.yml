@@ -7,6 +7,18 @@ script:
 branches:
   only:
   - master
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -g
+
+script:
+  - ng build --base-href /hunterJobWeb//
+  - mv dist/hunterJobWeb/index.html dist/hunterJobWeb/404.html
+
 deploy:
   provider: pages
   skip_cleanup: true
