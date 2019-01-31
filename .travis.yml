@@ -13,10 +13,10 @@ cache:
     - node_modules
 
 install:
-  - npm install -g
+  - npm install -g yarn
 
 script:
-  - npm build --base-href /hunterJobWeb/
+  - yarn build --base-href /hunterJobWeb/
 
 deploy:
   provider: pages
