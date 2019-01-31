@@ -2,21 +2,16 @@ language: node_js
 node_js:
 - '8'
 sudo: true
+
+before_script:
+  - npm install -g @angular/cli
+
 script:
-- npm run deploy
+- ng build --prod --aot --base-href https://gollesobhe.github.io/hunterJobWeb/
+
 branches:
   only:
   - master
-
-cache:
-  directories:
-    - node_modules
-
-install:
-  - npm install -g yarn
-
-script:
-  - yarn build --base-href /hunterJobWeb/
 
 deploy:
   provider: pages
