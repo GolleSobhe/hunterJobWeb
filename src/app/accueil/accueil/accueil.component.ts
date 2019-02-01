@@ -4,6 +4,7 @@ import { EntrepriseService } from '../../entreprise/entreprise.service';
 import { Entreprise } from '../../entreprise/entreprise';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InputSearchData } from '../../offre/offre';
 
 @Component({
   selector: 'app-accueil',
@@ -22,7 +23,7 @@ export class AccueilComponent implements OnInit {
   entreprises: Entreprise[];
 
   searchForm: FormGroup;
-  inputData: {title: string, place: string};
+  inputData: InputSearchData;
 
   constructor(private formBuilder: FormBuilder, private entrepriseService: EntrepriseService, private router: Router) {
 
@@ -137,7 +138,7 @@ export class AccueilComponent implements OnInit {
   }
 
   onSearch() {
-    this.inputData = {title: this.searchForm.value.title, place: this.searchForm.value.city};
-    this.router.navigate(['../offres/page/1', this.inputData]);
+    this.inputData = {q: this.searchForm.value.title, w: this.searchForm.value.city};
+    this.router.navigate(['../offres', this.inputData]);
   }
 }

@@ -45,11 +45,15 @@
 
       <div align="center">
         <div class="pagination paginator">
-          <a [routerLink]="['/offres/page/', currentPage-1]" [hidden]="currentPage==1">&laquo;</a>
-          <a *ngFor="let page of pages" [routerLink]="['/offres/page/', page]" [ngClass]="{active:currentPage === page}">{{page}}</a>
-          <a [routerLink]="['/offres/page/', currentPage+1]" [hidden]="currentPage==totalPages">&raquo;</a>
+          <a queryParamsHandling="merge" (click)="getByPage(); currentPage=currentPage-1" [hidden]="currentPage==1">&laquo;</a>
+
+          <a *ngFor="let page of pages" (click)="getByPage(); currentPage=page" queryParamsHandling="merge" currentPage=page
+            [ngClass]="{active:currentPage === page}">{{page}}</a>
+
+          <a (click)="getByPage(); currentPage =currentPage+1" queryParamsHandling="merge" [hidden]="currentPage==totalPages">&raquo;</a>
         </div>
       </div>
+
     </div>
   </div>
 

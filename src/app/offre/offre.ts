@@ -17,8 +17,8 @@ export interface Competence {
 }
 
 export enum TypeContrat {
-  CDD ,
-  CDI ,
+  CDD,
+  CDI,
   Interim,
   Freelance,
   Apprentissage,
@@ -29,5 +29,10 @@ export interface Specialisation {
   id: number;
   name: string;
   selected: boolean;
+}
+
+export interface InputSearchData {
+  q: string;
+  w: string;
 }
 

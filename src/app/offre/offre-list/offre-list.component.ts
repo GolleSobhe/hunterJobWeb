@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Offre, Specialisation } from '../offre';
+import { Component, OnInit } from '@angular/core';
+import { Offre, Specialisation, InputSearchData } from '../offre';
 import { OffreService } from '../offre.service';
 import { reject } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class OffreListComponent implements OnInit {
 
   offreList: Offre[] = [];
 
-  currentPage: number;
+  currentPage = 1;
   private pageSize = 15;
 
   totalPages: number;
@@ -34,11 +34,12 @@ export class OffreListComponent implements OnInit {
   city: string;
   title: string;
   searchForm: FormGroup;
-  inputData: { title: string, place: string };
+  inputData: InputSearchData;
 
   constructor(private offreService: OffreService,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -54,40 +55,37 @@ export class OffreListComponent implements OnInit {
   }
 
   getByPage() {
-    this.activatedRoute.params.subscribe(param => {
-      this.currentPage = +param.page || 1;
+    if ((this.currentPage <= 0) || (this.currentPage > this.totalPages)) {
+      this.currentPage = 1;
+    }
 
-      if ((this.currentPage <= 0) || (this.currentPage > this.totalPages)) {
-        this.currentPage = 1;
-      }
+    this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationFilter,
+      this.contractFilter, this.title, this.city).subscribe((result) => {
 
-      this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationFilter,
-        this.contractFilter, this.inputData.title, this.inputData.place).subscribe((result) => {
-          this.offreList = result['content'];
-          this.totalElements = result['totalElements'];
-          this.totalPages = result['totalPages'];
+        this.offreList = result['content'];
+        this.totalElements = result['totalElements'];
+        this.totalPages = result['totalPages'];
 
-          if (this.totalPages <= 5) {
+        if (this.totalPages <= 5) {
+          this.startPage = 1;
+          this.endPage = this.totalPages;
+        } else {
+          if (this.currentPage <= 3) {
             this.startPage = 1;
+            this.endPage = 5;
+          } else if (this.currentPage + 1 >= this.totalPages) {
+            this.startPage = this.totalPages - 4;
             this.endPage = this.totalPages;
           } else {
-            if (this.currentPage <= 3) {
-              this.startPage = 1;
-              this.endPage = 5;
-            } else if (this.currentPage + 1 >= this.totalPages) {
-              this.startPage = this.totalPages - 4;
-              this.endPage = this.totalPages;
-            } else {
-              this.startPage = this.currentPage - 2;
-              this.endPage = this.currentPage + 2;
-            }
+            this.startPage = this.currentPage - 2;
+            this.endPage = this.currentPage + 2;
           }
+        }
 
-          this.pages = Array.from(Array((this.endPage + 1) - this.startPage).keys()).map(i => this.startPage + i);
-        }, error => {
-          reject(error);
-        });
-    });
+        this.pages = Array.from(Array((this.endPage + 1) - this.startPage).keys()).map(i => this.startPage + i);
+      }, error => {
+        reject(error);
+      });
   }
 
   initContractType() {
@@ -172,18 +170,26 @@ export class OffreListComponent implements OnInit {
 
   //Search Form
   createSearchForm() {
-    this.activatedRoute.params.subscribe(param => {   
-      this.inputData = { title: param.title, place: param.place };
+    this.activatedRoute.params.subscribe((param: InputSearchData) => {
+
+      this.title = param.q;
+      this.city = param.w;
+      this.inputData = { q: this.title, w: this.city };
 
       this.searchForm = this.formBuilder.group({
-        title: [this.inputData.title, [Validators.nullValidator]],
-        city: [this.inputData.place, [Validators.nullValidator]],
+        title: [this.inputData.q, [Validators.nullValidator]],
+        city: [this.inputData.w, [Validators.nullValidator]],
       });
     });
   }
 
   onSearch() {
-    this.inputData = { title: this.searchForm.value.title, place: this.searchForm.value.city };
+    this.city = this.searchForm.value.city;
+    this.title = this.searchForm.value.title;
+    this.currentPage = 1;
+
+    this.inputData = { q: this.title, w: this.city };
     this.getByPage();
+    this.router.navigate(['../offres', this.inputData]);
   }
 }
