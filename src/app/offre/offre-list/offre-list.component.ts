@@ -190,6 +190,6 @@ export class OffreListComponent implements OnInit {
 
     this.inputData = { q: this.title, w: this.city };
     this.getByPage();
-    this.router.navigate(['../offres', this.inputData]);
+    this.router.navigate(['../offres'], {queryParams: this.inputData, queryParamsHandling: "merge"});
   }
 }

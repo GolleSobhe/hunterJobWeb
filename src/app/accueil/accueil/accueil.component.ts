@@ -139,6 +139,6 @@ export class AccueilComponent implements OnInit {
 
   onSearch() {
     this.inputData = {q: this.searchForm.value.title, w: this.searchForm.value.city};
-    this.router.navigate(['../offres', this.inputData]);
+    this.router.navigate(['../offres'], { queryParams: this.inputData, queryParamsHandling: "merge" });
   }
 }
