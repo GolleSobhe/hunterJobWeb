@@ -6,8 +6,8 @@ import {OffreListComponent} from './offre-list/offre-list.component';
 import {OffreDisplayComponent} from './offre-display/offre-display.component';
 
 const routes: Routes = [
+  {path: '', component: OffreListComponent },
   {path: 'creer', component: CreationOffreComponent},
-  { path: 'page/:page', component: OffreListComponent },
   {path: ':id', component: OffreDisplayComponent},
 ];
 
