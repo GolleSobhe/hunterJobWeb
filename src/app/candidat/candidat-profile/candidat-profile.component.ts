@@ -13,7 +13,7 @@ export class CandidatProfileComponent implements OnInit {
   candidat: Candidat;
   loaded: Promise<boolean>;
   isEdit: Boolean = false;
-  pdfSrc: String = './../../../assets/cvs/cv_abdoulaye.pdf';
+  pdfSrc: String = null;
   constructor(private router: ActivatedRoute, private candidatService: CandidatService) { }
 
   ngOnInit() {
@@ -56,6 +56,20 @@ export class CandidatProfileComponent implements OnInit {
 
   labelFn(value: number): string {
     return `${value} cm`;
+  }
+
+  onFileSelected() {
+    const $pdf: any = document.querySelector('#file');
+
+    if (typeof FileReader !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.pdfSrc = e.target.result;
+      };
+
+      reader.readAsArrayBuffer($pdf.files[0]);
+    }
   }
 
 }

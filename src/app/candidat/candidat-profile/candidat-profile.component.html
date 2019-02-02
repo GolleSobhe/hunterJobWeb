@@ -67,13 +67,15 @@
       </div>
       <div class="flex-div auto">
             <div>
-                <label>PDF src</label>
-                <input type="text" placeholder="PDF src" [(ngModel)]="pdfSrc">
+                <label>Telecharger votre CV...</label>
+                <input (change)="onFileSelected()" type="file" id="file">
             </div>
-            <pdf-viewer [src]="pdfSrc" 
-              [render-text]="true"
-              style="display: block;"
-            ></pdf-viewer>
+            <div *ngIf="pdfSrc" class="div-scroll">
+                <pdf-viewer [src]="pdfSrc" 
+                    [render-text]="true"
+                    style="display: block;"
+                ></pdf-viewer>
+            </div>            
       </div>
     </div>
   </div>

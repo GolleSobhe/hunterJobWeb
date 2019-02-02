@@ -38,8 +38,9 @@ export class CandidatComponent implements OnInit {
     this.candidatEtape3FormGroup = this._formBuilder.group({
       cdi: [false],
       cdd: [false],
-      aprentissage: [false],
-      independant: [false],
+      freelance: [false],
+      professionnalisation: [false],
+      aprentissage: [false],    
       stage: [false],
       interim: [false],
       salaire: [false],
@@ -70,8 +71,9 @@ export class CandidatComponent implements OnInit {
     const typeEmploi: TypeEmploi = {
       cdi: this.candidatEtape3FormGroup.value.cdi,
       cdd: this.candidatEtape3FormGroup.value.cdd,
-      aprentissage: this.candidatEtape3FormGroup.value.aprentissage,
-      independant: this.candidatEtape3FormGroup.value.independant,
+      freelance: this.candidatEtape3FormGroup.value.freelance,
+      professionnalisation: this.candidatEtape3FormGroup.value.professionnalisation,
+      aprentissage: this.candidatEtape3FormGroup.value.aprentissage,      
       stage: this.candidatEtape3FormGroup.value.stage,
       interim: this.candidatEtape3FormGroup.value.interim
     };
