@@ -170,8 +170,7 @@ export class OffreListComponent implements OnInit {
 
   //Search Form
   createSearchForm() {
-    this.activatedRoute.params.subscribe((param: InputSearchData) => {
-
+    this.activatedRoute.queryParams.subscribe((param) => {
       this.title = param.q;
       this.city = param.w;
       this.inputData = { q: this.title, w: this.city };
