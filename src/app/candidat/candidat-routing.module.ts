@@ -4,11 +4,13 @@ import { CandidatComponent } from './candidat/candidat.component';
 import { NgModule } from '@angular/core';
 import { CandidatProfileComponent } from './candidat-profile/candidat-profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { SiginComponent } from './sigin/sigin.component';
 
 
 const routes: Routes = [
     {path: 'new', component: CandidatNewComponent},
-    {path: 'signup', component: SignupComponent},
+    {path: 'signUp', component: SignupComponent},
+    {path: 'signIn', component: SiginComponent},
     {path: ':id', component: CandidatComponent},
     {path: 'profile/:id', component: CandidatProfileComponent},
   ];

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CandidatService } from '../candidat.service';
 
 @Component({
@@ -15,10 +14,10 @@ export class SignupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private candidatService: CandidatService) { }
 
   ngOnInit() {
-    this.createUserForm();
+    this.signUpForm();
   }
 
-  createUserForm() {
+  signUpForm() {
     this.userForm = this.formBuilder.group({
       displayName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
