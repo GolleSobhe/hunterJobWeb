@@ -1,86 +1,85 @@
-<div>
-    <h3>Créer votre profil</h3>
-    <hr>
-    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-      <mat-step [stepControl]="candidatEtape1FormGroup">
-        <form [formGroup]="candidatEtape1FormGroup">
-          <ng-template matStepLabel>Informations personnelles</ng-template>
-          <!--FORMULAIRE DE CREATION PROFIL CANDIDAT-->
-          <div class="itemCandidat">
-            <label><b>Nom : </b></label>
-            <input type="text" matInput formControlName="nom" required><br/>
-            <label><b>Prenom</b></label> 
-            <input type="text" matInput formControlName="prenom" required><br>
-            <label><b>Email</b></label> 
-            <input type="email" matInput formControlName="email" required><br>
-            <label><b>Telephone</b></label>
-            <input type="telephone" matInput formControlName="telephone" required> <br>
-            <label><b>Adresse : </b></label>
-            <input type="text"  matInput formControlName="adresse" required>            
-          </div>      
-          <div>
-            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+<div *ngIf="loaded | async">
+  <div class="bt_editable">
+      <i class="fa fa-edit none fa-3x" (click)="edider()">
+            <span *ngIf="!isEdit">Modifier</span>
+            <span *ngIf="isEdit">Enregister</span>
+      </i>   
+  </div>
+  <div class="flex-container">
+    <div class="flex-div one">
+      <div class="elements_inline">
+        <label [attr.contenteditable]="isEdit" [textContent]="candidat.prenom" (input)="candidat.prenom=$event.target.textContent"></label>
+        <label [attr.contenteditable]="isEdit" [textContent]="candidat.nom" (input)="candidat.nom=$event.target.textContent"></label>
+      </div> 
+      <div>
+          <div class="elements_inline">
+              <i class="fa fa-envelope fa-2x"></i> 
+              <span [attr.contenteditable]="isEdit" [textContent]="candidat.email" (input)="candidat.email=$event.target.textContent"></span>
           </div>
-        </form>
-      </mat-step>  
-    
-      <mat-step [stepControl]="candidatEtape2FormGroup">
-        <ng-template matStepLabel>Expériences et Etudes </ng-template>
-        <form [formGroup]="candidatEtape2FormGroup">
-          <div>
-            <label><b>Titre : </b></label>
-            <input type="text" matInput formControlName="titreProfil" required><br/>
-          </div>       
-          <div>
-            <label><b>Expériences(hors stage)</b></label><br/>
-            <input type="number" placeholder="0" formControlName="anneesExperience" required><br/>
+          <br>
+          <div class="elements_inline">
+              <i class="fa fa-phone fa-2x"></i>
+              <span [attr.contenteditable]="isEdit" [textContent]="candidat.telephone" (input)="candidat.telephone=$event.target.textContent"></span>
           </div>
-          <div>
-            <label><b>Etudes</b></label> <br/>
-            <input type="number" placeholder="0" formControlName="anneesEtude" required><br/>      
+          <br>
+          <div class="elements_inline">
+              <i class="fa fa-graduation-cap fa-2x"></i>
+              <select [(ngModel)]="candidat.profilCandidat.anneesExperiences" [disabled]="!(isEdit)">
+                <option value="0">Bac</option>
+                <option value="1">Bac+1</option>
+                <option value="2">Bac+2</option>
+                <option value="3">Bac+3</option>
+                <option value="4">Bac+4</option>
+                <option value="5">Bac+5</option>
+                <option value="6">Au delà de bac+5</option>
+              </select>
           </div>
-          <div>
-            <label><b>Télécharger votre CV</b></label> <br/>
-            <input type="file" formControlName="cv" required>
+          <br>
+          <div class="elements_inline">
+              <i class="fa fa-suitcase fa-2x"></i>
+              <span>5</span>
           </div>
-          <div>
-            <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-            <button class="button-suivant" mat-button matStepperNext>Suivant</button>
+          <br>
+          <div class="edit_conditons">
+              <h5>Mes conditions</h5>
+              <div>                    
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.cdi" [disabled]="!(isEdit)">CDI</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.cdd" [disabled]="!(isEdit)">CDD</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.freelance" [disabled]="!(isEdit)">Freelance</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.professionnalisation" [disabled]="!(isEdit)">Contrat d'apprentissage</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.aprentissage" [disabled]="!(isEdit)">Contrat de professionnalisation</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.interim" [disabled]="!(isEdit)">Interim</mat-checkbox></p>
+                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.stage" [disabled]="!(isEdit)">Stage</mat-checkbox></p>
+              </div>  
+              <h5>Salaire</h5> 
+              <div>
+                  <mat-slider  [(ngModel)]="candidat.profilCandidat.salaire" [disabled]="!(isEdit)"
+                      thumbLabel  
+                      min="1"
+                      max="100"
+                      >                       
+                  </mat-slider>
+              </div>                            
           </div>
-        </form>
-      </mat-step>
-    
-      <mat-step [stepControl]="candidatEtape3FormGroup">
-        <ng-template matStepLabel>Préférence d'emploi</ng-template>
-        <div>
-          <h2><b>Intitulé du poste souhaité</b></h2>
-        </div>
-        <form [formGroup]="candidatEtape3FormGroup" class="formulaire container">
-          <div>
-            <label><b>Type d'emploi</b></label> <br/>
-            <div>
-              <mat-checkbox formControlName="cdi">CDI</mat-checkbox>
-              <mat-checkbox formControlName="cdd">CDD</mat-checkbox><br/>
-              <mat-checkbox formControlName="aprentissage">Aprentissage/Alternance</mat-checkbox>
-              <mat-checkbox formControlName="independant">Freelance/Independant</mat-checkbox><br/>
-              <mat-checkbox formControlName="stage">Stage</mat-checkbox>
-              <mat-checkbox formControlName="interim">Interim</mat-checkbox>
-            </div>
-            <div>
-              <label><b>Salaire</b></label>
-              <input type="number" placeholder="0" formControlName="salaire" required><br/>
-            </div>
-            <div>
-              <label><b>Relocalisation</b></label> <br/>
-              <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
-            </div>  
-            <div>
-              <button class="button-precedent" mat-button matStepperPrevious>Précédent</button>
-              <button class="button-annuler" mat-button (click)="stepper.reset();">Annuler</button>
-              <button type="submit" class="button-suivant" color="primary" (click)="valider()">Confirmation</button>
-            </div>        
+          <br>
+          <div class="elements_inline">
+              <i class="fa fa-home fa-2x"></i> 
+              <mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.relocalisation" [disabled]="!(isEdit)">je suis prés à demenager</mat-checkbox>
           </div>
-        </form>
-      </mat-step>
-    </mat-horizontal-stepper>
+      </div>      
+    </div>
+    <div class="flex-div auto">
+          <div>
+              <label>Telecharger votre CV...</label>
+              <input (change)="onFileSelected()" type="file" [disabled]="!(isEdit)" id="load_file_candidat">
+          </div>
+          <div *ngIf="pdfSrc" class="div-scroll">
+              <pdf-viewer [src]="pdfSrc" 
+                  [render-text]="true"
+                  style="display: block;"
+              ></pdf-viewer>
+          </div>            
+    </div>
+  </div>
 </div>
+  
