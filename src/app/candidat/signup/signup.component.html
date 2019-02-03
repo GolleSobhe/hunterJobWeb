@@ -1,0 +1,19 @@
+<form [formGroup]="userForm" (ngSubmit)="signUp()" style="max-width:500px;margin:auto">
+  <h2>Créer un compte</h2>
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" formControlName="displayName" type="text" placeholder="Nom et prénom" name="displayName">
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" formControlName="email" type="text" placeholder="Email" name="email">
+  </div>
+  
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" formControlName="password" type="password" placeholder="Password" name="Mot de passe">
+  </div>
+  
+  <button mat-raised-button  type="submit" id="submit-button" [disabled]="userForm.invalid">Inscription</button>
+</form>
