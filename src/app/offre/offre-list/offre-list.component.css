@@ -109,3 +109,7 @@
   width: 100%;
   display: table;
 }
+
+.search-button{
+  padding: 5px 15px;
+}

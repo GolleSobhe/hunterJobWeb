@@ -45,3 +45,11 @@
 form {
   padding-bottom: 10%;
 }
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: #0B2161;
+}
+
+button {
+  padding: 6px 15px !important;
+}

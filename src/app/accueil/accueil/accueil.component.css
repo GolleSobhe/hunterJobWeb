@@ -7,6 +7,10 @@
     padding-bottom: 3%;
   }
 
+  .search-button{
+    padding: 5px 15px;
+  }
+  
   .row:after {
     content: "";
     display: table;
@@ -71,7 +75,6 @@
   box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
   right: -60px;
 }
-
 
 .carousel {
   padding-top: 5%;

@@ -2,7 +2,7 @@
   <h2>Créer un compte</h2>
   <div class="input-container">
     <i class="fa fa-user icon"></i>
-    <input class="input-field" formControlName="displayName" type="text" placeholder="Nom et prénom" name="displayName">
+    <input class="input-field" formControlName="displayName" type="text" placeholder="Nom complet" name="displayName">
   </div>
 
   <div class="input-container">
@@ -13,6 +13,10 @@
   <div class="input-container">
     <i class="fa fa-key icon"></i>
     <input class="input-field" formControlName="password" type="password" placeholder="Mot de passe" name="Mot de passe">
+  </div>
+
+  <div class="input-container">
+    <mat-checkbox color="primary" formControlName="isRecruiter">Je suis un recruteur</mat-checkbox>
   </div>
   
   <button mat-raised-button  type="submit" id="submit-button" [disabled]="userForm.invalid">Inscription</button>

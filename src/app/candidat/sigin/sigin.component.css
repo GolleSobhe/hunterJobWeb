@@ -45,3 +45,7 @@
 form {
   padding-bottom: 10%;
 }
+
+button {
+  padding: 6px 15px !important;
+}

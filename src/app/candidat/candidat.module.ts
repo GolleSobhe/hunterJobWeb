@@ -26,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
     PdfViewerModule,
 
     MatInputModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [CandidatComponent, CandidatNewComponent, CandidatProfileComponent, SignupComponent, SiginComponent]
 })
