@@ -1,0 +1,47 @@
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    background: #0B2161;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 0% !important;
+    outline: none;
+  }
+    
+  /* Set a style for the submit button */
+  #submit-button {
+    background-color: #0B2161;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0% !important;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
+
+  button:disabled, button[disabled]{
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}
+
+form {
+  padding-bottom: 10%;
+}

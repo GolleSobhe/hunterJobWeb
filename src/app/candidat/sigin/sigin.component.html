@@ -1,0 +1,15 @@
+<form [formGroup]="userForm" (ngSubmit)="signIn()" style="max-width:500px;margin:auto">
+  <h2>Connexion</h2>
+ 
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" formControlName="email" type="text" placeholder="Email" name="email">
+  </div>
+  
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" formControlName="password" type="password" placeholder="Mot de passe" name="Mot de passe">
+  </div>
+  
+  <button mat-raised-button  type="submit" id="submit-button" [disabled]="userForm.invalid">Connexion</button>
+</form>
