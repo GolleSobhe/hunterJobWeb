@@ -1,5 +1,5 @@
 .container {
-  border: 2px solid #dedede;
+  border: 1px solid #0B2161;
   border-radius: 5px;
   padding: 10px;
   margin: 8px 0;
@@ -18,4 +18,17 @@
 
 .icon-position {
   margin-left: 5%;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+a:hover {
+  color: rgb(95, 75, 117);
+}
+
+/* selected link */
+a:active {
+  color: rgb(0, 238, 255);
 }

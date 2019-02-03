@@ -1,6 +1,6 @@
 <div class="container">
   <h3><a routerLink="/offres/{{offre.id}}">{{offre.titre}}</a></h3>
-  <h4>{{entrepriseName | uppercase}}</h4>
+  <h4>Chez {{entrepriseName | uppercase}}</h4>
 
   {{offre.description | truncate}}
 
@@ -8,5 +8,6 @@
     <i class="material-icons"> border_color </i>{{offre.type}}
     <i class="material-icons icon-position"> sentiment_satisfied_alt </i>{{offre.specialisation}}
     <i class="material-icons icon-position"> visibility </i> {{offre.secteurActivite}}
-    <i class="material-icons icon-position"> location_on </i> {{offre.lieu}}</span>
+    <i class="material-icons icon-position"> location_on </i> {{offre.lieu}}
+  </span>
 </div>

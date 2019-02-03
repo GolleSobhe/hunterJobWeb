@@ -63,3 +63,13 @@
     cursor: initial;
     background-color: white;
   }
+
+  .offer-element {
+    float: left;
+    width: 100%;
+  }
+
+  .icon-position {
+    margin-left: 5%;
+  }
+  
