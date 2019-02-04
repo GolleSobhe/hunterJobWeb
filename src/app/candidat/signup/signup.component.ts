@@ -30,6 +30,8 @@ export class SignupComponent implements OnInit {
     if (this.userForm.valid) {
       let user = this.userForm.value;
       console.log(user);
+
+      this.userForm.reset();
     }
   }
 }
