@@ -27,7 +27,11 @@
   flex: 0 0 4%;
 }
 
-a {
-  color: black;
+a:hover {
+  color: #0B0B61;
 }
 
+.active {
+  color: #0B0B61;
+  font-weight: 900;
+}
