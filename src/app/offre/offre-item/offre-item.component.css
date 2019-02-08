@@ -24,11 +24,11 @@
 a:visited {
   color: black;
 }
+
 a:hover {
   color: rgb(95, 75, 117);
 }
 
-/* selected link */
-a:active {
-  color: rgb(0, 238, 255);
+a {
+  color: rgb(79, 79, 180);
 }
