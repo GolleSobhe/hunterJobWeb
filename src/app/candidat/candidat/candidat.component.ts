@@ -15,6 +15,7 @@ export class CandidatComponent implements OnInit {
   loaded: Promise<boolean>;
   isEdit: Boolean = false;
   pdfSrc: String = null;
+  amount: Number = 0;
   constructor(private _formBuilder: FormBuilder,
         private router: ActivatedRoute,
         private routerToAccueil: Router,
@@ -59,7 +60,7 @@ export class CandidatComponent implements OnInit {
   }
 
   onFileSelected() {
-    const $pdf: any = document.querySelector('#load_file_candidat');
+    const $pdf: any = document.querySelector('#id_load_file_candidat');
 
     if (typeof FileReader !== 'undefined') {
       const reader = new FileReader();
@@ -70,6 +71,10 @@ export class CandidatComponent implements OnInit {
 
       reader.readAsArrayBuffer($pdf.files[0]);
     }
+  }
+
+  changeValue(event) {
+    this.amount = event.value * 9;
   }
 
 }

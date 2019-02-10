@@ -8,23 +8,27 @@
   <div class="flex-container">
     <div class="flex-div one">
       <div class="elements_inline">
-        <label [attr.contenteditable]="isEdit" [textContent]="candidat.prenom" (input)="candidat.prenom=$event.target.textContent"></label>
-        <label [attr.contenteditable]="isEdit" [textContent]="candidat.nom" (input)="candidat.nom=$event.target.textContent"></label>
+        <i class="fa-2x">
+            <label [attr.contenteditable]="isEdit" [textContent]="candidat.prenom" (input)="candidat.prenom=$event.target.textContent"></label>
+            <label [attr.contenteditable]="isEdit" [textContent]="candidat.nom" (input)="candidat.nom=$event.target.textContent"></label>
+        </i> 
       </div> 
       <div>
           <div class="elements_inline">
-              <i class="fa fa-envelope fa-2x"></i> 
-              <span [attr.contenteditable]="isEdit" [textContent]="candidat.email" (input)="candidat.email=$event.target.textContent"></span>
+              <i class="fa fa-envelope fa-2x">
+                <span [attr.contenteditable]="isEdit" [textContent]="candidat.email" (input)="candidat.email=$event.target.textContent"></span>
+              </i> 
+           </div>
+          <br>
+          <div class="elements_inline">
+            <i class="fa fa-phone fa-2x">
+                <span [attr.contenteditable]="isEdit" [textContent]="candidat.telephone" (input)="candidat.telephone=$event.target.textContent"></span>
+            </i>
           </div>
           <br>
           <div class="elements_inline">
-              <i class="fa fa-phone fa-2x"></i>
-              <span [attr.contenteditable]="isEdit" [textContent]="candidat.telephone" (input)="candidat.telephone=$event.target.textContent"></span>
-          </div>
-          <br>
-          <div class="elements_inline">
-              <i class="fa fa-graduation-cap fa-2x"></i>
-              <select [(ngModel)]="candidat.profilCandidat.anneesExperiences" [disabled]="!(isEdit)">
+            <i class="fa fa-graduation-cap fa-2x">
+              <select [(ngModel)]="candidat.profilCandidat.anneesEtudes" [disabled]="!(isEdit)">
                 <option value="0">Bac</option>
                 <option value="1">Bac+1</option>
                 <option value="2">Bac+2</option>
@@ -33,11 +37,22 @@
                 <option value="5">Bac+5</option>
                 <option value="6">Au delà de bac+5</option>
               </select>
+            </i>
           </div>
           <br>
           <div class="elements_inline">
-              <i class="fa fa-suitcase fa-2x"></i>
-              <span>5</span>
+              <i class="fa fa-suitcase fa-2x">     
+                    <select [(ngModel)]="candidat.profilCandidat.anneesExperiences" [disabled]="!(isEdit)">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">+5</option>
+                            <option value="7">+10</option>
+                    </select>            
+              </i>             
           </div>
           <br>
           <div class="edit_conditons">
@@ -52,12 +67,13 @@
                   <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.stage" [disabled]="!(isEdit)">Stage</mat-checkbox></p>
               </div>  
               <h5>Salaire</h5> 
-              <div>
-                  <mat-slider  [(ngModel)]="candidat.profilCandidat.salaire" [disabled]="!(isEdit)"
+              <div class="elements_inline">
+                  <span>{{candidat.profilCandidat.salaire}} K</span>
+                  <mat-slider thumbLabel tickInterval="auto" [(ngModel)]="candidat.profilCandidat.salaire" [disabled]="!(isEdit)"
                       thumbLabel  
                       min="1"
                       max="100"
-                      >                       
+                      >                    
                   </mat-slider>
               </div>                            
           </div>
@@ -71,7 +87,7 @@
     <div class="flex-div auto">
           <div>
               <label>Telecharger votre CV...</label>
-              <input (change)="onFileSelected()" type="file" [disabled]="!(isEdit)" id="load_file_candidat">
+              <input (change)="onFileSelected()" type="file" [disabled]="!(isEdit)" id="id_load_file_candidat">
           </div>
           <div *ngIf="pdfSrc" class="div-scroll">
               <pdf-viewer [src]="pdfSrc" 
