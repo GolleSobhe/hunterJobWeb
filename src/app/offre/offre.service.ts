@@ -48,6 +48,10 @@ export class OffreService {
     return this._http.get<string[]>(`${this.ApiUrl}/offre/domaines`);
   }
 
+  getContractType(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.ApiUrl}/offre/typesContrat`);
+  }
+
   getPays(): Observable<any> {
     return this._http.get(`${this.ApiUrl}/pays`);
   }
