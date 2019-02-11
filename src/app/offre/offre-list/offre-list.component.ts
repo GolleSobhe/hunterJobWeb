@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Offre, Specialisation, InputSearchData } from '../offre';
+import { Offre, InputSearchData, Filter } from '../offre';
 import { OffreService } from '../offre.service';
 import { reject } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,10 +25,11 @@ export class OffreListComponent implements OnInit {
   pages: any;
 
   //filters
-  specialisationFilter: string[] = [];
-  contractFilter: string[] = [];
-  specialisations: Specialisation[] = [];
-  contractType = [];
+  specialisationFiltersList: Filter[];
+  contractFiltersList: Filter[];
+
+  specialisationsSelected: string[] = [];
+  contractTypesSelected: string[] = [];
 
   //Input search
   city: string;
@@ -43,15 +44,13 @@ export class OffreListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.initContractType();
     this.createSearchForm();
 
     this.getByPage();
 
-    this.specialisations.push({ id: 0, name: 'Tous', selected: true });
+    this.getContractType();
 
-    this.constructSpecialisationData();
-
+    this.getSpecialisations();
   }
 
   getByPage() {
@@ -59,8 +58,8 @@ export class OffreListComponent implements OnInit {
       this.currentPage = 1;
     }
 
-    this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationFilter,
-      this.contractFilter, this.title, this.city).subscribe((result) => {
+    this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationsSelected,
+      this.contractTypesSelected, this.title, this.city).subscribe((result) => {
 
         this.offreList = result['content'];
         this.totalElements = result['totalElements'];
@@ -88,84 +87,100 @@ export class OffreListComponent implements OnInit {
       });
   }
 
-  initContractType() {
-    this.contractType = [{ id: 0, name: "Tous", selected: true }, { id: 1, name: "CDD", selected: false }, { id: 2, name: "CDI", selected: false },
-    { id: 3, name: "Interim", selected: false }, { id: 4, name: "Freelance", selected: false },
-    { id: 5, name: "Apprentissage", selected: false }, { id: 6, name: "Stage", selected: false }]
+  /**
+   * build string list to Filter list
+   */
+  getContractType() {
+    this.offreService.getContractType().subscribe((contractTypes: string[]) => {
+     this.contractFiltersList = [<Filter>{id: 1, label: 'Tous', selected: true}, ...contractTypes.map(type =>  <Filter>{label: type, selected: false})];
+    }), error => {
+      reject(error);
+    };
   }
 
-  initSpecialisations() {
-    this.specialisations[0].selected = true;
-    for (let i = 1; i < this.specialisations.length; i++) {
-      this.specialisations[i].selected = false;
-    }
-  }
-
-  constructSpecialisationData() {
+  /**
+   * build string list to Filter list
+   */
+  getSpecialisations() {
     this.offreService.getSpecialisations().subscribe((specialisations: string[]) => {
-      let i = 1;
-      specialisations.forEach((spec: string) => {
-        this.specialisations.push({ id: i++, name: spec, selected: false })
-      })
+      this.specialisationFiltersList = [<Filter>{id: 1, label: 'Tous', selected: true}, ...specialisations.map(specialisation => <Filter>{label: specialisation, selected: false})];
     }, error => {
       reject(error);
     });
   }
 
-  clickEvent(index: number) {
-    this.contractType[index].selected = !this.contractType[index].selected;
-    let i = 1;
+  /**
+   * selection et deselection d'un filtre
+   * @param filter 
+   */
+  selectContractTypeFilter(filter: Filter) {
+    filter.selected = !filter.selected;
 
-    const length = this.contractType.length;
+    if(filter.selected) {
+      //si Tous est selectionné, je déselection tous les autres et inversement
+      if(filter.id !== 1) {
+        this.contractFiltersList[0].selected = false;
+      } else {
+        this.contractFiltersList.slice(1).forEach((filter: Filter) => {
+          filter.selected = false;
+        })
+      }
+    } else {
+      //verification si au moins un filter différent de Tous est selectionnée. si aucun, selection de Tous
+      let noneSelected = this.contractFiltersList.slice(1).every((filter: Filter) => {
+        return !filter.selected;
+      });
 
-    for (i = 1; i < length; i++) {
-      if (this.contractType[i].selected) {
-        break;
+      if(noneSelected) {
+        this.contractFiltersList[0].selected = true;
       }
     }
 
-    if (i === length || index === 0) {
-      this.initContractType();
-      this.contractFilter = null;
-    }
-
-    for (let j = 1; j < this.contractType.length; j++) {
-      if (this.contractType[j].selected) {
-        this.contractFilter.push(this.contractType[j].name);
-        this.contractType[0].selected = false;
-      }
-    }
+    //récuperation de l'ensemble des filtres selectionnés
+    this.contractTypesSelected = this.contractFiltersList.filter((filter: Filter) => {
+      return filter.selected === true;
+    }).map((filter: Filter) => {
+      return filter.label;
+    });
 
     this.getByPage();
-    this.contractFilter = [];
   }
 
-  clickSpecialisationEvent(index: number) {
-    this.specialisations[index].selected = !this.specialisations[index].selected;
+ /**
+   * selection et deselection d'un filtre
+   * @param filter 
+   */
+  selectSpecialisationFilter(filter: Filter) {
+    filter.selected = !filter.selected;
 
-    let i = 1;
-    const length = this.specialisations.length;
+    if(filter.selected) {
+      //si Tous est selectionné, je déselection tous les autres et inversement
+      if(filter.id !== 1) {
+        this.specialisationFiltersList[0].selected = false;
+      } else {
+        this.specialisationFiltersList.slice(1).forEach((filter: Filter) => {
+          filter.selected = false;
+        })
+      }
+    } else {
+      //verification si au moins un filter différent de Tous est selectionnée. si aucun, selection de Tous
+      let noneSelected = this.specialisationFiltersList.slice(1).every((filter: Filter) => {
+        return !filter.selected;
+      });
 
-    for (i = 1; i < length; i++) {
-      if (this.specialisations[i].selected) {
-        break;
+      if(noneSelected) {
+        this.specialisationFiltersList[0].selected = true;
       }
     }
 
-    if (i === length || index === 0) {
-      this.initSpecialisations();
-      this.specialisationFilter = null;
-    }
-
-    for (let j = 1; j < this.specialisations.length; j++) {
-      if (this.specialisations[j].selected) {
-        this.specialisationFilter.push(this.specialisations[j].name);
-        this.specialisations[0].selected = false;
-      }
-    }
+    //récuperation de l'ensemble des filtres selectionnés
+    this.specialisationsSelected = this.specialisationFiltersList.filter((filter: Filter) => {
+      return filter.selected === true;
+    }).map((filter: Filter) => {
+      return filter.label;
+    });
 
     this.getByPage();
-    this.specialisationFilter = [];
   }
 
   //Search Form
@@ -182,6 +197,9 @@ export class OffreListComponent implements OnInit {
     });
   }
 
+  /**
+   * soumettre la recherche
+   */
   onSearch() {
     this.city = this.searchForm.value.city;
     this.title = this.searchForm.value.title;

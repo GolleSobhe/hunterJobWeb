@@ -86,12 +86,8 @@
   background-color: white;
 }
 
-.select-specialisation {
+.selected {
   background-color: #cccccc;
-}
-
-.unselect-specialisation {
-  background-color: white;
 }
 
 /* COLONNE DES FILTRES*/

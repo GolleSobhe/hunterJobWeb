@@ -1,4 +1,4 @@
-<div class="container" *ngIf="contractType">
+<div class="container">
 
   <h2 align="center">L'ensemble de toutes nos offres</h2>
 
@@ -23,17 +23,15 @@
       <div class="filters-column">
         <h3>Filtrer vos offres</h3>
         <p>Type de contrat</p>
-        <button *ngFor="let contract of contractType; let i=index" (click)="clickEvent(i)" class="button-filters"
-          [ngClass]="contract.selected ? 'select-specialisation' : 'unselect-specialisation'">
-          {{contract.name}}
+        <button *ngFor="let contract of contractFiltersList" (click)="selectContractTypeFilter(contract)" [class.selected]="contract.selected" class="button-filters">
+          {{contract.label}}
         </button>
       </div>
 
       <div class="filters-column">
         <p>Spécialisation</p>
-        <button *ngFor="let spec of specialisations; let i=index" (click)="clickSpecialisationEvent(i)" class="button-filters"
-          [ngClass]="spec.selected ? 'select-specialisation' : 'unselect-specialisation'">
-          {{spec.name}}
+        <button *ngFor="let specialisation of specialisationFiltersList" (click)="selectSpecialisationFilter(specialisation)" [class.selected]="specialisation.selected" class="button-filters">
+          {{specialisation.label}}
         </button>
       </div>
     </div>
