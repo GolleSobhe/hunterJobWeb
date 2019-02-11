@@ -32,3 +32,18 @@ a:hover {
 a {
   color: rgb(79, 79, 180);
 }
+
+.new-offer {
+  width:  60px;
+  background: #ccc;
+  position: relative;
+  top: 8px;
+  right:  -27px;
+  float: right;
+  transform: rotate(45deg);
+  text-align: center;
+  line-height: 15px;
+  font-size: .85em;
+  letter-spacing: 1px;
+  color: #e43;
+}
