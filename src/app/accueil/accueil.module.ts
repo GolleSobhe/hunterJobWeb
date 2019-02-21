@@ -1,36 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AcceuilService } from './acceuil.service';
 import { NgxCarouselModule } from 'ngx-carousel';
-import { MatOptionModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatAutocompleteModule } from '@angular/material';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import {
+  MatToolbarModule,
+} from '@angular/material';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    SharedModule,
     NgxCarouselModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
     MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatAutocompleteModule
   ],
   providers: [AcceuilService],
   declarations: [AccueilComponent]

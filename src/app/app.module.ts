@@ -1,24 +1,14 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import {
-  MatButtonModule, MatCardModule,
-  MatIconModule,
-  MatInputModule, MatMenuModule,
-  MatToolbarModule,
-  MatFormFieldModule, MatOptionModule, MatSelectModule, MatAutocompleteModule,
-} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import {MenubarComponent} from './common/menubar/menubar.component';
-import {CommonModule} from '@angular/common';
-import { FooterComponent } from './common/footer/footer.component';
 import { AccueilModule } from './accueil/accueil.module';
 import {RouterModule} from '@angular/router';
+import { SharedModule } from './shared/shared.module';
+import { MenubarComponent } from './shared/common/menubar/menubar.component';
+import { FooterComponent } from './shared/common/footer/footer.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,36 +17,16 @@ import {RouterModule} from '@angular/router';
     FooterComponent,
   ],
   imports: [
-    BrowserModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CommonModule,
+    RouterModule,    
     AppRoutingModule,
-    // Les modules de material
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    // Module du projet
-    AccueilModule
+    BrowserModule,
+    BrowserAnimationsModule,
+
+    //project module
+    AccueilModule,
+    SharedModule
   ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
