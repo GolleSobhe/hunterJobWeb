@@ -5,16 +5,18 @@ import {AppRoutingModule} from './app-routing.module';
 import { AccueilModule } from './accueil/accueil.module';
 import {RouterModule} from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-import { MenubarComponent } from './shared/common/menubar/menubar.component';
-import { FooterComponent } from './shared/common/footer/footer.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenubarComponent } from './common/menubar/menubar.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { GlobalSearchComponent } from './common/global-search/global-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenubarComponent,
     FooterComponent,
+    GlobalSearchComponent
   ],
   imports: [
     RouterModule,    

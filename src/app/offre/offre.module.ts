@@ -12,7 +12,6 @@ import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreItemComponent } from './offre-item/offre-item.component';
 import { OffreDisplayComponent } from './offre-display/offre-display.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { GlobalSearchComponent } from '../shared/common/global-search/global-search.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     CreationOffreComponent,
     IdentificationComponent,
-    GlobalSearchComponent,
     ComputerScienceComponent,
     PaymentComponent,
     OthersProfessionComponent,
