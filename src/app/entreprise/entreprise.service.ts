@@ -17,14 +17,21 @@ export class EntrepriseService {
     const headers = new HttpHeaders();
 
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Entreprise>(`${this.ApiUrl}/entreprise/new`, entreprise, {headers: headers});
+    return this.http.post<Entreprise>(`${this.ApiUrl}/api/v1/entreprises`, entreprise, {headers: headers});
+  }
+
+  modifierEntreprise(entreprise: Entreprise): Observable<Entreprise> {
+    const headers = new HttpHeaders();
+
+    headers.append('Content-Type', 'application/json');
+    return this.http.put<Entreprise>(`${this.ApiUrl}/api/v1/entreprises`, entreprise, {headers: headers});
   }
 
   getEntreprises(): Observable<Entreprise[]> {
-    return this.http.get<Entreprise[]>(`${this.ApiUrl}/entreprise/all`);
+    return this.http.get<Entreprise[]>(`${this.ApiUrl}/api/v1/entreprises`);
   }
 
   getEntrepriseById(id: number): Observable<Entreprise> {
-    return this.http.get<Entreprise>(`${this.ApiUrl}/entreprise/${id}`);
+    return this.http.get<Entreprise>(`${this.ApiUrl}/api/v1/entreprises/${id}`);
   }
 }

@@ -1,7 +1,7 @@
 <div>
   <h3>Créer votre entreprise</h3>
   <hr> 
-  <mat-horizontal-stepper [linear]="false" #stepper="matHorizontalStepper">
+  <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
     <mat-step [stepControl]="entrepriseFormOne">
       <form [formGroup]="entrepriseFormOne">
         <ng-template matStepLabel>Votre entreprise</ng-template>

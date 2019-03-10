@@ -1,100 +1,89 @@
 <div *ngIf="loaded | async">
   <div class="bt_editable">
-      <i class="fa fa-edit none fa-3x" (click)="edider()">
+    <button (click)="enregister()"> 
+        <i class="fa fa-edit none fa-3x" (click)="edider()">
             <span *ngIf="!isEdit">Modifier</span>
             <span *ngIf="isEdit">Enregister</span>
-      </i>   
+      </i>
+    </button>         
   </div>
   <div class="flex-container">
     <div class="flex-div one">
-      <div class="elements_inline">
-        <i class="fa-2x">
-            <label [attr.contenteditable]="isEdit" [textContent]="candidat.prenom" (input)="candidat.prenom=$event.target.textContent"></label>
-            <label [attr.contenteditable]="isEdit" [textContent]="candidat.nom" (input)="candidat.nom=$event.target.textContent"></label>
-        </i> 
-      </div> 
-      <div>
-          <div class="elements_inline">
-              <i class="fa fa-envelope fa-2x">
-                <span [attr.contenteditable]="isEdit" [textContent]="candidat.email" (input)="candidat.email=$event.target.textContent"></span>
-              </i> 
-           </div>
-          <br>
-          <div class="elements_inline">
-            <i class="fa fa-phone fa-2x">
-                <span [attr.contenteditable]="isEdit" [textContent]="candidat.telephone" (input)="candidat.telephone=$event.target.textContent"></span>
-            </i>
-          </div>
-          <br>
-          <div class="elements_inline">
-            <i class="fa fa-graduation-cap fa-2x">
-              <select [(ngModel)]="candidat.profilCandidat.anneesEtudes" [disabled]="!(isEdit)">
-                <option value="0">Bac</option>
-                <option value="1">Bac+1</option>
-                <option value="2">Bac+2</option>
-                <option value="3">Bac+3</option>
-                <option value="4">Bac+4</option>
-                <option value="5">Bac+5</option>
-                <option value="6">Au delà de bac+5</option>
-              </select>
-            </i>
-          </div>
-          <br>
-          <div class="elements_inline">
-              <i class="fa fa-suitcase fa-2x">     
-                    <select [(ngModel)]="candidat.profilCandidat.anneesExperiences" [disabled]="!(isEdit)">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">+5</option>
-                            <option value="7">+10</option>
-                    </select>            
-              </i>             
-          </div>
-          <br>
-          <div class="edit_conditons">
-              <h5>Mes conditions</h5>
-              <div>                    
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.cdi" [disabled]="!(isEdit)">CDI</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.cdd" [disabled]="!(isEdit)">CDD</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.freelance" [disabled]="!(isEdit)">Freelance</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.professionnalisation" [disabled]="!(isEdit)">Contrat d'apprentissage</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.aprentissage" [disabled]="!(isEdit)">Contrat de professionnalisation</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.interim" [disabled]="!(isEdit)">Interim</mat-checkbox></p>
-                  <p><mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.stage" [disabled]="!(isEdit)">Stage</mat-checkbox></p>
-              </div>  
-              <h5>Salaire</h5> 
-              <div class="elements_inline">
-                  <span>{{candidat.profilCandidat.salaire}} K</span>
-                  <mat-slider thumbLabel tickInterval="auto" [(ngModel)]="candidat.profilCandidat.salaire" [disabled]="!(isEdit)"
+          <form [formGroup]="candidatForm" class="form-wrapper">
+            <div class="fullItem">
+              <label for="nom">Nom</label>
+              <input type='text' formControlName="nom" id="nom" required/>
+            </div>
+            <div class="fullItem">
+              <label for="prenom">Prenom</label>
+              <input type='text' formControlName="prenom" id="prenom" required/>
+            </div>
+            <div class="fullItem">
+                <i class="fa fa-envelope fa-2x">
+                    <input type='email' formControlName="email"required/>
+                </i>              
+            </div>
+            <div class="fullItem">
+                <i class="fa fa-phone fa-2x">
+                    <input type="text" formControlName="telephone" required/>
+                </i>                 
+            </div>
+            <div class="fullItem">
+                <i class="fa fa-graduation-cap fa-2x">
+                    <select formControlName="anneesEtudes">
+                        <option value="0">Bac</option>
+                        <option value="1">Bac+1</option>
+                        <option value="2">Bac+2</option>
+                        <option value="3">Bac+3</option>
+                        <option value="4">Bac+4</option>
+                        <option value="5">Bac+5</option>
+                        <option value="6">Sup bac+5</option>
+                      </select>
+                </i>
+            </div>
+            <div class="fullItem">
+              <i class="fa fa-suitcase fa-2x">
+                <select formControlName="anneesExperiences">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">+5</option>
+                  <option value="7">+10</option>
+                </select>
+              </i>
+            </div>
+            <div class="fullItem">
+              <p><mat-checkbox formControlName="cdi">CDI</mat-checkbox></p>
+              <p><mat-checkbox formControlName="cdd">CDD</mat-checkbox></p>
+              <p><mat-checkbox formControlName="freelance">Freelance</mat-checkbox></p>
+              <p><mat-checkbox formControlName="professionnalisation">Contrat d'apprentissage</mat-checkbox></p>
+              <p><mat-checkbox formControlName="aprentissage">Contrat de professionnalisation</mat-checkbox></p>
+              <p><mat-checkbox formControlName="interim">Interim</mat-checkbox></p>
+              <p><mat-checkbox formControlName="stage">Stage</mat-checkbox></p>
+            </div>
+            <div class="fullItem">
+              <label>Salaire</label>
+                <mat-slider thumbLabel tickInterval="auto" formControlName="salaire"
                       thumbLabel  
                       min="1"
                       max="100"
                       >                    
                   </mat-slider>
-              </div>                            
-          </div>
-          <br>
-          <div class="elements_inline">
+            </div>
+            <div class="fullItem">
               <i class="fa fa-home fa-2x"></i> 
-              <mat-checkbox [(ngModel)]="candidat.profilCandidat.typeEmploi.relocalisation" [disabled]="!(isEdit)">je suis prés à demenager</mat-checkbox>
-          </div>
-      </div>      
+              <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
+            </div>
+
+          </form>
     </div>
     <div class="flex-div auto">
-          <div>
-              <label>Telecharger votre CV...</label>
-              <input (change)="onFileSelected()" type="file" [disabled]="!(isEdit)" id="id_load_file_candidat">
-          </div>
-          <div *ngIf="pdfSrc" class="div-scroll">
-              <pdf-viewer [src]="pdfSrc" 
-                  [render-text]="true"
-                  style="display: block;"
-              ></pdf-viewer>
-          </div>            
+      <form>
+        
+      </form>               
     </div>
   </div>
 </div>

@@ -1,11 +1,11 @@
 export interface Entreprise {
     id?: number;
     nom: String;
-    adresse: String;
     telephone: String;
+    adresse: String;    
     email: String;
-    // logo: String;
     siteWeb: String;
-    secteurActivite: String;
     description: String;
+    secteurActivite: String;
+    // logo: String;
 }

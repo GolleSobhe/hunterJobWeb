@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidatService } from '../candidat.service';
-import { ProfilCandidat } from '../profilCandidat';
 
 @Component({
   selector: 'app-candidat',
@@ -16,12 +15,32 @@ export class CandidatComponent implements OnInit {
   isEdit: Boolean = false;
   pdfSrc: String = null;
   amount: Number = 0;
+  candidatForm: FormGroup;
   constructor(private _formBuilder: FormBuilder,
         private router: ActivatedRoute,
         private routerToAccueil: Router,
         private candidatService: CandidatService) { }
 
   ngOnInit() {
+    this.candidatForm = this._formBuilder.group({
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      telephone: ['', [Validators.required]],
+      titreProfil: ['', [Validators.required]],
+      adresse: ['', [Validators.required]],
+      anneesExperiences: ['', [Validators.required]],
+      anneesEtudes: ['', [Validators.required]],
+      salaire: ['', [Validators.required]],
+      cdi: [false, Validators.required],
+      cdd: [false, Validators.required],
+      freelance: [false, Validators.required],
+      professionnalisation: [false, Validators.required],
+      aprentissage: [false, Validators.required],
+      interim: [false, Validators.required],
+      stage: [false, Validators.required],
+      relocalisation: [false, Validators.required], 
+    });
     this.initCandidat();
   }
 
@@ -30,26 +49,7 @@ export class CandidatComponent implements OnInit {
       this.candidatService.getCandidatById(param.id)
       .subscribe(candidat => {
         this.candidat = candidat;
-        if (! this.candidat.profilCandidat ) {
-          const profilCandidat: ProfilCandidat = {
-            titreProfil: '',
-            adresse: '',
-            anneesExperiences: 0,
-            anneesEtudes: 0,
-            cv: '',
-            typeEmploi: {
-              cdi: false,
-              cdd: false,
-              freelance: false,
-              professionnalisation: false,
-              aprentissage: false,
-              stage: false,
-              interim: false},
-            salaire: 10,
-            relocalisation: false
-          };
-          this.candidat.profilCandidat = profilCandidat;
-        }
+        this.isEdit = this.activer(this.candidat);
         this.loaded = Promise.resolve(true);
         });
     });
@@ -57,6 +57,12 @@ export class CandidatComponent implements OnInit {
 
   edider(): void {
     this.isEdit = !this.isEdit;
+  }
+
+  activer(candidat: Candidat): boolean {
+    return (candidat.adresse == null) || (candidat.anneesEtudes == null)
+            || (candidat.anneesExperiences == null) || (candidat.salaire == null)
+            || (candidat.telephone == null) || (candidat.titreProfil == null);
   }
 
   onFileSelected() {
@@ -75,6 +81,23 @@ export class CandidatComponent implements OnInit {
 
   changeValue(event) {
     this.amount = event.value * 9;
+  }
+
+  enregister(): void {
+    if(!this.isEdit){
+      this.candidat.adresse = "pompidou";
+      this.candidat.anneesEtudes = 5;
+      this.candidat.anneesExperiences = 5;
+      this.candidat.telephone = "568745899999";
+      this.candidat.relocalisation = true;
+      this.candidat.salaire = 50;
+      this.candidat.titreProfil = "Full stack";
+      this.candidatService.modifierCandidat(this.candidat).subscribe((candidat_: Candidat) => {
+        this.candidat = candidat_;
+        this.candidatForm.reset();
+        //this.routerToAccueil.navigate(['/']);
+      });
+    }
   }
 
 }
