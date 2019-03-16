@@ -13,7 +13,7 @@ export class OffreService {
   }
 
   getCompetences(): Observable<string[]> {
-    return this._http.get<string[]>(`${this.ApiUrl}/offre/competences`);
+    return this._http.get<string[]>(`${this.ApiUrl}/offres/competences`);
   }
 
   creerOffre(entreprise_id: number, offre: Offre): Observable<Offre> {
@@ -21,7 +21,7 @@ export class OffreService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=${entreprise_id}`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=${entreprise_id}`, offre, {headers: headers});
   }
 
   creerOffreOtherProfession(entrprise_id: number, offre): Observable<any> {
@@ -29,40 +29,40 @@ export class OffreService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this._http.post<Offre>(`${this.ApiUrl}/offre/new?entreprise_id=entreprise_id`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=entreprise_id/`, offre, {headers: headers});
   }
 
   getProduit(): Observable<string[]> {
-    return this._http.get<string[]>(`${this.ApiUrl}/offre/produits`);
+    return this._http.get<string[]>(`${this.ApiUrl}/offres/produits/`);
   }
 
   getSpecialisations(): Observable<string[]> {
-    return this._http.get<string[]>(`${this.ApiUrl}/offre/specialisations`);
+    return this._http.get<string[]>(`${this.ApiUrl}/offres/specialisations/`);
   }
 
   getOffreById(id: number): Observable<Offre> {
-    return this._http.get<Offre>(`${this.ApiUrl}/offre/${id}`);
+    return this._http.get<Offre>(`${this.ApiUrl}/offres/${id}/`);
   }
 
   getDomaines(): Observable<string[]> {
-    return this._http.get<string[]>(`${this.ApiUrl}/offre/domaines`);
+    return this._http.get<string[]>(`${this.ApiUrl}/offres/domaines/`);
   }
 
   getContractType(): Observable<string[]> {
-    return this._http.get<string[]>(`${this.ApiUrl}/offre/typesContrat`);
+    return this._http.get<string[]>(`${this.ApiUrl}/offres/typesContrat/`);
   }
 
   getPays(): Observable<any> {
-    return this._http.get(`${this.ApiUrl}/pays`);
+    return this._http.get(`${this.ApiUrl}/pays/`);
   }
 
   getAll(): Observable<Offre[]> {
-    return this._http.get<Offre[]>(`${this.ApiUrl}/offre/all`);
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offres/`);
   }
 
-  getByPage(pageNumber: number, pageSize, specialisations?: string[], contractTypes?: string[], title?: string, city?: string): Observable<Offre[]> {
-    pageNumber --;
+  getByPage(currentPage: number, pageSize, specialisations?: string[], contractTypes?: string[], title?: string, city?: string): Observable<Offre[]> {
+    currentPage --;
     
-    return this._http.get<Offre[]>(`${this.ApiUrl}/offre?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offres/?pageNumber=${currentPage}&pageSize=${pageSize}`);
   }
 }
