@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Offre } from './offre';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class OffreService {
@@ -60,9 +61,7 @@ export class OffreService {
     return this._http.get<Offre[]>(`${this.ApiUrl}/offres/`);
   }
 
-  getByPage(currentPage: number, pageSize, specialisations?: string[], contractTypes?: string[], title?: string, city?: string): Observable<Offre[]> {
-    currentPage --;
-    
+  getOfferByPage(currentPage: number, pageSize: number, specialisations?: string[], contractTypes?: string[], title?: string, city?: string): Observable<Offre[]> { 
     return this._http.get<Offre[]>(`${this.ApiUrl}/offres/?pageNumber=${currentPage}&pageSize=${pageSize}`);
   }
 }
