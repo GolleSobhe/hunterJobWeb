@@ -16,7 +16,8 @@
   </div>
 
   <div class="input-container">
-    <mat-checkbox color="primary" formControlName="isRecruiter">Je suis un recruteur</mat-checkbox>
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" formControlName="confirmPassword" type="password" placeholder="Corfirmer mot de passe" name="Confirmer mot de passe">
   </div>
   
   <button mat-raised-button  type="submit" id="submit-button" [disabled]="userForm.invalid">Inscription</button>
