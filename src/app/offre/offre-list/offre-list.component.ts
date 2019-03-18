@@ -51,6 +51,8 @@ export class OffreListComponent implements OnInit {
     this.getContractType();
 
     this.getSpecialisations();
+
+    this.onSearch();
   }
 
   /**
@@ -72,6 +74,25 @@ export class OffreListComponent implements OnInit {
       }, error => {
         reject(error);
       });
+  }
+
+
+  /**
+   * soumettre la recherche
+   */
+  onSearch() {
+    this.city = this.searchForm.value.city;
+    this.title = this.searchForm.value.title;
+    this.currentPage = 1;
+
+    this.inputData = { q: this.title, w: this.city };
+    this.offreService.getOfferByCityAndTitle(0, this.ITEM_PER_PAGE, this.title, this.city).subscribe((result: any) =>{
+      
+      this.offreList = result['content'];
+      this.totalElements = result['totalElements'];
+      this.totalPages = result['totalPages'];
+      this.router.navigate(['../offres'], {queryParams: this.inputData, queryParamsHandling: "merge"});
+    });
   }
 
   /**
@@ -182,18 +203,5 @@ export class OffreListComponent implements OnInit {
         city: [this.inputData.w, [Validators.nullValidator]],
       });
     });
-  }
-
-  /**
-   * soumettre la recherche
-   */
-  onSearch() {
-    this.city = this.searchForm.value.city;
-    this.title = this.searchForm.value.title;
-    this.currentPage = 1;
-
-    this.inputData = { q: this.title, w: this.city };
-    this.getOfferByPage(1);
-    this.router.navigate(['../offres'], {queryParams: this.inputData, queryParamsHandling: "merge"});
   }
 }

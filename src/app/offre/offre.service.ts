@@ -3,14 +3,21 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Offre } from './offre';
-import { BehaviorSubject } from 'rxjs';
+import { MessageService } from '../common/message.service';
+
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class OffreService {
 
   private  ApiUrl = environment.apiUrl;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private messageService: MessageService) {
   }
 
   getCompetences(): Observable<string[]> {
@@ -18,19 +25,11 @@ export class OffreService {
   }
 
   creerOffre(entreprise_id: number, offre: Offre): Observable<Offre> {
-    const headers = new HttpHeaders();
-
-    headers.append('Content-Type', 'application/json');
-
-    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=${entreprise_id}`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=${entreprise_id}`, offre, httpOptions);
   }
 
   creerOffreOtherProfession(entrprise_id: number, offre): Observable<any> {
-    const headers = new HttpHeaders();
-
-    headers.append('Content-Type', 'application/json');
-
-    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=entreprise_id/`, offre, {headers: headers});
+    return this._http.post<Offre>(`${this.ApiUrl}/offres/?entreprise_id=entreprise_id/`, offre, httpOptions);
   }
 
   getProduit(): Observable<string[]> {
@@ -63,5 +62,44 @@ export class OffreService {
 
   getOfferByPage(currentPage: number, pageSize: number, specialisations?: string[], contractTypes?: string[], title?: string, city?: string): Observable<Offre[]> { 
     return this._http.get<Offre[]>(`${this.ApiUrl}/offres/?pageNumber=${currentPage}&pageSize=${pageSize}`);
+  }
+
+  //TODO: WAHOUUU METHODE A OPTIMISE
+  getOfferByCityAndTitle(currentPage: number, pageSize: number, title?: string, city?: string): Observable<Offre[]> {
+
+    if (title !== null && title !== null) {
+      title = title.trim();
+      city = city.trim();
+
+      if (title.length > 0 && city.length > 0) {
+        return this._http.get<Offre[]>(`${this.ApiUrl}/offres/filtrer?lieu=${city}&pageNumber=${currentPage}&pageSize=${pageSize}&titre=${title}`)
+          .pipe(
+            tap(_ => this.messageService.log(`search offer "${title} in "${city}"`)),
+            catchError(this.messageService.handleError<Offre[]>('searchHeroes', []))
+          );
+      }
+
+      if (city.length > 0) {
+        return this._http.get<Offre[]>(`${this.ApiUrl}/offres/filtrer?lieu=${city}&pageNumber=${currentPage}&pageSize=${pageSize}`)
+          .pipe(
+            tap(_ => this.messageService.log(`search offer  "${city}"`)),
+            catchError(this.messageService.handleError<Offre[]>('searchHeroes', []))
+          );
+      }
+
+      if (title.length > 0) {
+        return this._http.get<Offre[]>(`${this.ApiUrl}/offres/filtrer?pageNumber=${currentPage}&pageSize=${pageSize}&titre=${title}`)
+          .pipe(
+            tap(_ => this.messageService.log(`search offer "${title} in "${city}"`)),
+            catchError(this.messageService.handleError<Offre[]>('searchHeroes', []))
+          );
+      } 
+    }
+
+    return this._http.get<Offre[]>(`${this.ApiUrl}/offres/?pageNumber=${currentPage}&pageSize=${pageSize}`)
+    .pipe(
+      tap(_ => this.messageService.log(`search offer "${title} in "${city}"`)),
+      catchError(this.messageService.handleError<Offre[]>('searchHeroes', []))
+    );
   }
 }
