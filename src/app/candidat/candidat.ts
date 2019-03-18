@@ -1,10 +1,7 @@
-import { ProfilCandidat } from './profilCandidat';
-
-export interface Candidat {
+export interface Utilisateur {
   id?: number;
   nom: string;
   prenom: string;
-  telephone?: string;
   email: string;
-  profilCandidat?: ProfilCandidat;
+  motDePasse: string;
 }

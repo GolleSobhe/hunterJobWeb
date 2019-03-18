@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CandidatService } from '../candidat.service';
 import { MustMatch } from './match.password.validator';
+import { Utilisateur } from '../candidat';
 
 @Component({
   selector: 'comp-signup',
@@ -20,7 +21,8 @@ export class SignupComponent implements OnInit {
 
   signUpForm() {
     this.userForm = this.formBuilder.group({
-      displayName: ['', [Validators.required]],
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
@@ -31,9 +33,19 @@ export class SignupComponent implements OnInit {
 
   signUp() {
     if (this.userForm.valid) {
-      let user = this.userForm.value;
+      let formValue = this.userForm.value;
+      let user: Utilisateur = {
+        nom: formValue.nom,
+        prenom: formValue.prenom,
+        email: formValue.email,
+        motDePasse: formValue.password
+      }
       //TODO: delete 'confirmPassword' and create user with service
-      console.log(user);
+
+      this.candidatService.signUp(user).subscribe((userCreated: Utilisateur) => {
+        //TODO: Do something
+      });
+
       this.userForm.reset();
     }
   }
