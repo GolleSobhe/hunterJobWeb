@@ -2,8 +2,6 @@ import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AccueilComponent } from './accueil/accueil/accueil.component';
 
-
-
 const ROUTES: Routes = [
   {path: 'accueil', component: AccueilComponent},
   {path: '', redirectTo: 'accueil', pathMatch: 'full'},

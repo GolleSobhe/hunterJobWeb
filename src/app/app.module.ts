@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarComponent } from './common/menubar/menubar.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { GlobalSearchComponent } from './common/global-search/global-search.component';
+import { MessageService } from './common/message.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { GlobalSearchComponent } from './common/global-search/global-search.comp
     SharedModule
   ],
   exports: [],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
