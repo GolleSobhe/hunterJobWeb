@@ -11,13 +11,15 @@ import { MenubarComponent } from './common/menubar/menubar.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { GlobalSearchComponent } from './common/global-search/global-search.component';
 import { MessageService } from './common/message.service';
+import { WelcomeComponent } from './common/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenubarComponent,
     FooterComponent,
-    GlobalSearchComponent
+    GlobalSearchComponent,
+    WelcomeComponent
   ],
   imports: [
     RouterModule,    
