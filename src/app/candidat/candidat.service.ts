@@ -5,6 +5,7 @@ import { Utilisateur} from './candidat';
 import {environment} from '../../environments/environment';
 import { MessageService } from '../common/message.service';
 import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,6 +30,15 @@ export class CandidatService {
   } 
 
   signIn(): void {
+
+  }
+
+  getCandidatById(id: number): Observable<any> {
+    return of([]);
+  }
+
+  creerCompte(candidat: any): Observable<any> {
+    return of([]);
 
   }
 
