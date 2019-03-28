@@ -1,27 +1,4 @@
-
-.input-container {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .icon {
-    padding: 10px;
-    background: #0B2161;
-    color: white;
-    min-width: 50px;
-    text-align: center;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 0% !important;
-    outline: none;
-  }
-    
-  /* Set a style for the submit button */
+ /* Set a style for the submit button */
   #submit-button {
     background-color: #0B2161;
     color: white;
@@ -32,6 +9,10 @@
     opacity: 0.9;
   }
   
+  input {
+    border-radius: 0% !important;
+  }
+
   .btn:hover {
     opacity: 1;
   }
@@ -46,10 +27,37 @@ form {
   padding-bottom: 10%;
 }
 
-::ng-deep .mat-checkbox .mat-checkbox-frame {
-  border-color: #0B2161;
-}
-
 button {
   padding: 6px 15px !important;
+}
+
+.container {
+ width: 50%
+}
+
+.row-layout {
+  background-color: #FFF;
+  display: flex;
+}
+
+.column-one {
+  flex: 1;
+  order: 1;
+  margin-right: 1%;
+}
+
+.column-two {
+  flex: 1;
+  order: 2;
+  margin-left: 1%;
+}
+
+.column-single {
+  flex: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
 }
