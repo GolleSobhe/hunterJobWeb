@@ -12,11 +12,11 @@
           <form [formGroup]="candidatForm" class="form-wrapper">
             <div class="fullItem">
               <label for="nom">Nom</label>
-              <input type='text' formControlName="nom" id="nom" required/>
+              <input type='text' [disabled]="!(isEdit)" formControlName="nom" id="nom" required/>
             </div>
             <div class="fullItem">
               <label for="prenom">Prenom</label>
-              <input type='text' formControlName="prenom" id="prenom" required/>
+              <input type='text' [disabled]="!(isEdit)" formControlName="prenom" id="prenom" required/>
             </div>
             <div class="fullItem">
                 <i class="fa fa-envelope fa-2x">
@@ -65,24 +65,35 @@
               <p><mat-checkbox formControlName="stage">Stage</mat-checkbox></p>
             </div>
             <div class="fullItem">
-              <label>Salaire</label>
+                <i class="fa fa-money fa-2x">
+                  {{candidat.salaire}}K
+                </i>
                 <mat-slider thumbLabel tickInterval="auto" formControlName="salaire"
+                      [(ngModel)]="candidat.salaire"
                       thumbLabel  
                       min="1"
                       max="100"
                       >                    
-                  </mat-slider>
+               </mat-slider>
             </div>
             <div class="fullItem">
               <i class="fa fa-home fa-2x"></i> 
               <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
             </div>
-
           </form>
     </div>
     <div class="flex-div auto">
       <form>
-        
+        <div class="fullItem">
+              <label>Telecharger votre CV...</label>
+              <input (change)="onFileSelected($event)" type="file" id="id_load_file_candidat">
+        </div>
+        <div *ngIf="pdfSrc" class="div-scroll">
+          <pdf-viewer [src]="pdfSrc" 
+              [render-text]="true"
+              style="display: block;"
+          ></pdf-viewer>
+        </div>  
       </form>               
     </div>
   </div>

@@ -22,7 +22,7 @@
 }
 
 .one {
-  width: 40%;
+  width: 45%;
 }
 .div-scroll{
   overflow-y: scroll;
@@ -56,9 +56,9 @@ mat-slider {
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 350px;
   max-width: 80%;
-  min-width: 100px;
+  min-width: 300px;
   min-height: 400px;
   padding: 20px 40px;
   border-radius: 6px;
@@ -73,6 +73,6 @@ mat-slider {
   width: 100%;
 }
 
-
-
-
+mat-slider {
+  width: 250px;
+}

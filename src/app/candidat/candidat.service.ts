@@ -36,4 +36,8 @@ export class CandidatService {
     return this.http.get<Array<Candidat>>(`${this.ApiUrl}/api/v1/candidats`);
   }
 
+  sendFileCv(id: number, file): Observable<any> {
+    return this.http.post<any>(`${this.ApiUrl}/api/v1/cvs/${id}`, file);
+  }
+
 }
