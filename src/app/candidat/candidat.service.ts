@@ -21,11 +21,10 @@ export class CandidatService {
     return this.http.post<Candidat>(`${this.ApiUrl}/api/v1/candidats`, candidat, {headers: headers});
   }
 
-  modifierCandidat(candidat: Candidat): Observable<Candidat> {
+  update(candidat: Candidat): Observable<Candidat> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    const id = candidat.id;
-    return this.http.put<Candidat>(`${this.ApiUrl}/api/v1/candidats/${id}`, candidat, {headers: headers});
+    return this.http.put<Candidat>(`${this.ApiUrl}/api/v1/candidats`, candidat, {headers: headers});
   }
 
   getCandidatById(id: number): Observable<Candidat> {
@@ -37,7 +36,11 @@ export class CandidatService {
   }
 
   sendFileCv(id: number, file): Observable<any> {
-    return this.http.post<any>(`${this.ApiUrl}/api/v1/cvs/${id}`, file);
+    return this.http.post<any>(`${this.ApiUrl}/api/v1/candidats/${id}/cv`, file);
+  }
+
+  getFileCv(id: number): String {
+    return `${this.ApiUrl}/api/v1/candidats/${id}/cv`;
   }
 
 }

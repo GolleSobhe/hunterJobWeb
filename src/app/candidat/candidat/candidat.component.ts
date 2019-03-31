@@ -1,9 +1,8 @@
 import { Candidat } from './../candidat';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CandidatService } from '../candidat.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-candidat',
@@ -12,23 +11,22 @@ import { forkJoin } from 'rxjs';
 })
 export class CandidatComponent implements OnInit {
   candidat: Candidat;
-  loaded: Promise<boolean>;
+  loading: boolean = true;
   isEdit: Boolean = false;
   pdfSrc: String = null;
-  amount: Number = 0;
   candidatForm: FormGroup;
+  candidatFormCV: FormGroup;
   fileCV: File;
   constructor(private _formBuilder: FormBuilder,
         private router: ActivatedRoute,
-        private routerToAccueil: Router,
         private candidatService: CandidatService) { }
 
   ngOnInit() {
     this.candidatForm = this._formBuilder.group({
-      nom: ['', [Validators.required]],
-      prenom: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      telephone: ['', [Validators.required]],
+      nom: ['', [Validators.required, Validators.minLength(2)]],
+      prenom: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(7)]],
+      telephone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8)]],
       titreProfil: ['', [Validators.required]],
       adresse: ['', [Validators.required]],
       anneesExperiences: ['', [Validators.required]],
@@ -38,51 +36,40 @@ export class CandidatComponent implements OnInit {
       cdd: [false, Validators.required],
       freelance: [false, Validators.required],
       professionnalisation: [false, Validators.required],
-      aprentissage: [false, Validators.required],
+      apprentissage: [false, Validators.required],
       interim: [false, Validators.required],
       stage: [false, Validators.required],
-      relocalisation: [false, Validators.required], 
+      relocalisation: [false, Validators.required],       
+    });
+    this.candidatFormCV = this._formBuilder.group({
+      titreProfil: ['', [Validators.required]],
+      file: ['', [Validators.required]],
     });
     this.initCandidat();
   }
 
   private initCandidat(): void {
+    this.candidatForm.disable();
+    this.candidatFormCV.disable();
     this.router.params.subscribe(param => {
       this.candidatService.getCandidatById(param.id)
       .subscribe(candidat => {
-        this.candidat = candidat;
-        this.candidat.salaire = 45;
-        this.candidatForm.get('nom').setValue(this.candidat.nom);
-        this.candidatForm.get('prenom').setValue(this.candidat.prenom);
-        this.candidatForm.get('email').setValue(this.candidat.email);
-        this.candidatForm.get('telephone').setValue(this.candidat.telephone);
-        this.candidatForm.get('titreProfil').setValue(this.candidat.titreProfil);
-        this.candidatForm.get('adresse').setValue(this.candidat.adresse);
-        this.candidatForm.get('anneesExperiences').setValue(this.candidat.anneesExperiences);
-        this.candidatForm.get('anneesEtudes').setValue(this.candidat.anneesEtudes);
-        this.candidatForm.get('cdi').setValue(this.candidat.cdi);
-        this.candidatForm.get('cdd').setValue(this.candidat.cdd);
-        this.candidatForm.get('freelance').setValue(this.candidat.freelance);
-        this.candidatForm.get('professionnalisation').setValue(this.candidat.professionnalisation);
-        this.candidatForm.get('aprentissage').setValue(this.candidat.aprentissage);
-        
-        this.candidatForm.get('interim').setValue(this.candidat.interim);
-        this.candidatForm.get('stage').setValue(this.candidat.stage);
-        this.candidatForm.get('relocalisation').setValue(this.candidat.relocalisation);
-        this.isEdit = this.activer(this.candidat);
-        this.loaded = Promise.resolve(true);
-        });
+        this.candidat = candidat;   
+        this.pdfSrc = this.candidatService.getFileCv(this.candidat.id);    
+        this.loading = false;
+        if(this.isActive(this.candidat)){
+          this.candidatForm.enable();
+          this.candidatFormCV.enable();
+        }
+      });
     });
   }
 
-  edider(): void {
-    this.isEdit = !this.isEdit;
-  }
-
-  activer(candidat: Candidat): boolean {
+  private isActive(candidat: Candidat): boolean {
     return (candidat.adresse == null) || (candidat.anneesEtudes == null)
             || (candidat.anneesExperiences == null) || (candidat.salaire == null)
-            || (candidat.telephone == null) || (candidat.titreProfil == null);
+            || (candidat.telephone == null) || (candidat.titreProfil == null)
+            || (this.pdfSrc == null);
   }
 
   onFileSelected(event) {
@@ -102,28 +89,50 @@ export class CandidatComponent implements OnInit {
     }
   }
 
-  changeValue(event) {
-    this.amount = event.value * 9;
+  enregister(): void {
+    this.isEdit = !this.isEdit;
+    this.activeFormGroup();
+     
+    if(!this.isEdit){
+      this.loading = true;
+     // if(this.candidatForm.valid && this.candidatFormCV.valid){    
+        const file: FormData = new FormData();
+        file.append(`file`, this.fileCV);
+        this.candidatService.update(this.candidat).subscribe(
+          candidat => {
+            this.candidatService.sendFileCv(candidat.id, file).subscribe(
+              fileStored => {
+                console.log(candidat);
+                this.loading = false;
+                if(this.isActive(this.candidat)){
+                  this.candidatForm.enable();
+                  this.candidatFormCV.enable();
+                }
+              },
+              error => {
+                console.log(error);
+              }
+            );
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      //}        
+    }
+    
   }
 
-  enregister(): void {
-    if(!this.isEdit){
-      this.candidat.adresse = "pompidou";
-      this.candidat.anneesEtudes = 10;
-      this.candidat.anneesExperiences = 5;
-      this.candidat.telephone = "568745899999";
-      this.candidat.relocalisation = true;
-      this.candidat.salaire = 50;
-      this.candidat.titreProfil = "Full stack";           
-     const file: FormData = new FormData();
-     file.append(`file`, this.fileCV);
-     forkJoin(
-       [this.candidatService.modifierCandidat(this.candidat)],
-       [this.candidatService.sendFileCv(this.candidat.id, file)]
-     ).subscribe(results => {
-        console.log(results);
-     });
-  
+  private activeFormGroup(): void {
+    if(this.candidatForm.enabled){
+      this.candidatForm.disable();
+    }else{
+      this.candidatForm.enable();
+    }
+    if(this.candidatFormCV.enabled){
+      this.candidatFormCV.disable();
+    }else{
+      this.candidatFormCV.enable();
     }
   }
 

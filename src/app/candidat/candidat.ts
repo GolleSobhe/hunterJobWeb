@@ -15,7 +15,7 @@ export interface Candidat {
   cdd: boolean;
   freelance: boolean;
   professionnalisation: boolean;
-  aprentissage: boolean;
+  apprentissage: boolean;
   stage: boolean;
   interim: boolean;    
 }

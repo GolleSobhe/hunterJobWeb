@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {SpinnerModule} from '@tsmean/spinner';
 import { CandidatComponent } from './candidat/candidat.component';
 import { CandidatNewComponent } from './candidat-new/candidat-new.component';
 import { CandidatRoutingModule } from './candidat-routing.module';
@@ -16,7 +17,10 @@ import { MatSliderModule } from '@angular/material';
     PdfViewerModule,
 
     //material module
-    MatSliderModule
+    MatSliderModule,
+    //Spinner
+    SpinnerModule.forRoot({
+    }),
   ],
   declarations: [CandidatComponent, CandidatNewComponent, SignupComponent, SiginComponent]
 })

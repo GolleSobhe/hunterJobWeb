@@ -1,7 +1,11 @@
-<div *ngIf="loaded | async">
+<div *ngIf="loading">
+  <spinner>
+  </spinner>
+</div>
+<div *ngIf="!loading">
   <div class="bt_editable">
     <button (click)="enregister()"> 
-        <i class="fa fa-edit none fa-3x" (click)="edider()">
+        <i class="fa fa-edit none fa-3x">
             <span *ngIf="!isEdit">Modifier</span>
             <span *ngIf="isEdit">Enregister</span>
       </i>
@@ -12,25 +16,44 @@
           <form [formGroup]="candidatForm" class="form-wrapper">
             <div class="fullItem">
               <label for="nom">Nom</label>
-              <input type='text' [disabled]="!(isEdit)" formControlName="nom" id="nom" required/>
+              <input type='text'  
+                      formControlName="nom" id="nom" 
+                      [(ngModel)]="candidat.nom"
+              required/>
             </div>
             <div class="fullItem">
               <label for="prenom">Prenom</label>
-              <input type='text' [disabled]="!(isEdit)" formControlName="prenom" id="prenom" required/>
+              <input type='text' 
+                      formControlName="prenom" id="prenom" 
+                      [(ngModel)]="candidat.prenom"
+                      required/>
             </div>
             <div class="fullItem">
                 <i class="fa fa-envelope fa-2x">
-                    <input type='email' formControlName="email"required/>
+                    <input type='email' formControlName="email"
+                    [(ngModel)]="candidat.email"
+                    required/>
                 </i>              
             </div>
             <div class="fullItem">
                 <i class="fa fa-phone fa-2x">
-                    <input type="text" formControlName="telephone" required/>
+                    <input type="text" formControlName="telephone" 
+                    [(ngModel)]="candidat.telephone"
+                    required/>
+                </i>                 
+            </div>
+            <div class="fullItem">
+                <i class="fa fa-home fa-2x">
+                    <input type="text" formControlName="adresse" 
+                    [(ngModel)]="candidat.adresse"
+                    required/>
                 </i>                 
             </div>
             <div class="fullItem">
                 <i class="fa fa-graduation-cap fa-2x">
-                    <select formControlName="anneesEtudes">
+                    <select formControlName="anneesEtudes"
+                    [(ngModel)]="candidat.anneesEtudes"
+                    >
                         <option value="0">Bac</option>
                         <option value="1">Bac+1</option>
                         <option value="2">Bac+2</option>
@@ -43,7 +66,9 @@
             </div>
             <div class="fullItem">
               <i class="fa fa-suitcase fa-2x">
-                <select formControlName="anneesExperiences">
+                <select formControlName="anneesExperiences"
+                [(ngModel)]="candidat.anneesExperiences"
+                >
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -56,13 +81,13 @@
               </i>
             </div>
             <div class="fullItem">
-              <p><mat-checkbox formControlName="cdi">CDI</mat-checkbox></p>
-              <p><mat-checkbox formControlName="cdd">CDD</mat-checkbox></p>
-              <p><mat-checkbox formControlName="freelance">Freelance</mat-checkbox></p>
-              <p><mat-checkbox formControlName="professionnalisation">Contrat d'apprentissage</mat-checkbox></p>
-              <p><mat-checkbox formControlName="aprentissage">Contrat de professionnalisation</mat-checkbox></p>
-              <p><mat-checkbox formControlName="interim">Interim</mat-checkbox></p>
-              <p><mat-checkbox formControlName="stage">Stage</mat-checkbox></p>
+              <p><mat-checkbox formControlName="cdi" [(ngModel)]="candidat.cdi">CDI</mat-checkbox></p>
+              <p><mat-checkbox formControlName="cdd" [(ngModel)]="candidat.cdd">CDD</mat-checkbox></p>
+              <p><mat-checkbox formControlName="freelance" [(ngModel)]="candidat.freelance">Freelance</mat-checkbox></p>
+              <p><mat-checkbox formControlName="professionnalisation" [(ngModel)]="candidat.professionnalisation">Contrat de professionnalisation</mat-checkbox></p>
+              <p><mat-checkbox formControlName="apprentissage" [(ngModel)]="candidat.apprentissage">Contrat d'apprentissage</mat-checkbox></p>
+              <p><mat-checkbox formControlName="interim" [(ngModel)]="candidat.interim">Interim</mat-checkbox></p>
+              <p><mat-checkbox formControlName="stage" [(ngModel)]="candidat.stage">Stage</mat-checkbox></p>
             </div>
             <div class="fullItem">
                 <i class="fa fa-money fa-2x">
@@ -78,15 +103,23 @@
             </div>
             <div class="fullItem">
               <i class="fa fa-home fa-2x"></i> 
-              <mat-checkbox formControlName="relocalisation">je suis prés à demenager</mat-checkbox>
+              <mat-checkbox formControlName="relocalisation" [(ngModel)]="candidat.relocalisation">je suis prés à demenager</mat-checkbox>
             </div>
           </form>
     </div>
-    <div class="flex-div auto">
-      <form>
+    <div class="flex-div auto">      
+      <form [formGroup]="candidatFormCV">
+        <div class="fullItem">
+              <label for="titreProfil">Titre du profil</label>
+              <input type='text' 
+                         
+                          formControlName="titreProfil" id="titreProfil" 
+                          [(ngModel)]="candidat.titreProfil"
+                  required/>
+        </div>
         <div class="fullItem">
               <label>Telecharger votre CV...</label>
-              <input (change)="onFileSelected($event)" type="file" id="id_load_file_candidat">
+              <input (change)="onFileSelected($event)" type="file" formControlName="file" id="id_load_file_candidat">
         </div>
         <div *ngIf="pdfSrc" class="div-scroll">
           <pdf-viewer [src]="pdfSrc" 

@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarComponent } from './common/menubar/menubar.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { GlobalSearchComponent } from './common/global-search/global-search.component';
+import { WelcomeComponent } from './common/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenubarComponent,
     FooterComponent,
-    GlobalSearchComponent
+    GlobalSearchComponent,
+    WelcomeComponent
   ],
   imports: [
     RouterModule,    
@@ -26,7 +28,7 @@ import { GlobalSearchComponent } from './common/global-search/global-search.comp
 
     //project module
     AccueilModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [],
   providers: [],

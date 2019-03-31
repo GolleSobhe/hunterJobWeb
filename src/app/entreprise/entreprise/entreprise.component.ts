@@ -28,7 +28,6 @@ export class EntrepriseComponent implements OnInit {
       telephone: ['', Validators.required],
       email: ['', Validators.email],
       siteWeb: ['', Validators.required],
-      // logo: ['', Validators.nullValidator],
       secteurActivite: ['', Validators.required],
       description: ['', Validators.required]
     });
