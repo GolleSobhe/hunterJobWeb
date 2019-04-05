@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CandidatService } from '../candidat.service';
 import { MustMatch } from './match.password.validator';
 import { Utilisateur } from '../candidat';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'comp-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
 
   userForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private candidatService: CandidatService) { }
+  constructor(private formBuilder: FormBuilder, private candidatService: CandidatService, private router: Router) { }
 
   ngOnInit() {
     this.signUpForm();
@@ -44,9 +45,10 @@ export class SignupComponent implements OnInit {
 
       this.candidatService.signUp(user).subscribe((userCreated: Utilisateur) => {
         //TODO: Do something
-      });
 
-      this.userForm.reset();
+        this.router.navigate(['../../consult-email']);
+        this.userForm.reset();
+      });
     }
   }
 }

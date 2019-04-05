@@ -1,7 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AccueilComponent } from './accueil/accueil/accueil.component';
-import { WelcomeComponent } from './common/welcome/welcome.component';
 
 const ROUTES: Routes = [
   {path: 'accueil', component: AccueilComponent},
@@ -9,7 +8,7 @@ const ROUTES: Routes = [
   {path: 'offres', loadChildren : 'app/offre/offre.module#OffreModule'},
   {path: 'entreprises', loadChildren : 'app/entreprise/entreprise.module#EntrepriseModule'},
   {path: 'candidats', loadChildren : 'app/candidat/candidat.module#CandidatModule'},
-  {path: '**', component: WelcomeComponent}
+
 ];
 
 // useHash: booléen activant la navigation avec des hash (#) au lieu de l'API history
