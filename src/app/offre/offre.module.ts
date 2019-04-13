@@ -14,10 +14,13 @@ import { OffreDisplayComponent } from './offre-display/offre-display.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SharedModule } from '../shared/shared.module';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   imports: [
     OffreRoutingModule,
-    SharedModule    
+    SharedModule,
+    NgxPaginationModule
   ],
   declarations: [
     CreationOffreComponent,

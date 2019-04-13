@@ -19,3 +19,12 @@ export interface Candidat {
   stage: boolean;
   interim: boolean;    
 }
+
+export interface Utilisateur {
+  id?: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  motDePasse: string;
+}
+

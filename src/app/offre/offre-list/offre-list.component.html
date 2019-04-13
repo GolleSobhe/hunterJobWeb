@@ -13,7 +13,8 @@
       </div>
 
       <div class="search-column3">
-        <button type="submit" class="search-button" mat-raised-button color="primary"><i class="material-icons"> search </i></button>
+        <button type="submit" class="search-button" mat-raised-button color="primary"><i class="material-icons"> search
+          </i></button>
       </div>
     </div>
   </form>
@@ -23,36 +24,28 @@
       <div class="filters-column">
         <h3>Filtrer vos offres</h3>
         <p>Type de contrat</p>
-        <button *ngFor="let contract of contractFiltersList" (click)="selectContractTypeFilter(contract)" [class.selected]="contract.selected" class="button-filters">
+        <button *ngFor="let contract of contractFiltersList" (click)="selectContractTypeFilter(contract)"
+          [class.selected]="contract.selected" class="button-filters">
           {{contract.label}}
         </button>
       </div>
 
       <div class="filters-column">
         <p>Spécialisation</p>
-        <button *ngFor="let specialisation of specialisationFiltersList" (click)="selectSpecialisationFilter(specialisation)" [class.selected]="specialisation.selected" class="button-filters">
+        <button *ngFor="let specialisation of specialisationFiltersList" (click)="selectSpecialisationFilter(specialisation)"
+          [class.selected]="specialisation.selected" class="button-filters">
           {{specialisation.label}}
         </button>
       </div>
     </div>
 
     <div class="column2">
-      <div *ngFor="let offre of offreList">
+      <div *ngFor="let offre of offreList | paginate: { itemsPerPage: ITEM_PER_PAGE, currentPage: currentPage, totalItems: totalElements }">
         <app-offre-item [offre]="offre"></app-offre-item>
       </div>
 
-      <div align="center">
-        <div class="pagination paginator">
-          <a queryParamsHandling="merge" (click)="getByPage(); currentPage=currentPage-1" [hidden]="currentPage==1">&laquo;</a>
-
-          <a *ngFor="let page of pages" (click)="getByPage(); currentPage=page" queryParamsHandling="merge" currentPage=page
-            [ngClass]="{active:currentPage === page}">{{page}}</a>
-
-          <a (click)="getByPage(); currentPage =currentPage+1" queryParamsHandling="merge" [hidden]="currentPage==totalPages">&raquo;</a>
-        </div>
-      </div>
-
+      <pagination-controls class="pagination padding-top" (pageChange)="getOfferByPage($event)" directionLinks="true" autoHide="true"
+        responsive="true" previousLabel="Précedent" nextLabel="Suivant" screenReaderPaginationLabel="Pagination">
+      </pagination-controls>
     </div>
   </div>
-
-</div>

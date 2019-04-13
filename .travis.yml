@@ -12,8 +12,8 @@ before_script:
   - npm install -g @angular/cli
 
 script:
-  - ng build --prod --base-href "https://gollesobhe.github.io/hunterJobWeb/"
   - npm run deploy
+  - cp dist/hunterjobweb/index.html dist/hunterjobweb/404.html
 
 deploy:
   provider: pages

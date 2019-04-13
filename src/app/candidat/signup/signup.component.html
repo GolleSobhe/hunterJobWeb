@@ -1,23 +1,44 @@
-<form [formGroup]="userForm" (ngSubmit)="signUp()" style="max-width:500px;margin:auto">
-  <h2>Créer un compte</h2>
-  <div class="input-container">
-    <i class="fa fa-user icon"></i>
-    <input class="input-field" formControlName="displayName" type="text" placeholder="Nom complet" name="displayName">
-  </div>
+<form [formGroup]="userForm" (ngSubmit)="signUp()">
+  <div class="container">
+    <div class="row-layout">
+      <div class="column-one">
+        <label>Nom</label>
+        <input class="input-field" formControlName="nom" type="text" placeholder="Nom complet" name="displayName">
+      </div>
 
-  <div class="input-container">
-    <i class="fa fa-envelope icon"></i>
-    <input class="input-field" formControlName="email" type="text" placeholder="Email" name="email">
-  </div>
-  
-  <div class="input-container">
-    <i class="fa fa-key icon"></i>
-    <input class="input-field" formControlName="password" type="password" placeholder="Mot de passe" name="Mot de passe">
-  </div>
+      <div class="column-two">
+        <label>Prenom</label>
+        <input class="input-field" formControlName="prenom" type="text" placeholder="Nom complet" name="prenom">
+      </div>
+    </div>
 
-  <div class="input-container">
-    <mat-checkbox color="primary" formControlName="isRecruiter">Je suis un recruteur</mat-checkbox>
+    <div class="row-layout">
+      <div class="column-single">
+        <label>Email</label>
+        <input class="input-field" formControlName="email" type="text" placeholder="Email" name="email">
+      </div>
+    </div>
+
+    <div class="row-layout">
+      <div class="column-one">
+        <label>Mot de passe</label>
+        <input class="input-field" formControlName="password" type="password" placeholder="Mot de passe"
+          name="Mot de passe">
+      </div>
+
+      <div class="column-two">
+        <label>Confirmer</label>
+        <input class="input-field" formControlName="confirmPassword" type="password"
+          placeholder="Corfirmer mot de passe" name="Confirmer mot de passe">
+      </div>
+    </div>
+
+    <div class="row-layout">
+      <div class="column-single ">
+          <br/>
+          <!--  REMPLACER LE BR PAR DU CSS -->
+        <button mat-raised-button type="submit" id="submit-button" [disabled]="userForm.invalid">Inscription</button>
+      </div>
+    </div>
   </div>
-  
-  <button mat-raised-button  type="submit" id="submit-button" [disabled]="userForm.invalid">Inscription</button>
 </form>

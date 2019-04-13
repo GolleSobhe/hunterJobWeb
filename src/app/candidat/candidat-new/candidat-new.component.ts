@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {CandidatService} from '../candidat.service';
-import {Candidat} from '../candidat';
+import {Utilisateur} from '../candidat';
 import {Router} from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class CandidatNewComponent implements OnInit {
 
   candidatForm: FormGroup;
-  candidat: Candidat;
+  utilisateur: Utilisateur;
 
   constructor(private _formBuilder: FormBuilder,
               private candidatService: CandidatService,
@@ -31,11 +31,11 @@ export class CandidatNewComponent implements OnInit {
     });
   }
 
-  creerCandidat(candidat: Candidat) {
-    this.candidatService.creerCompte(candidat).subscribe((candidat_: Candidat) => {
-      this.candidat = candidat_;
+  create(utilisateur: Utilisateur) {
+    this.candidatService.signUp(utilisateur).subscribe((utilisateur_: Utilisateur) => {
+      this.utilisateur = utilisateur_;
       this.candidatForm.reset();
-      this.routerToCandidat.navigate(['/candidats/' + this.candidat.id]);
+      this.routerToCandidat.navigate(['/candidats/' + this.utilisateur.id]);
       });
   }
 

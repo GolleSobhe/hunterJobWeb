@@ -15,14 +15,9 @@ export class OffreListComponent implements OnInit {
   offreList: Offre[] = [];
 
   currentPage = 1;
-  private pageSize = 15;
-
+  ITEM_PER_PAGE = 20;
   totalPages: number;
   totalElements: number;
-  startPage: number;
-  endPage: number;
-
-  pages: any;
 
   //filters
   specialisationFiltersList: Filter[];
@@ -37,6 +32,8 @@ export class OffreListComponent implements OnInit {
   searchForm: FormGroup;
   inputData: InputSearchData;
 
+  collection = [];
+
   constructor(private offreService: OffreService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -44,47 +41,58 @@ export class OffreListComponent implements OnInit {
 
   ngOnInit() {
 
+    for (let i = 1; i <= 100; i++) {
+      this.collection.push(`item ${i}`);
+    }
+
     this.createSearchForm();
 
-    this.getByPage();
-
+    this.getOfferByPage(this.currentPage);
     this.getContractType();
 
     this.getSpecialisations();
+
+    this.onSearch();
   }
 
-  getByPage() {
+  /**
+   * chargement des pages par bésoin (lazy loading)
+   */
+  getOfferByPage(page: number) {
+    this.currentPage = +page;
+
     if ((this.currentPage <= 0) || (this.currentPage > this.totalPages)) {
-      this.currentPage = 1;
+      this.currentPage = 0;
     }
 
-    this.offreService.getByPage(this.currentPage, this.pageSize, this.specialisationsSelected,
+    this.offreService.getOfferByPage(this.currentPage-1, this.ITEM_PER_PAGE, this.specialisationsSelected,
       this.contractTypesSelected, this.title, this.city).subscribe((result) => {
 
         this.offreList = result['content'];
         this.totalElements = result['totalElements'];
         this.totalPages = result['totalPages'];
-
-        if (this.totalPages <= 5) {
-          this.startPage = 1;
-          this.endPage = this.totalPages;
-        } else {
-          if (this.currentPage <= 3) {
-            this.startPage = 1;
-            this.endPage = 5;
-          } else if (this.currentPage + 1 >= this.totalPages) {
-            this.startPage = this.totalPages - 4;
-            this.endPage = this.totalPages;
-          } else {
-            this.startPage = this.currentPage - 2;
-            this.endPage = this.currentPage + 2;
-          }
-        }
-
-        this.pages = Array.from(Array((this.endPage + 1) - this.startPage).keys()).map(i => this.startPage + i);
       }, error => {
         reject(error);
       });
+  }
+
+
+  /**
+   * soumettre la recherche
+   */
+  onSearch() {
+    this.city = this.searchForm.value.city;
+    this.title = this.searchForm.value.title;
+    this.currentPage = 1;
+
+    this.inputData = { q: this.title, w: this.city };
+    this.offreService.getOfferByCityAndTitle(0, this.ITEM_PER_PAGE, this.title, this.city).subscribe((result: any) =>{
+      
+      this.offreList = result['content'];
+      this.totalElements = result['totalElements'];
+      this.totalPages = result['totalPages'];
+      this.router.navigate(['../offres'], {queryParams: this.inputData, queryParamsHandling: "merge"});
+    });
   }
 
   /**
@@ -143,7 +151,7 @@ export class OffreListComponent implements OnInit {
       return filter.label;
     });
 
-    this.getByPage();
+    this.getOfferByPage(1);
   }
 
  /**
@@ -180,7 +188,7 @@ export class OffreListComponent implements OnInit {
       return filter.label;
     });
 
-    this.getByPage();
+    this.getOfferByPage(1);
   }
 
   //Search Form
@@ -195,18 +203,5 @@ export class OffreListComponent implements OnInit {
         city: [this.inputData.w, [Validators.nullValidator]],
       });
     });
-  }
-
-  /**
-   * soumettre la recherche
-   */
-  onSearch() {
-    this.city = this.searchForm.value.city;
-    this.title = this.searchForm.value.title;
-    this.currentPage = 1;
-
-    this.inputData = { q: this.title, w: this.city };
-    this.getByPage();
-    this.router.navigate(['../offres'], {queryParams: this.inputData, queryParamsHandling: "merge"});
   }
 }
