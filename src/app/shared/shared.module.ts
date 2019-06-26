@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatDialogModule } from '@angular/material/dialog';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -21,11 +19,14 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatMenuModule,
+  MatDialogModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogOverviewComponent } from './dialog-overview/dialog-overview.component';
+import { ConfirmEmailMessageComponent } from './dialog-overview/confirm-email-message/confirm-email-message.component';
 
 @NgModule({
-  imports: [],
+  imports: [MatDialogModule],
   exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -50,8 +51,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatCardModule,
     MatMenuModule,
+
+    DialogOverviewComponent,
+    ConfirmEmailMessageComponent
   ],
 
-  declarations: []
+  declarations: [DialogOverviewComponent, ConfirmEmailMessageComponent]
 })
 export class SharedModule { }

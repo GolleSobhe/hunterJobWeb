@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Verifier les données que vous avez saisi</h1>
+
+<div mat-dialog-content class="mat-typography">
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Fermer</button>
+  <button mat-button [mat-dialog-close]="dialogData" cdkFocusInitial>Payer</button>
+</div>
